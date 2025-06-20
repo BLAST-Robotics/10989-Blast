@@ -14,6 +14,9 @@ importers:
       astro:
         specifier: ^5.10.0
         version: 5.10.0(@types/node@24.0.3)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.44.0)(typescript@5.8.3)
+      bootstrap-icons:
+        specifier: ^1.13.1
+        version: 1.13.1
       daisyui:
         specifier: ^5.0.43
         version: 5.0.43
@@ -654,6 +657,9 @@ packages:
 
   blob-to-buffer@1.2.9:
     resolution: {integrity: sha512-BF033y5fN6OCofD3vgHmNtwZWRcq9NLyyxyILx9hfMy1sXYy4ojFl765hJ2lP0YaN2fuxPaLO2Vzzoxy0FLFFA==}
+
+  bootstrap-icons@1.13.1:
+    resolution: {integrity: sha512-ijombt4v6bv5CLeXvRWKy7CuM3TRTuPEuGaGKvTV5cz65rQSY8RQ2JcHt6b90cBBAC7s8fsf2EkQDldzCoXUjw==}
 
   boxen@8.0.1:
     resolution: {integrity: sha512-F3PH5k5juxom4xktynS7MoFY+NUWH5LC4CnH11YB8NPew+HLpmBLCybSAEyb2F+4pRXhuhWqFesoQd6DAyc2hw==}
@@ -2269,6 +2275,8 @@ snapshots:
   base64-js@1.5.1: {}
 
   blob-to-buffer@1.2.9: {}
+
+  bootstrap-icons@1.13.1: {}
 
   boxen@8.0.1:
     dependencies:

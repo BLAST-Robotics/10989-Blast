@@ -1,0 +1,77 @@
+[
+  {
+    "id": 1,
+    "name": "Vivaan Krishna Ponugoti",
+    "role": "Team Captain",
+    "initials": "VP",
+    "description": "Team captain with a focus on building a strong team culture.",
+    "image": "https://picsum.photos/200/200?random=1",
+    "social": {
+      "linkedin": "#",
+      "github": "#",
+      "email": "vivaanponugoti@gmail.com"
+    }
+  },  {
+    "id": 2,
+    "name": "Virat Ram Ponugoti",
+    "role": "Director of Operations",
+    "initials": "VP",
+    "description": "Oversees team operations, logistics, and project management to ensure smooth workflow and efficiency.",
+    "image": null,
+    "social": {
+      "linkedin": "#",
+      "github": "https://github.com/vrobot-2",
+      "email": "virponugoti@gmail.com"
+    }
+  },  {
+    "id": 3,
+    "name": "Jordan Kim",
+    "role": "Electrical Team Lead",
+    "initials": "JK",
+    "description": "Specializes in electrical systems, wiring, sensors, and control systems integration for competitive robots.",
+    "image": null,
+    "social": {
+      "linkedin": "#",
+      "github": "https://github.com/jordankim",
+      "email": "jordan@blastrobotics.org"
+    }
+  },
+  {
+    "id": 4,
+    "name": "Sam Patel",
+    "role": "Strategy & Scouting Lead",
+    "initials": "SP",
+    "description": "Leads strategic planning, match analysis, and scouting operations to optimize competition performance.",
+    "image": null,
+    "social": {
+      "linkedin": "#",
+      "github": "#",
+      "email": "sam@blastrobotics.org"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Riley Thompson",
+    "role": "Business & Outreach Lead",
+    "initials": "RT",
+    "description": "Manages sponsor relations, community outreach, awards submissions, and team marketing initiatives.",
+    "image": null,
+    "social": {
+      "linkedin": "#",
+      "twitter": "https://twitter.com/rileythompson",
+      "email": "riley@blastrobotics.org"
+    }
+  },
+  {
+    "id": 6,
+    "name": "Casey Wu",
+    "role": "Safety Captain",
+    "initials": "CW",
+    "description": "Ensures workshop safety, manages safety protocols, and coordinates safety training for all team members.",
+    "image": null,
+    "social": {
+      "linkedin": "#",
+      "email": "casey@blastrobotics.org"
+    }
+  }
+]
