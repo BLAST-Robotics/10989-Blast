@@ -19,9 +19,8 @@ const sponsorsToDisplay = sponsorsData.length < minSponsors
           rel="noopener noreferrer"
           class="flex-shrink-0 group transition-all duration-300 hover:scale-105"
           aria-label={`Visit ${sponsor.name} website`}
-          title={sponsor.description}          key={`first-${index}`}
-        >
-          <div class={`bg-${sponsor.bg || 'black'} rounded-lg shadow-sm group-hover:shadow-md transition-shadow duration-300 h-16 flex items-center justify-center min-w-[120px] border border-gray-200`} style={`padding: ${sponsor.padding || '16'}%;`}>
+          title={sponsor.description}          key={`first-${index}`}        >
+          <div class="rounded-lg shadow-sm group-hover:shadow-md transition-shadow duration-300 h-16 flex items-center justify-center min-w-[120px] border border-gray-200" style={`background-color: ${sponsor.bg || 'black'}; padding: ${sponsor.padding || '16'}%;`}>
             <Image 
               src={sponsor.logo} 
               alt={`${sponsor.name} logo`} 
@@ -42,9 +41,8 @@ const sponsorsToDisplay = sponsorsData.length < minSponsors
           rel="noopener noreferrer"
           class="flex-shrink-0 group transition-all duration-300 hover:scale-105"
           aria-label={`Visit ${sponsor.name} website`}
-          title={sponsor.description}          key={`second-${index}`}
-        >
-          <div class={`bg-${sponsor.bg || 'black'} rounded-lg shadow-sm group-hover:shadow-md transition-shadow duration-300 h-16 flex items-center justify-center min-w-[120px] border border-gray-200`} style={`padding: ${sponsor.padding || '16'}%;`}>
+          title={sponsor.description}          key={`second-${index}`}        >
+          <div class="rounded-lg shadow-sm group-hover:shadow-md transition-shadow duration-300 h-16 flex items-center justify-center min-w-[120px] border border-gray-200" style={`background-color: ${sponsor.bg || 'black'}; padding: ${sponsor.padding || '16'}%;`}>
             <Image 
               src={sponsor.logo} 
               alt={`${sponsor.name} logo`} 
