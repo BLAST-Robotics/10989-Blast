@@ -1,0 +1,41 @@
+[
+  {
+    "name": "Eadah Enterprises",
+    "logo": "/sponsors/eadeh-logo-white.png",
+    "website": "https://eadeh.com/",
+    "description": "Local Community Real Estate Company",
+    "padding": "10"
+  },
+  {
+    "name": "Comcast",
+    "logo": "/sponsors/comcast.svg",
+    "website": "https://comcast.com",
+    "description": "Interenet and Telecommunications provider",
+    "bg": "white",
+    "padding": "10"
+  },
+  {
+    "name": "Home Depot",
+    "logo": "/sponsors/home depot.webp",
+    "website": "https://homedepot.com",
+    "description": "Home improvement and construction products retailer",
+    "bg": "white",
+    "padding": "0"
+  },
+  {
+    "name": "FIRST® Foundation",
+    "logo": "/sponsors/first.png",
+    "website": "https://firstinspires.org",
+    "description": "The organization that runs the FIRST Robotics Competition",
+    "bg": "white",
+    "padding": "0"
+  },
+  {
+    "name": "Sol Siesta Apparel",
+    "logo": "/sponsors/Sol Siesta.jpg",
+    "website": "https://solsiestaapparel.com/",
+    "description": "Apparel company that supports our team",
+    "bg": "white",
+    "padding": "2"
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "typescript.validate.enable": false,
+  "javascript.validate.enable": false,
+  "html.validate.styles": false,
+  "html.validate.scripts": false,
+  "css.validate": false,
+  "scss.validate": false,
+  "json.validate.enable": false,
+  "eslint.enable": false,
+  "astro.typescript.enabled": false,
+  "problems.decorations.enabled": false,
+  "problems.showCurrentInStatus": false,
+  "editor.parameterHints.enabled": false,
+  "editor.quickSuggestions": {
+    "other": false,
+    "comments": false,
+    "strings": false
+  },
+  "editor.suggest.showStatusBar": false,
+  "editor.hover.enabled": false,
+  "workbench.problemMatchers": []
+}

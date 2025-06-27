@@ -1,0 +1,37 @@
+[
+  {
+    "date": "May 2025",
+    "title": "The Spark",
+    "description": "A group of passionate individuals in Mainline Pennsylvania identified the need for a community-based FIRST Robotics team. The vision was clear: create opportunities for local students to explore STEM through hands-on robotics experiences and foster innovation in our community.",
+    "image": "/Blast Robotics-1-Logo Black Square.png",
+    "type": "overlay"
+  },
+  {
+    "date": "2025",
+    "title": "Team 10989 Founded",
+    "description": "Blast Robotics officially became FRC Team 10989! We established our team structure, recruited our founding members, and began building the foundation for what would become a thriving robotics community. Our commitment to excellence and innovation was set from day one.",
+    "image": "/Logo Transparent.png",
+    "type": "card"
+  },
+  {
+    "date": "2026",
+    "title": "Rookie Season",
+    "description": "Our inaugural season in the FIRST Robotics Competition! As a rookie team, we'll face the excitement and challenges of building our first competition robot, learning FRC systems, and competing alongside veteran teams. This milestone marks our official entry into the global FRC community.",
+    "image": "/Blast Robotics-2-Logo White Square.png",
+    "type": "overlay"
+  },
+  {
+    "date": "2027+",
+    "title": "Growing Impact",
+    "description": "As we establish ourselves in the FRC community, our vision extends beyond competition. We aim to expand our team, mentor other emerging teams, and become a pillar of STEM education in Mainline Pennsylvania, inspiring the next generation of engineers and innovators.",
+    "image": "/Blast Robotics-3-Logo Alternate Square.png",
+    "type": "card"
+  },
+  {
+    "date": "Future",
+    "title": "Legacy Building",
+    "description": "Our long-term vision is to create a lasting legacy in our community - developing future engineers, fostering innovation, and demonstrating that with passion, dedication, and teamwork, anything is possible. The blast starts here, but the impact will resonate for generations.",
+    "image": "/Blast Robotics-5-Cool Logo Black Square.png",
+    "type": "overlay"
+  }
+]

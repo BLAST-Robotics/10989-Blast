@@ -5,81 +5,188 @@ export interface Props {
 
 const { title } = Astro.props;
 import "../index.css";
-import Analytics from '@vercel/analytics/astro'
+import Analytics from '@vercel/analytics/astro';
+import { Image } from 'astro:assets';
+import SponsorBar from '../components/SponsorBar.astro';
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+	<html lang="en" data-theme="">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Blast Robotics - Inspiring innovation through FIRST Robotics Competition" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		
+		<!-- Preload critical images -->
+		<link rel="preload" as="image" href="/Blast Robotics-1-Logo Black Square.png" />
+		
+		<!-- Theme color for mobile browsers -->
+		<meta name="theme-color" content="#3b82f6" />
+		
+		<script is:inline>
+			// Theme detection and initialization - needs to run immediately to prevent flash
+			(function() {
+				const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+				document.documentElement.setAttribute('data-theme', theme);
+			})();
+		</script>
 	</head>
 	<body>
 		<!-- Navigation -->
-		<div class="navbar bg-base-100 shadow-lg sticky top-0 z-50">
+		<div class="navbar bg-base-100 shadow-lg sticky top-0 z-50 px-2 sm:px-4">
 			<div class="navbar-start">
-				<div class="dropdown">					<div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-						<i class="bi bi-list text-xl"></i>
-					</div><ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+				<div class="dropdown">
+					<div tabindex="0" role="button" class="btn btn-ghost btn-sm lg:hidden p-1">
+						<i class="bi bi-list text-lg"></i>
+					</div>
+					<ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
 						<li><a href="/">Home</a></li>
 						<li><a href="/about">About</a></li>
-						<li><a href="#features">Programs</a></li>
-						<li><a href="#team">Team</a></li>
-						<li><a href="#contact">Contact</a></li>
+						<li><a href="/#features">Programs</a></li>
+						<li><a href="/#team">Team</a></li>
+						<li><a href="/#contact">Contact</a></li>
 					</ul>
-				</div>				<div class="flex items-center">
-					<img src="/Blast Robotics-1-Logo Black Square.png" alt="Blast Robotics Logo" class="h-10 w-10 mr-2" />
-					<a class="btn btn-ghost text-xl font-bold">Blast Robotics</a>
+				</div>				
+				<div class="flex items-center min-w-0">
+					<Image 
+						src="/Logo Transparent.png" 
+						alt="Blast Robotics Logo" 
+						class="h-8 w-8 sm:h-10 sm:w-10 mr-1 sm:mr-2 flex-shrink-0" 
+						width={40}
+						height={40}
+						loading="eager"
+						format="webp"
+					/>
+					<a class="btn btn-ghost text-sm sm:text-xl font-bold p-1 sm:p-4 min-h-0 h-auto truncate">
+						<span class="hidden xs:inline">Blast Robotics</span>
+						<span class="xs:hidden">Blast Robotics</span>
+					</a>
 				</div>
 			</div>
-			<div class="navbar-center hidden lg:flex">				<ul class="menu menu-horizontal px-1">
+			<div class="navbar-center hidden lg:flex">
+				<ul class="menu menu-horizontal px-1">
 					<li><a href="/" class="hover:text-primary">Home</a></li>
 					<li><a href="/about" class="hover:text-primary">About</a></li>
-					<li><a href="#features" class="hover:text-primary">Programs</a></li>
-					<li><a href="#team" class="hover:text-primary">Team</a></li>
-					<li><a href="#contact" class="hover:text-primary">Contact</a></li>
+					<li><a href="/#features" class="hover:text-primary">Programs</a></li>
+					<li><a href="/#team" class="hover:text-primary">Team</a></li>
+					<li><a href="/#contact" class="hover:text-primary">Contact</a></li>
 				</ul>
-			</div>			<div class="navbar-end">
-				<!-- Theme Controller -->				<label class="swap swap-rotate mr-4">
-					<input type="checkbox" class="theme-controller" value="dark" />
-					<!-- sun icon -->
-					<i class="bi bi-sun swap-off text-2xl"></i>
-					<!-- moon icon -->
-					<i class="bi bi-moon swap-on text-2xl"></i>
-				</label>
-				<a href="#contact" class="btn btn-primary">Join Us</a>
 			</div>
-		</div>
-
+			<div class="navbar-end flex-shrink-0">
+				<!-- Theme Controller -->
+				<label class="swap swap-rotate mr-6">
+					<input type="checkbox" class="theme-controller" id="theme-toggle" />
+					<!-- sun icon -->
+					<i class="bi bi-sun swap-off text-lg sm:text-2xl"></i>
+					<!-- moon icon -->
+					<i class="bi bi-moon swap-on text-lg sm:text-2xl"></i>
+				</label>
+				<a href="/#contact" class="btn btn-primary btn-sm sm:btn-md text-xs sm:text-sm">
+					<span class="hidden sm:inline">Join Us</span>
+					<span class="sm:hidden">Join Us</span>
+				</a>
+			</div>		</div>
+		
+		<!-- Sponsor Bar -->
+		<SponsorBar />
+		
 		<!-- Main Content -->
 		<main>
 			<slot />
 		</main>
+
+		<Analytics />
+
 		<!-- Footer -->
-		<footer class="footer footer-center p-10 bg-neutral text-neutral-content">
-			<aside>
-				<div class="flex items-center justify-center mb-4">
-					<img src="/Blast Robotics-2-Logo White Square.png" alt="Blast Robotics Logo" class="h-12 w-12 mr-3" />
-					<div class="text-2xl font-bold">Blast Robotics</div>
+		<footer class="footer p-10 bg-neutral text-neutral-content grid-cols-2 md:grid-cols-3">			<aside class="md:col-span-1">
+				<div class="flex items-center mb-4">
+					<Image 
+						src="/Placard Transparent Black.png" 
+						alt="Blast Robotics Logo" 
+						class="h-24 w-auto mr-3" 
+						width={120}
+						height={48}
+						loading="lazy"
+						format="png"
+					/>
 				</div>
-				<p class="font-bold">
+				<p class="text-neutral-content/80">
 					FRC Community Team serving Mainline Pennsylvania
-				</p> 
-				<p>Copyright © 2025 - Blast Robotics Team. All rights reserved.</p>
-			</aside>			<nav>
-				<div class="grid grid-flow-col gap-4">
-					<a href="https://instagram.com/10989blast" target="_blank" rel="noopener noreferrer" class="hover:text-primary cursor-pointer" aria-label="Follow us on Instagram">
+				</p>
+			</aside>
+			<nav class="md:col-span-1">
+				<h6 class="footer-title">Quick Links</h6>
+				<a href="/" class="link link-hover">Home</a>
+				<a href="/about" class="link link-hover">About</a>
+				<a href="/#features" class="link link-hover">Programs</a>
+				<a href="/#team" class="link link-hover">Team</a>
+			</nav>
+			<nav class="md:col-span-1">
+				<h6 class="footer-title">Contact</h6>
+				<a href="/#contact" class="link link-hover">Join Us</a>
+				<a href="mailto:info@team10989.org" class="link link-hover">Email</a>
+			</nav>
+			<nav class="md:col-span-1">
+				<h6 class="footer-title">Social</h6>
+				<div class="flex gap-4">
+					<a href="https://instagram.com/10989blast" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors" aria-label="Follow us on Instagram">
 						<i class="bi bi-instagram text-2xl"></i>
 					</a>
-					<a href="mailto:info@team10989.org" class="hover:text-primary cursor-pointer" aria-label="Email us">
+					<a href="mailto:info@team10989.org" class="hover:text-primary transition-colors" aria-label="Email us">
+						<i class="bi bi-envelope text-2xl"></i>
+					</a>
+				</div>
+			</nav>
+			<nav class="md:col-span-1">
+				<h6 class="footer-title">Our Sponsors</h6>
+				<div class="flex gap-4">
+					<a href="https://instagram.com/10989blast" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors" aria-label="Follow us on Instagram">
+						<i class="bi bi-instagram text-2xl"></i>
+					</a>
+					<a href="mailto:info@team10989.org" class="hover:text-primary transition-colors" aria-label="Email us">
 						<i class="bi bi-envelope text-2xl"></i>
 					</a>
 				</div>
 			</nav>
 		</footer>
+		<div class="footer footer-center p-4 bg-base-300 text-base-content border-t border-base-300">
+			<div>
+				<p>Copyright © {new Date().getFullYear()} - Blast Robotics Team. All rights reserved.</p>
+			</div>
+		</div>		<script>
+			// Theme toggle functionality
+			document.addEventListener('DOMContentLoaded', function() {
+				const themeToggle = document.getElementById('theme-toggle');
+				const html = document.documentElement;
+				
+				// Set initial state of toggle based on current theme
+				const currentTheme = html.getAttribute('data-theme');
+				if (themeToggle) {
+					themeToggle.checked = currentTheme === 'dark';
+				}
+				
+				// Handle theme toggle
+				if (themeToggle) {
+					themeToggle.addEventListener('change', function() {
+						const newTheme = this.checked ? 'dark' : 'light';
+						html.setAttribute('data-theme', newTheme);
+						localStorage.setItem('theme', newTheme);
+					});
+				}
+				
+				// Listen for system theme changes
+				window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+					if (!localStorage.getItem('theme')) {
+						const newTheme = e.matches ? 'dark' : 'light';
+						html.setAttribute('data-theme', newTheme);
+						if (themeToggle) {
+							themeToggle.checked = newTheme === 'dark';
+						}
+					}
+				});
+			});
+		</script>
 	</body>
 </html>
