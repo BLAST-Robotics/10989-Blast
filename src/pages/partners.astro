@@ -1,0 +1,187 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import sponsorsData from '../data/sponsors.json';
+---
+
+<Layout title="Our Sponsors & Partners - Blast Robotics">
+  <!-- Hero Section -->
+  <section class="hero min-h-[50vh] bg-gradient-to-br from-primary/10 to-secondary/10">
+    <div class="hero-content text-center">
+      <div class="max-w-4xl">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6">Our Sponsors & Partners</h1>
+        <p class="text-xl md:text-2xl text-base-content/80">
+          We're grateful for the incredible support from our sponsors and partners who help make our robotics journey possible.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sponsors Grid Section -->
+  <section class="py-20 bg-base-100">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Thank You to Our Supporters</h2>
+        <p class="text-xl text-base-content/70 max-w-3xl mx-auto">
+          These amazing organizations believe in our mission and help us inspire the next generation of innovators through FIRST Robotics Competition.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        {sponsorsData.map((sponsor, index) => (
+          <div class="sponsor-card group">
+            <a 
+              href={sponsor.website} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="block h-full"
+              aria-label={`Visit ${sponsor.name} website`}
+            >
+              <div class="card bg-base-100 shadow-xl border border-base-300 h-full hover:shadow-2xl hover:border-primary transition-all duration-300 hover:scale-105 opacity-0 translate-y-8">
+                <figure class="px-6 pt-6 h-32 flex items-center justify-center" style={`background-color: ${sponsor.bg || 'black'}; padding: ${sponsor.padding || '16'}%;`}>
+                  <Image 
+                    src={sponsor.logo} 
+                    alt={`${sponsor.name} logo`} 
+                    class="max-h-full max-w-full object-contain transition-all duration-300 group-hover:scale-110" 
+                    width={200}
+                    height={100}
+                    loading="lazy"
+                    format="webp"
+                  />
+                </figure>
+                <div class="card-body text-center p-4">
+                  <h3 class="card-title text-lg font-bold justify-center text-base-content">{sponsor.name}</h3>
+                  <p class="text-sm text-base-content/70 flex-grow">{sponsor.description}</p>
+                  <div class="card-actions justify-center mt-4">
+                    <span class="text-xs text-primary font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      Visit Website →
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Partnership Opportunities -->
+  <section class="py-20 bg-base-200">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Partner With Us</h2>
+        <p class="text-xl text-base-content/70 max-w-3xl mx-auto">
+          Interested in supporting STEM education and inspiring young innovators? We'd love to partner with you!
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8">
+        <!-- Partnership Tier 1 -->
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body text-center">
+            <div class="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="card-title justify-center text-xl mb-2">Bronze Sponsor</h3>
+            <p class="text-base-content/70 mb-4">
+              Essential support that helps with basic team operations and equipment needs.
+            </p>
+            <ul class="text-sm text-base-content/60 text-left space-y-1">
+              <li>• Logo on team website</li>
+              <li>• Social media recognition</li>
+              <li>• Event thank you mentions</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Partnership Tier 2 -->
+        <div class="card bg-base-100 shadow-xl border-2 border-primary">
+          <div class="card-body text-center">
+            <div class="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="card-title justify-center text-xl mb-2 text-primary">Silver Sponsor</h3>
+            <p class="text-base-content/70 mb-4">
+              Significant support enabling advanced training and competition participation.
+            </p>
+            <ul class="text-sm text-base-content/60 text-left space-y-1">
+              <li>• All Bronze benefits</li>
+              <li>• Logo on team apparel</li>
+              <li>• Competition pit display</li>
+              <li>• Quarterly updates</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Partnership Tier 3 -->
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body text-center">
+            <div class="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+              </svg>
+            </div>
+            <h3 class="card-title justify-center text-xl mb-2">Gold Sponsor</h3>
+            <p class="text-base-content/70 mb-4">
+              Premium partnership enabling innovation, outreach, and excellence in robotics.
+            </p>
+            <ul class="text-sm text-base-content/60 text-left space-y-1">
+              <li>• All Silver benefits</li>
+              <li>• Prominent logo placement</li>
+              <li>• Speaking opportunities</li>
+              <li>• Custom partnership package</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-20 bg-gradient-to-r from-primary to-secondary text-primary-content">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready to Partner With Us?</h2>
+      <p class="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
+        Join our mission to inspire young innovators and support STEM education in our community. Let's build the future together!
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/#contact" class="btn btn-accent btn-lg">Become a Sponsor</a>
+        <a href="/about" class="btn btn-outline btn-lg border-white text-white hover:bg-white hover:text-primary">
+          Learn About Our Mission
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Intersection Observer for sponsor card animations
+    document.addEventListener('DOMContentLoaded', function() {
+      const sponsorCards = document.querySelectorAll('.sponsor-card .card');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            // Add a slight delay for staggered animation
+            setTimeout(() => {
+              entry.target.classList.remove('opacity-0', 'translate-y-8');
+              entry.target.classList.add('opacity-100', 'translate-y-0');
+            }, index * 100);
+            observer.unobserve(entry.target); // Stop observing once animated
+          }
+        });
+      }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+      });
+      
+      sponsorCards.forEach((card) => {
+        observer.observe(card);
+      });
+    });
+  </script>
+</Layout>

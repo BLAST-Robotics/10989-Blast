@@ -5,7 +5,7 @@
     "role": "Captain",
     "initials": "VP",
     "description": "Team captain with a focus on building a strong team culture and leading the team to success.",
-    "image": null,
+    "image": "/team/vivaan.jpg",
     "social": {
       "linkedin": "#",
       "github": "#",
@@ -18,7 +18,7 @@
     "role": "Brand Manager",
     "initials": "MP",
     "description": "Manages team branding, marketing strategies, and public image to promote team visibility.",
-    "image": null,
+    "image": "/team/michael.jpg",
     "social": {
       "linkedin": "#",
       "github": "#",
@@ -44,7 +44,7 @@
     "role": "Lead Strategist",
     "initials": "LX",
     "description": "Develops competition strategies, analyzes opponents, and coordinates tactical game planning.",
-    "image": null,
+    "image": "/team/lemuel.jpg",
     "social": {
       "linkedin": "#",
       "github": "#",
@@ -57,7 +57,7 @@
     "role": "Director of Operations",
     "initials": "VP",
     "description": "Oversees team operations, logistics, and project management to ensure smooth workflow and efficiency.",
-    "image": null,
+    "image": "/team/virat.jpg",
     "social": {
       "linkedin": "#",
       "github": "https://github.com/vrobot-2",
@@ -66,11 +66,11 @@
   },
   {
     "id": 6,
-    "name": "Madeline Lan",
+    "name": "Madeleine Lan",
     "role": "Outreach/Social Media Manager",
     "initials": "ML",
     "description": "Manages social media presence, community outreach, and coordinates team communication efforts.",
-    "image": null,
+    "image": "/team/maddie.webp",
     "social": {
       "linkedin": "#",
       "github": "#",
@@ -96,7 +96,7 @@
     "role": "Brainstormer",
     "initials": "TJ",
     "description": "Generates creative ideas and innovative solutions for design challenges and team initiatives.",
-    "image": null,
+    "image": "/team/tvisha.jpg",
     "social": {
       "linkedin": "#",
       "github": "#",

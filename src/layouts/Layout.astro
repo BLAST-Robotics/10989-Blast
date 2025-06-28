@@ -40,37 +40,33 @@ import SponsorBar from '../components/SponsorBar.astro';
 				<div class="dropdown">
 					<div tabindex="0" role="button" class="btn btn-ghost btn-sm lg:hidden p-1">
 						<i class="bi bi-list text-lg"></i>
-					</div>
-					<ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+					</div>					<ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
 						<li><a href="/">Home</a></li>
 						<li><a href="/about">About</a></li>
+						<li><a href="/journey">Journey</a></li>
 						<li><a href="/#features">Programs</a></li>
 						<li><a href="/#team">Team</a></li>
+						<li><a href="/partners">Partners</a></li>
 						<li><a href="/#contact">Contact</a></li>
 					</ul>
-				</div>				
-				<div class="flex items-center min-w-0">
+				</div>						<div class="flex items-center min-w-0">
 					<Image 
-						src="/Logo Transparent.png" 
+						src="/Placard Transparent Black.png"
 						alt="Blast Robotics Logo" 
-						class="h-8 w-8 sm:h-10 sm:w-10 mr-1 sm:mr-2 flex-shrink-0" 
+						class="btn rounded-2xl p-1 h-15 w-auto mr-1 sm:mr-2 flex-shrink-0 theme-logo" 
 						width={40}
 						height={40}
 						loading="eager"
-						format="webp"
+						format="png	"
 					/>
-					<a class="btn btn-ghost text-sm sm:text-xl font-bold p-1 sm:p-4 min-h-0 h-auto truncate">
-						<span class="hidden xs:inline">Blast Robotics</span>
-						<span class="xs:hidden">Blast Robotics</span>
-					</a>
 				</div>
-			</div>
-			<div class="navbar-center hidden lg:flex">
-				<ul class="menu menu-horizontal px-1">
+			</div>			<div class="navbar-center hidden lg:flex">				<ul class="menu menu-horizontal font-semibold text-base px-1">
 					<li><a href="/" class="hover:text-primary">Home</a></li>
 					<li><a href="/about" class="hover:text-primary">About</a></li>
+					<li><a href="/journey" class="hover:text-primary">Journey</a></li>
 					<li><a href="/#features" class="hover:text-primary">Programs</a></li>
 					<li><a href="/#team" class="hover:text-primary">Team</a></li>
+					<li><a href="/partners" class="hover:text-primary">Partners</a></li>
 					<li><a href="/#contact" class="hover:text-primary">Contact</a></li>
 				</ul>
 			</div>
@@ -115,13 +111,14 @@ import SponsorBar from '../components/SponsorBar.astro';
 				<p class="text-neutral-content/80">
 					FRC Community Team serving Mainline Pennsylvania
 				</p>
-			</aside>
-			<nav class="md:col-span-1">
+			</aside>			<nav class="md:col-span-1">
 				<h6 class="footer-title">Quick Links</h6>
 				<a href="/" class="link link-hover">Home</a>
 				<a href="/about" class="link link-hover">About</a>
+				<a href="/journey" class="link link-hover">Journey</a>
 				<a href="/#features" class="link link-hover">Programs</a>
 				<a href="/#team" class="link link-hover">Team</a>
+				<a href="/partners" class="link link-hover">Partners</a>
 			</nav>
 			<nav class="md:col-span-1">
 				<h6 class="footer-title">Contact</h6>
@@ -160,6 +157,17 @@ import SponsorBar from '../components/SponsorBar.astro';
 			document.addEventListener('DOMContentLoaded', function() {
 				const themeToggle = document.getElementById('theme-toggle');
 				const html = document.documentElement;
+				const themeLogo = document.querySelector('.theme-logo');
+				
+				// Function to update logo based on theme
+				function updateLogo(theme) {
+					if (themeLogo) {
+						const logoSrc = theme === 'dark' 
+							? '/Placard Transparent Black.png'
+							: '/Placard Transparent White.png';
+						themeLogo.src = logoSrc;
+					}
+				}
 				
 				// Set initial state of toggle based on current theme
 				const currentTheme = html.getAttribute('data-theme');
@@ -167,12 +175,16 @@ import SponsorBar from '../components/SponsorBar.astro';
 					themeToggle.checked = currentTheme === 'dark';
 				}
 				
+				// Update logo on initial load
+				updateLogo(currentTheme);
+				
 				// Handle theme toggle
 				if (themeToggle) {
 					themeToggle.addEventListener('change', function() {
 						const newTheme = this.checked ? 'dark' : 'light';
 						html.setAttribute('data-theme', newTheme);
 						localStorage.setItem('theme', newTheme);
+						updateLogo(newTheme);
 					});
 				}
 				
@@ -181,6 +193,7 @@ import SponsorBar from '../components/SponsorBar.astro';
 					if (!localStorage.getItem('theme')) {
 						const newTheme = e.matches ? 'dark' : 'light';
 						html.setAttribute('data-theme', newTheme);
+						updateLogo(newTheme);
 						if (themeToggle) {
 							themeToggle.checked = newTheme === 'dark';
 						}
