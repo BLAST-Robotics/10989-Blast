@@ -1,71 +1,119 @@
 ---
 // Team component
-import teamData from '../data/team.json';
+import teamData from "../data/team.json";
 
 // Helper function to get Bootstrap icon class
 function getBootstrapIcon(platform: string): string {
-  const icons: Record<string, string> = {
-    linkedin: 'bi-linkedin',
-    github: 'bi-github',
-    twitter: 'bi-twitter',
-    email: 'bi-envelope'
-  };
-  return icons[platform] || icons.email;
+    const icons: Record<string, string> = {
+        linkedin: "bi-linkedin",
+        github: "bi-github",
+        twitter: "bi-twitter",
+        email: "bi-envelope",
+    };
+    return icons[platform] || icons.email;
 }
 ---
 
 <section id="team" class="py-20 bg-base-100">
-  <div class="container mx-auto px-6">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4">Meet Our Team</h2>
-      <p class="text-xl text-base-content/70 max-w-2xl mx-auto">
-        Dedicated students passionate about robotics, engineering, and making a positive impact in our community through FIRST Robotics Competition.
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {teamData.map((member) => (        <div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-          <figure class="px-10 pt-10">
-            <div class="avatar">
-              <div class="w-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                {member.image ? (
-                  <img 
-                    src={member.image} 
-                    alt={member.name}
-                    class="w-full h-full object-cover rounded-full"
-                  />
-                ) : (
-                  <div class="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                    <span class="text-3xl font-bold text-primary-content">
-                      {member.initials}
-                    </span>
-                  </div>
-                )}
-              </div>
-            </div>
-          </figure>
-          <div class="card-body text-center">
-            <h3 class="card-title justify-center text-2xl">{member.name}</h3>
-            <p class="text-primary font-semibold">{member.role}</p>
-            <p class="text-base-content/70 mt-2">
-              {member.description}
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">Meet Our Team</h2>
+            <p class="text-xl text-base-content/70 max-w-2xl mx-auto">
+                Dedicated students passionate about robotics, engineering, and
+                making a positive impact in our community through FIRST Robotics
+                Competition.
             </p>
-            <div class="flex justify-center space-x-4 mt-4">
-              {Object.entries(member.social).map(([platform, url]) => (
-                url && url !== '#' ? (                  <a 
-                    href={url} 
-                    class="btn btn-circle btn-ghost btn-sm hover:btn-primary transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${member.name} on ${platform}`}
-                  >                    <i class={`bi ${getBootstrapIcon(platform)} text-lg`}></i>
-                  </a>
-                ) : null
-              ))}
-            </div>
-          </div>
         </div>
-      ))}
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {
+                teamData.map((member) => (
+                    <div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                        <figure class="px-10 pt-10">
+                            <div class="avatar">
+                                <div class="w-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                    {member.image ? (
+                                        <img
+                                            src={member.image}
+                                            alt={member.name}
+                                            class="w-full h-full object-cover rounded-full"
+                                            loading="lazy"
+                                        />
+                                    ) : (
+                                        <div class="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                                            <span class="text-3xl font-bold text-primary-content">
+                                                {member.initials}
+                                            </span>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </figure>
+                        <div class="card-body text-center">
+                            <h3 class="card-title justify-center text-2xl">
+                                {member.name}
+                            </h3>
+                            <p class="text-primary font-semibold">
+                                {member.role}
+                            </p>
+                            <p class="text-base-content/70 mt-2">
+                                {member.description}
+                            </p>
+                            <div class="flex justify-center space-x-4 mt-4">
+                                {Object.entries(member.social).map(
+                                    ([platform, url]) =>
+                                        url && url !== "#" ? (
+                                            <a
+                                                href={url}
+                                                class="btn btn-circle btn-ghost btn-sm hover:btn-primary transition-colors"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                aria-label={`${member.name} on ${platform}`}>
+                                                {" "}
+                                                <i
+                                                    class={`bi ${getBootstrapIcon(platform)} text-lg`}
+                                                />
+                                            </a>
+                                        ) : null
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
     </div>
-  </div>
 </section>
+
+<script>
+    // Lazy load team member cards with intersection observer
+    document.addEventListener("DOMContentLoaded", function () {
+        const teamCards = document.querySelectorAll("#team .card");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = "1";
+                            entry.target.style.transform = "translateY(0)";
+                        }, index * 100); // Stagger animation
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px",
+            }
+        );
+
+        teamCards.forEach((card) => {
+            card.style.opacity = "0";
+            card.style.transform = "translateY(20px)";
+            card.style.transition =
+                "opacity 0.6s ease-out, transform 0.6s ease-out";
+            observer.observe(card);
+        });
+    });
+</script>

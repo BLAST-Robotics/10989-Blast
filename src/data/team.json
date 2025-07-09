@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Vivaan Ponugoti",
     "role": "Captain",
-    "initials": "VP",
+    "initials": "P",
     "description": "Team captain with a focus on building a strong team culture and leading the team to success.",
     "image": "/team/vivaan.jpg",
     "social": {
@@ -16,7 +16,7 @@
     "id": 2,
     "name": "Michael Park",
     "role": "Brand Manager",
-    "initials": "MP",
+    "initials": "P",
     "description": "Manages team branding, marketing strategies, and public image to promote team visibility.",
     "image": "/team/michael.jpg",
     "social": {
@@ -29,7 +29,7 @@
     "id": 3,
     "name": "Vinay Gullapalli",
     "role": "Mechanical Director",
-    "initials": "VG",
+    "initials": "G",
     "description": "Leads mechanical design and engineering, overseeing robot construction and mechanical systems.",
     "image": null,
     "social": {
@@ -42,7 +42,7 @@
     "id": 4,
     "name": "Lemuel Xu",
     "role": "Lead Strategist",
-    "initials": "LX",
+    "initials": "X",
     "description": "Develops competition strategies, analyzes opponents, and coordinates tactical game planning.",
     "image": "/team/lemuel.jpg",
     "social": {
@@ -51,56 +51,69 @@
       "email": "lemuel@team10989.org"
     }
   },
-  {
-    "id": 5,
-    "name": "Virat Ponugoti",
-    "role": "Director of Operations",
-    "initials": "VP",
-    "description": "Oversees team operations, logistics, and project management to ensure smooth workflow and efficiency.",
-    "image": "/team/virat.jpg",
-    "social": {
-      "linkedin": "#",
-      "github": "https://github.com/vrobot-2",
-      "email": "virat@team10989.org"
-    }
-  },
-  {
-    "id": 6,
-    "name": "Madeleine Lan",
-    "role": "Outreach/Social Media Manager",
-    "initials": "ML",
-    "description": "Manages social media presence, community outreach, and coordinates team communication efforts.",
-    "image": "/team/maddie.webp",
-    "social": {
-      "linkedin": "#",
-      "github": "#",
-      "email": "madeline@team10989.org"
-    }
-  },
-  {
-    "id": 7,
-    "name": "Rishit Varshney",
-    "role": "Programming/Planning Lead",
-    "initials": "RV",
-    "description": "Leads software development and programming initiatives while coordinating project planning activities.",
-    "image": null,
-    "social": {
-      "linkedin": "#",
-      "github": "#",
-      "email": "rishit@team10989.org"
-    }
-  },
-  {
-    "id": 8,
-    "name": "Tvisha Jani",
-    "role": "Brainstormer",
-    "initials": "TJ",
-    "description": "Generates creative ideas and innovative solutions for design challenges and team initiatives.",
-    "image": "/team/tvisha.jpg",
-    "social": {
-      "linkedin": "#",
-      "github": "#",
-      "email": "tvisha@team10989.org"
-    }
-  }
+{
+"id": 5,
+"name": "Virat Ponugoti",
+"role": "Director of Operations",
+"initials": "P",
+"description": "Oversees team operations, logistics, and project management to ensure smooth workflow and efficiency.",
+"image": "/team/virat.jpg",
+"social": {
+  "linkedin": "#",
+  "github": "https://github.com/vrobot-2",
+  "email": "virat@team10989.org"
+}
+},
+{
+"id": 6,
+"name": "Madeleine Lan",
+"role": "Outreach/Social Media Manager",
+"initials": "L",
+"description": "Manages social media presence, community outreach, and coordinates team communication efforts.",
+"image": "/team/maddie.webp",
+"social": {
+  "linkedin": "#",
+  "github": "#",
+  "email": "madeline@team10989.org"
+}
+},
+{
+"id": 7,
+"name": "Rishit Varshney",
+"role": "Programming/Planning Lead",
+"initials": "V",
+"description": "Leads software development and programming initiatives while coordinating project planning activities.",
+"image": null,
+"social": {
+  "linkedin": "#",
+  "github": "#",
+  "email": "rishit@team10989.org"
+}
+},
+{
+"id": 8,
+"name": "Tvisha Jani",
+"role": "Brainstormer",
+"initials": "J",
+"description": "Generates creative ideas and innovative solutions for design challenges and team initiatives.",
+"image": "/team/tvisha.jpg",
+"social": {
+  "linkedin": "#",
+  "github": "#",
+  "email": "tvisha@team10989.org"
+}
+},
+{
+"id": 9,
+"name": "Faiz M",
+"role": "Newsletter Manager",
+"initials": "M",
+"description": "Creates and manages team newsletters, coordinating internal and external communications to keep everyone informed.",
+"image": "/team/faiz.webp",
+"social": {
+  "linkedin": "#",
+  "github": "#",
+  "email": "faiz@team10989.org"
+}
+}
 ]

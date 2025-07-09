@@ -1,37 +1,143 @@
 [
   {
-    "date": "May 2025",
-    "title": "The Spark",
-    "description": "A group of passionate individuals in Mainline Pennsylvania identified the need for a community-based FIRST Robotics team. The vision was clear: create opportunities for local students to explore STEM through hands-on robotics experiences and foster innovation in our community.",
+    "date": "June 29, 2025",
+    "title": "Community Engagement",
+    "description": "Engaged with community members and educators about our program, building strong local support and partnerships for our robotics initiative.",
     "image": "/Blast Robotics-1-Logo Black Square.png",
-    "type": "overlay"
+    "type": "overlay",
+    "imagePadding": "p-4",
+    "imageBackground": "bg-white/10"
   },
   {
-    "date": "2025",
-    "title": "Team 10989 Founded",
-    "description": "Blast Robotics officially became FRC Team 10989! We established our team structure, recruited our founding members, and began building the foundation for what would become a thriving robotics community. Our commitment to excellence and innovation was set from day one.",
+    "date": "June 27, 2025",
+    "title": "Budget Finalized",
+    "description": "Successfully finalized our comprehensive team budget, establishing clear financial planning and resource allocation for our inaugural season.",
     "image": "/Logo Transparent.png",
-    "type": "card"
+    "type": "centered",
+    "imagePadding": "p-6",
+    "imageBackground": "bg-gradient-to-br from-primary/10 to-secondary/10"
   },
   {
-    "date": "2026",
-    "title": "Rookie Season",
-    "description": "Our inaugural season in the FIRST Robotics Competition! As a rookie team, we'll face the excitement and challenges of building our first competition robot, learning FRC systems, and competing alongside veteran teams. This milestone marks our official entry into the global FRC community.",
+    "date": "June 23, 2025",
+    "title": "Full Team Meeting",
+    "description": "Held our first comprehensive full-team meeting, bringing together all members to align on goals, roles, and our path forward.",
     "image": "/Blast Robotics-2-Logo White Square.png",
     "type": "overlay"
   },
   {
-    "date": "2027+",
-    "title": "Growing Impact",
-    "description": "As we establish ourselves in the FRC community, our vision extends beyond competition. We aim to expand our team, mentor other emerging teams, and become a pillar of STEM education in Mainline Pennsylvania, inspiring the next generation of engineers and innovators.",
-    "image": "/Blast Robotics-3-Logo Alternate Square.png",
+    "date": "June 22, 2025",
+    "title": "Sol Siesta Partnership",
+    "description": "Partnered with Sol Siesta Apparel for a merchandising deal, enabling us to create branded team merchandise and additional revenue streams.",
+    "image": "/sponsors/Sol Siesta.jpg",
     "type": "card"
   },
   {
-    "date": "Future",
-    "title": "Legacy Building",
-    "description": "Our long-term vision is to create a lasting legacy in our community - developing future engineers, fostering innovation, and demonstrating that with passion, dedication, and teamwork, anything is possible. The blast starts here, but the impact will resonate for generations.",
-    "image": "/Blast Robotics-5-Cool Logo Black Square.png",
+    "date": "June 21, 2025",
+    "title": "Workshop Visits & Event",
+    "description": "Visited 316 LUNATECS workshop and attended the Duel on the Delaware REEFSCAPE FRC unofficial event, gaining valuable experience and networking.",
+    "image": "/Blast Robotics-3-Logo Alternate Square.png",
     "type": "overlay"
+  },
+  {
+    "date": "June 19, 2025",
+    "title": "Website Launch & FIRST Meeting",
+    "description": "Launched our official team website and met with the Executive Director of FIRST Mid-Atlantic, establishing our presence and connections.",
+    "image": "/Logo Transparent.png",
+    "type": "centered"
+  },
+  {
+    "date": "June 18, 2025",
+    "title": "1640 DAR Workshop Visit",
+    "description": "Visited 1640 Downingtown Area Robotics workshop, learning from experienced teams and exploring collaboration opportunities.",
+    "image": "/journey/1640.webp",
+    "type": "overlay"
+  },
+  {
+    "date": "June 16, 2025",
+    "title": "GoFundMe Launch",
+    "description": "Launched our GoFundMe campaign to raise funds for equipment, travel, and competition expenses for our inaugural season.",
+    "image": "/journey/gofundme.png",
+    "type": "card",
+    "imageBackground": "bg-primary"
+  },
+  {
+    "date": "June 11, 2025",
+    "title": "Student Interest & Social Media",
+    "description": "Gathered over 40 interested students and operated a successful social media campaign reaching over 60 students in our community.",
+    "image": "/Blast Robotics-2-Logo White Square.png",
+    "type": "centered"
+  },
+  {
+    "date": "June 9, 2025",
+    "title": "Team Identity & Partnership",
+    "description": "Finalized our team name and brand identity, and partnered with 1168 Malvern Robotics, establishing our place in the FRC community.",
+    "image": "/Blast Robotics-1-Logo Black Square.png",
+    "type": "overlay"
+  },
+  {
+    "date": "June 8, 2025",
+    "title": "Adult Volunteers Onboarded",
+    "description": "Successfully onboarded 3 adult volunteers, providing essential mentorship and guidance for our team operations.",
+    "image": "/Logo Transparent.png",
+    "type": "centered"
+  },
+  {
+    "date": "June 6, 2025",
+    "title": "Social Media Launch",
+    "description": "Launched our active social media presence @10989blast, connecting with the broader FRC community and promoting our team.",
+    "image": "/Blast Robotics-3-Logo Alternate Square.png",
+    "type": "overlay"
+  },
+  {
+    "date": "June 3, 2025",
+    "title": "1712 Dawgma Workshop Visit",
+    "description": "Visited 1712 Dawgma's workshop, gaining hands-on experience and learning from veteran team members.",
+    "image": "/journey/dawgma.webp",
+    "type": "card",
+    "imagePadding": "p-4",
+    "imageBackground": "bg-primary/10"
+  },
+  {
+    "date": "June 4, 2025",
+    "title": "FIRST Registration",
+    "description": "Officially registered Team 10989 with the FIRST organization, marking our formal entry into the FIRST Robotics Competition.",
+    "image": "/Blast Robotics-5-Cool Logo Black Square.png",
+    "type": "centered"
+  },
+  {
+    "date": "May 28, 2025",
+    "title": "Workspace Partnership",
+    "description": "Discussed securing a dedicated workspace in Berwyn with Eadeh Enterprises, establishing our home base for robot development.",
+    "image": "/sponsors/eadeh-logo-white.png",
+    "type": "centered",
+    "imagePadding": "px-6",
+    "imageBackground": "bg-black/35",
+    "lightColor": true
+  },
+  {
+    "date": "May 25, 2025",
+    "title": "Mentorship from 1712 Dawgma",
+    "description": "Received valuable mentorship from FRC Team 1712 Dawgma, gaining insights from experienced competitors and building lasting connections.",
+    "image": "/journey/dawgma.webp",
+    "type": "card",
+    "imagePadding": "p-5",
+    "imageBackground": "bg-secondary/10"
+  },
+  {
+    "date": "May 24, 2025",
+    "title": "Comcast Commitment",
+    "description": "Received a $3000 commitment from Comcast, our first major sponsorship that provided crucial funding for our team's launch.",
+    "image": "/sponsors/comcast.svg",
+    "type": "centered",
+    "imageBackground": "bg-white",
+    "imagePadding": "px-8",
+    "lightColor": true
+  },
+  {
+    "date": "May 2025",
+    "title": "The Spark",
+    "description": "A group of passionate individuals in Mainline Pennsylvania identified the need for a community-based FIRST Robotics team, setting our journey in motion.",
+    "image": "/Blast Robotics-1-Logo Black Square.png",
+    "type": "centered"
   }
 ]

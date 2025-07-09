@@ -2,65 +2,157 @@
 // Stats component
 ---
 
-<section class="py-20 bg-gradient-to-r from-primary to-secondary text-primary-content">
-  <div class="container mx-auto px-6">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4">Our Achievements</h2>
-      <p class="text-xl opacity-90 max-w-2xl mx-auto">
-        Numbers that showcase our commitment to excellence in FIRST Robotics Competition and STEM education.
-      </p>
+<section
+    class="py-20 bg-gradient-to-r from-primary to-secondary text-primary-content">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                Our Achievements
+            </h2>
+            <p class="text-xl opacity-90 max-w-2xl mx-auto">
+                Numbers that showcase our commitment to excellence in FIRST
+                Robotics Competition and STEM education.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Stat 1 -->
+            <div class="text-center">
+                <div class="stat">
+                    <div class="stat-value text-4xl md:text-6xl font-bold mb-2">
+                        10+
+                    </div>
+                    <div class="stat-title text-primary-content/80 text-lg">
+                        Adults
+                    </div>
+                    <div class="stat-desc text-primary-content/60 mt-2">
+                        Mentors and Volunteers
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stat 2 -->
+            <div class="text-center">
+                <div class="stat">
+                    <div class="stat-value text-4xl md:text-6xl font-bold mb-2">
+                        1K+
+                    </div>
+                    <div class="stat-title text-primary-content/80 text-lg">
+                        Views
+                    </div>
+                    <div class="stat-desc text-primary-content/60 mt-2">
+                        Social Media Outreach
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stat 3 -->
+            <div class="text-center">
+                <div class="stat">
+                    <div class="stat-value text-4xl md:text-6xl font-bold mb-2">
+                        20+
+                    </div>
+                    <div class="stat-title text-primary-content/80 text-lg">
+                        Oppourtunies
+                    </div>
+                    <div class="stat-desc text-primary-content/60 mt-2">
+                        Roles and Responisbilites provided
+                    </div>
+                </div>
+            </div>
+            <!-- Stat 4 -->
+            <div class="text-center">
+                <div class="stat">
+                    <div class="stat-value text-4xl md:text-6xl font-bold mb-2">
+                        40+
+                    </div>
+                    <div class="stat-title text-primary-content/80 text-lg">
+                        Students
+                    </div>
+                    <div class="stat-desc text-primary-content/60 mt-2">
+                        People interested
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional metrics -->
+        <div class="mt-16 grid md:grid-cols-3 gap-8">
+            <div class="text-center p-6 bg-white/10 rounded-2xl backdrop-blur">
+                <div class="text-3xl font-bold mb-2">0 Robots</div>
+                <div class="text-primary-content/80">Built & Competed</div>
+            </div>
+            <div class="text-center p-6 bg-white/10 rounded-2xl backdrop-blur">
+                <div class="text-3xl font-bold mb-2">$10K+</div>
+                <div class="text-primary-content/80">
+                    Grants and Donations Earned
+                </div>
+            </div>
+            <div class="text-center p-6 bg-white/10 rounded-2xl backdrop-blur">
+                <div class="text-3xl font-bold mb-2">5 Teams</div>
+                <div class="text-primary-content/80">Local Teams Met</div>
+            </div>
+        </div>
     </div>
-
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
-      <!-- Stat 1 -->
-      <div class="text-center">
-        <div class="stat">
-          <div class="stat-value text-4xl md:text-6xl font-bold mb-2">10+</div>
-          <div class="stat-title text-primary-content/80 text-lg">Adults</div>
-          <div class="stat-desc text-primary-content/60 mt-2">Mentors and Volunteers</div>
-        </div>
-      </div>
-
-      <!-- Stat 2 -->
-      <div class="text-center">
-        <div class="stat">
-          <div class="stat-value text-4xl md:text-6xl font-bold mb-2">1K+</div>
-          <div class="stat-title text-primary-content/80 text-lg">Views</div>
-          <div class="stat-desc text-primary-content/60 mt-2">Social Media Outreach </div>
-        </div>
-      </div>
-
-      <!-- Stat 3 -->
-      <div class="text-center">
-        <div class="stat">
-          <div class="stat-value text-4xl md:text-6xl font-bold mb-2">20+</div>
-          <div class="stat-title text-primary-content/80 text-lg">Oppourtunies</div>
-          <div class="stat-desc text-primary-content/60 mt-2">Roles and Responisbilites provided</div>
-        </div>
-      </div>      <!-- Stat 4 -->
-      <div class="text-center">
-        <div class="stat">
-          <div class="stat-value text-4xl md:text-6xl font-bold mb-2">40+</div>
-          <div class="stat-title text-primary-content/80 text-lg">Students</div>
-          <div class="stat-desc text-primary-content/60 mt-2">People interested</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Additional metrics -->
-    <div class="mt-16 grid md:grid-cols-3 gap-8">
-      <div class="text-center p-6 bg-white/10 rounded-2xl backdrop-blur">
-        <div class="text-3xl font-bold mb-2">0 Robots</div>
-        <div class="text-primary-content/80">Built & Competed</div>
-      </div>
-      <div class="text-center p-6 bg-white/10 rounded-2xl backdrop-blur">
-        <div class="text-3xl font-bold mb-2">$10K+</div>
-        <div class="text-primary-content/80">Grants and Donations Earned</div>
-      </div>
-      <div class="text-center p-6 bg-white/10 rounded-2xl backdrop-blur">
-        <div class="text-3xl font-bold mb-2">5 Teams</div>
-        <div class="text-primary-content/80">Local Teams Met</div>
-      </div>
-    </div>
-  </div>
 </section>
+
+<script>
+    // Lazy load stats with intersection observer and counter animation
+    document.addEventListener("DOMContentLoaded", function () {
+        const statCards = document.querySelectorAll(".stat, .text-center");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = "1";
+                            entry.target.style.transform =
+                                "translateY(0) scale(1)";
+
+                            // Animate counter if it's a stat value
+                            const statValue = entry.target.querySelector(
+                                ".stat-value, .text-3xl"
+                            );
+                            if (statValue) {
+                                animateCounter(statValue);
+                            }
+                        }, index * 200); // Stagger animation
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.2,
+                rootMargin: "0px 0px -50px 0px",
+            }
+        );
+
+        statCards.forEach((card) => {
+            card.style.opacity = "0";
+            card.style.transform = "translateY(30px) scale(0.9)";
+            card.style.transition =
+                "opacity 0.8s ease-out, transform 0.8s ease-out";
+            observer.observe(card);
+        });
+
+        function animateCounter(element) {
+            const text = element.textContent;
+            const number = parseInt(text.replace(/[^\d]/g, ""));
+            const suffix = text.replace(/[\d]/g, "");
+
+            if (number > 0) {
+                let current = 0;
+                const increment = number / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= number) {
+                        current = number;
+                        clearInterval(timer);
+                    }
+                    element.textContent = Math.floor(current) + suffix;
+                }, 30);
+            }
+        }
+    });
+</script>
