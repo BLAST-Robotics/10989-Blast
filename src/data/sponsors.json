@@ -37,5 +37,13 @@
     "description": "Apparel company that supports our team",
     "bg": "white",
     "padding": "2"
+  },
+  {
+    "name": "Dod Stem",
+    "logo": "/sponsors/dodstem.png",
+    "website": "https://www.dodstem.us/",
+    "description": "The STEM program of the Department of Defense",
+    "bg": "white",
+    "padding": "2"
   }
 ]

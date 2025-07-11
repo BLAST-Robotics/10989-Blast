@@ -1,269 +1,222 @@
 ---
 export interface Props {
-    title: string;
+	title: string;
 }
 
 const { title } = Astro.props;
 import "../index.css";
-import Analytics from "@vercel/analytics/astro";
-import { Image } from "astro:assets";
-import SponsorBar from "../components/SponsorBar.astro";
-import LoadingIndicator from "astro-loading-indicator/component";
+import Analytics from '@vercel/analytics/astro';
+import { Image } from 'astro:assets';
+import SponsorBar from '../components/SponsorBar.astro';
+import sponsorsData from '../data/sponsors.json';
 ---
 
-<!doctype html>
-<html lang="en" data-theme="">
-    <head>
-        <meta charset="UTF-8" />
-        <meta
-            name="description"
-            content="Blast Robotics - Inspiring innovation through FIRST Robotics Competition"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <meta name="generator" content={Astro.generator} />
-        <title>{title}</title>
+<!DOCTYPE html>
+	<html lang="en" data-theme="">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Blast Robotics - Inspiring innovation through FIRST Robotics Competition" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		
+		<!-- Preload critical images -->
+		<link rel="preload" as="image" href="/Blast Robotics-1-Logo Black Square.png" />
+		{sponsorsData.slice(0, 4).map((sponsor) => (
+			<link rel="preload" as="image" href={sponsor.logo} />
+		))}
+		
+		<!-- Theme color for mobile browsers -->
+		<meta name="theme-color" content="#3b82f6" />
+		
+		<script is:inline>
+			// Theme detection and initialization - needs to run immediately to prevent flash
+			(function() {
+				const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+				document.documentElement.setAttribute('data-theme', theme);
+			})();
+		</script>
+	</head>
+	<body>
+		<!-- Navigation -->
+		<div class="navbar bg-base-100 shadow-lg sticky top-0 z-50 px-2 sm:px-4">
+			<div class="navbar-start">
+				<div class="dropdown">
+					<div tabindex="0" role="button" class="btn btn-ghost btn-sm lg:hidden p-1">
+						<i class="bi bi-list text-lg"></i>
+					</div>					<ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+						<li><a href="/">Home</a></li>
+						<li><a href="/about">About</a></li>
+						<li><a href="/journey">Journey</a></li>
+						<li><a href="/#features">Programs</a></li>
+						<li><a href="/#team">Team</a></li>
+						<li><a href="/partners">Partners</a></li>
+						<li><a href="/#contact">Contact</a></li>
+					</ul>
+				</div>						<div class="flex items-center min-w-0 mr-2 sm:mr-4">
+					<a href="/" class="btn btn-ghost p-1 sm:p-2 h-auto min-h-0 hover:bg-transparent flex-shrink-0">
+						<Image 
+							src="/Placard Transparent Black.png"
+							alt="Blast Robotics Logo" 
+							class="h-8 sm:h-10 md:h-12 w-auto theme-logo" 
+							width={60}
+							height={60}
+							loading="eager"
+							format="png"
+						/>
+					</a>
+				</div>
+			</div>			<div class="navbar-center hidden lg:flex">				<ul class="menu menu-horizontal font-semibold text-base px-1">
+					<li><a href="/" class="hover:text-primary">Home</a></li>
+					<li><a href="/about" class="hover:text-primary">About</a></li>
+					<li><a href="/journey" class="hover:text-primary">Journey</a></li>
+					<li><a href="/#features" class="hover:text-primary">Programs</a></li>
+					<li><a href="/#team" class="hover:text-primary">Team</a></li>
+					<li><a href="/partners" class="hover:text-primary">Partners</a></li>
+					<li><a href="/#contact" class="hover:text-primary">Contact</a></li>
+				</ul>
+			</div>
+			<div class="navbar-end">
+				<!-- Theme Controller -->
+				<label class="swap swap-rotate mr-2 sm:mr-4">
+					<input type="checkbox" class="theme-controller" id="theme-toggle" />
+					<!-- sun icon -->
+					<i class="bi bi-sun swap-off text-lg sm:text-2xl"></i>
+					<!-- moon icon -->
+					<i class="bi bi-moon swap-on text-lg sm:text-2xl"></i>
+				</label>
+				<a href="/#contact" class="btn btn-primary btn-sm sm:btn-md text-xs sm:text-sm">
+					<span class="hidden sm:inline">Join Us</span>
+					<span class="sm:hidden">Join</span>
+				</a>
+			</div>		</div>
+		
+		<!-- Sponsor Bar -->
+		<SponsorBar />
+		
+		<!-- Main Content -->
+		<main>
+			<slot />
+		</main>
 
-        <!-- Preload critical images -->
-        <link
-            rel="preload"
-            as="image"
-            href="/Blast Robotics-1-Logo Black Square.png"
-        />
+		<Analytics />
 
-        <!-- Theme color for mobile browsers -->
-        <meta name="theme-color" content="#3b82f6" />
+		<!-- Footer -->
+		<footer class="bg-neutral text-neutral-content">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+					<!-- Logo and About -->
+					<div class="lg:col-span-1">
+						<div class="flex items-center mb-4">
+							<a href="/" class="flex-shrink-0">
+								<Image 
+									src="/Placard Transparent Black.png" 
+									alt="Blast Robotics Logo" 
+									class="h-16 w-auto" 
+									width={80}
+									height={80}
+									loading="lazy"
+									format="png"
+								/>
+							</a>
+						</div>
+						<h3 class="text-lg font-bold mb-2">Blast Robotics Team 10989</h3>
+						<p class="text-neutral-content/80 text-sm leading-relaxed">
+							FRC Community Team serving Mainline Pennsylvania. Building the future through robotics, innovation, and teamwork.
+						</p>
+					</div>
 
-        <script is:inline>
-            // Theme detection and initialization - needs to run immediately to prevent flash
-            (function () {
-                const theme =
-                    localStorage.getItem("theme") ||
-                    (window.matchMedia("(prefers-color-scheme: dark)").matches
-                        ? "dark"
-                        : "light");
-                document.documentElement.setAttribute("data-theme", theme);
-            })();
-        </script>
-        <LoadingIndicator />
-    </head>
-    <body>
-        <!-- Navigation -->
-        <div
-            class="navbar bg-base-100 shadow-lg sticky top-0 z-50 px-2 sm:px-4">
-            <div class="navbar-start">
-                <div class="dropdown">
-                    <div
-                        tabindex="0"
-                        role="button"
-                        class="btn btn-ghost btn-sm lg:hidden p-1">
-                        <i class="bi bi-list text-lg"></i>
-                    </div>
-                    <ul
-                        tabindex="0"
-                        class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/about">About</a></li>
-                        <li><a href="/journey">Journey</a></li>
-                        <li><a href="/#features">Programs</a></li>
-                        <li><a href="/#team">Team</a></li>
-                        <li><a href="/partners">Partners</a></li>
-                        <li><a href="/#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="flex items-center min-w-0">
-                    <Image
-                        src="/Placard Transparent Black.png"
-                        alt="Blast Robotics Logo"
-                        class="btn rounded-2xl p-1 h-15 w-auto mr-1 sm:mr-2 flex-shrink-0 theme-logo"
-                        width={40}
-                        height={40}
-                        loading="eager"
-                        format="png	"
-                    />
-                </div>
-            </div>
-            <div class="navbar-center hidden lg:flex">
-                <ul class="menu menu-horizontal font-semibold text-base px-1">
-                    <li><a href="/" class="hover:text-primary">Home</a></li>
-                    <li>
-                        <a href="/about" class="hover:text-primary">About</a>
-                    </li>
-                    <li>
-                        <a href="/journey" class="hover:text-primary">Journey</a
-                        >
-                    </li>
-                    <li>
-                        <a href="/#features" class="hover:text-primary"
-                            >Programs</a
-                        >
-                    </li>
-                    <li>
-                        <a href="/#team" class="hover:text-primary">Team</a>
-                    </li>
-                    <li>
-                        <a href="/partners" class="hover:text-primary"
-                            >Partners</a
-                        >
-                    </li>
-                    <li>
-                        <a href="/#contact" class="hover:text-primary"
-                            >Contact</a
-                        >
-                    </li>
-                </ul>
-            </div>
-            <div class="navbar-end flex-shrink-0">
-                <!-- Theme Controller -->
-                <label class="swap swap-rotate mr-6">
-                    <input
-                        type="checkbox"
-                        class="theme-controller"
-                        id="theme-toggle"
-                    />
-                    <!-- sun icon -->
-                    <i class="bi bi-sun swap-off text-lg sm:text-2xl"></i>
-                    <!-- moon icon -->
-                    <i class="bi bi-moon swap-on text-lg sm:text-2xl"></i>
-                </label>
-                <a
-                    href="/#contact"
-                    class="btn btn-primary btn-sm sm:btn-md text-xs sm:text-sm">
-                    <span class="hidden sm:inline">Join Us</span>
-                    <span class="sm:hidden">Join Us</span>
-                </a>
-            </div>
-        </div>
+					<!-- Quick Links -->
+					<div>
+						<h4 class="text-base font-semibold mb-4 text-neutral-content">Quick Links</h4>
+						<ul class="space-y-2">
+							<li><a href="/" class="text-sm text-neutral-content/80 hover:text-primary transition-colors">Home</a></li>
+							<li><a href="/about" class="text-sm text-neutral-content/80 hover:text-primary transition-colors">About</a></li>
+							<li><a href="/journey" class="text-sm text-neutral-content/80 hover:text-primary transition-colors">Journey</a></li>
+							<li><a href="/#features" class="text-sm text-neutral-content/80 hover:text-primary transition-colors">Programs</a></li>
+						</ul>
+					</div>
 
-        <!-- Sponsor Bar -->
-        <SponsorBar />
+					<!-- Team -->
+					<div>
+						<h4 class="text-base font-semibold mb-4 text-neutral-content">Team</h4>
+						<ul class="space-y-2">
+							<li><a href="/#team" class="text-sm text-neutral-content/80 hover:text-primary transition-colors">Meet the Team</a></li>
+							<li><a href="/partners" class="text-sm text-neutral-content/80 hover:text-primary transition-colors">Partners</a></li>
+							<li><a href="/#contact" class="text-sm text-neutral-content/80 hover:text-primary transition-colors">Join Us</a></li>
+						</ul>
+					</div>
 
-        <!-- Main Content -->
-        <main>
-            <slot />
-        </main>
-
-        <Analytics />
-
-        <!-- Footer -->
-        <footer
-            class="footer p-10 bg-neutral text-neutral-content grid-cols-1 md:grid-cols-3">
-            <aside class="md:col-span-1">
-                <div class="flex items-center mb-4">
-                    <Image
-                        src="/Placard Transparent Black.png"
-                        alt="Blast Robotics Logo"
-                        class="h-24 w-auto mr-3"
-                        width={120}
-                        height={48}
-                        loading="lazy"
-                        format="png"
-                    />
-                </div>
-                <p class="text-neutral-content/80">
-                    FRC Team 10989<br />
-                    Serving Mainline Pennsylvania
-                </p>
-            </aside>
-            <nav class="md:col-span-1">
-                <h6 class="footer-title">Quick Links</h6>
-                <a href="/" class="link link-hover">Home</a>
-                <a href="/about" class="link link-hover">About</a>
-                <a href="/journey" class="link link-hover">Journey</a>
-                <a href="/#features" class="link link-hover">Programs</a>
-                <a href="/#team" class="link link-hover">Team</a>
-                <a href="/partners" class="link link-hover">Partners</a>
-            </nav>
-            <nav class="md:col-span-1">
-                <h6 class="footer-title">Contact</h6>
-                <a href="/#contact" class="link link-hover">Join Us</a>
-                <a href="mailto:info@team10989.org" class="link link-hover"
-                    >Email Us</a
-                >
-                <a
-                    href="https://instagram.com/10989blast"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="link link-hover">@10989blast</a
-                >
-                <div class="flex gap-2 mt-4">
-                    <a
-                        href="https://instagram.com/10989blast"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="hover:text-primary transition-colors"
-                        aria-label="Follow us on Instagram">
-                        <i class="bi bi-instagram text-xl"></i>
-                    </a>
-                    <a
-                        href="mailto:info@team10989.org"
-                        class="hover:text-primary transition-colors"
-                        aria-label="Email us">
-                        <i class="bi bi-envelope text-xl"></i>
-                    </a>
-                </div>
-            </nav>
-        </footer>
-        <div
-            class="footer footer-center p-4 bg-base-300 text-base-content border-t border-base-300">
-            <div>
-                <p>
-                    Copyright © {new Date().getFullYear()} - Blast Robotics Team.
-                    All rights reserved.
-                </p>
-            </div>
-        </div>
-        <script>
-            // Theme toggle functionality
-            document.addEventListener("DOMContentLoaded", function () {
-                const themeToggle = document.getElementById("theme-toggle");
-                const html = document.documentElement;
-                const themeLogo = document.querySelector(".theme-logo");
-
-                // Function to update logo based on theme
-                function updateLogo(theme) {
-                    if (themeLogo) {
-                        const logoSrc =
-                            theme === "dark"
-                                ? "/Placard Transparent Black.png"
-                                : "/Placard Transparent White.png";
-                        themeLogo.src = logoSrc;
-                    }
-                }
-
-                // Set initial state of toggle based on current theme
-                const currentTheme = html.getAttribute("data-theme");
-                if (themeToggle) {
-                    themeToggle.checked = currentTheme === "dark";
-                }
-
-                // Update logo on initial load
-                updateLogo(currentTheme);
-
-                // Handle theme toggle
-                if (themeToggle) {
-                    themeToggle.addEventListener("change", function () {
-                        const newTheme = this.checked ? "dark" : "light";
-                        html.setAttribute("data-theme", newTheme);
-                        localStorage.setItem("theme", newTheme);
-                        updateLogo(newTheme);
-                    });
-                }
-
-                // Listen for system theme changes
-                window
-                    .matchMedia("(prefers-color-scheme: dark)")
-                    .addEventListener("change", function (e) {
-                        if (!localStorage.getItem("theme")) {
-                            const newTheme = e.matches ? "dark" : "light";
-                            html.setAttribute("data-theme", newTheme);
-                            updateLogo(newTheme);
-                            if (themeToggle) {
-                                themeToggle.checked = newTheme === "dark";
-                            }
-                        }
-                    });
-            });
-        </script>
-    </body>
+					<!-- Contact & Social -->
+					<div>
+						<h4 class="text-base font-semibold mb-4 text-neutral-content">Connect</h4>
+						<ul class="space-y-2 mb-4">
+							<li><a href="mailto:info@team10989.org" class="text-sm text-neutral-content/80 hover:text-primary transition-colors">info@team10989.org</a></li>
+						</ul>
+						<div class="flex space-x-4">
+							<a href="https://instagram.com/10989blast" target="_blank" rel="noopener noreferrer" class="text-neutral-content/80 hover:text-primary transition-colors" aria-label="Follow us on Instagram">
+								<i class="bi bi-instagram text-xl"></i>
+							</a>
+							<a href="mailto:info@team10989.org" class="text-neutral-content/80 hover:text-primary transition-colors" aria-label="Email us">
+								<i class="bi bi-envelope text-xl"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<div class="footer footer-center p-4 bg-base-300 text-base-content border-t border-base-300">
+			<div>
+				<p>Copyright © {new Date().getFullYear()} - Blast Robotics Team. All rights reserved.</p>
+			</div>
+		</div>		<script>
+			// Theme toggle functionality
+			document.addEventListener('DOMContentLoaded', function() {
+				const themeToggle = document.getElementById('theme-toggle');
+				const html = document.documentElement;
+				const themeLogo = document.querySelector('.theme-logo');
+				
+				// Function to update logo based on theme
+				function updateLogo(theme) {
+					if (themeLogo) {
+						const logoSrc = theme === 'dark' 
+							? '/Placard Transparent Black.png'
+							: '/Placard Transparent White.png';
+						themeLogo.src = logoSrc;
+					}
+				}
+				
+				// Set initial state of toggle based on current theme
+				const currentTheme = html.getAttribute('data-theme');
+				if (themeToggle) {
+					themeToggle.checked = currentTheme === 'dark';
+				}
+				
+				// Update logo on initial load
+				updateLogo(currentTheme);
+				
+				// Handle theme toggle
+				if (themeToggle) {
+					themeToggle.addEventListener('change', function() {
+						const newTheme = this.checked ? 'dark' : 'light';
+						html.setAttribute('data-theme', newTheme);
+						localStorage.setItem('theme', newTheme);
+						updateLogo(newTheme);
+					});
+				}
+				
+				// Listen for system theme changes
+				window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+					if (!localStorage.getItem('theme')) {
+						const newTheme = e.matches ? 'dark' : 'light';
+						html.setAttribute('data-theme', newTheme);
+						updateLogo(newTheme);
+						if (themeToggle) {
+							themeToggle.checked = newTheme === 'dark';
+						}
+					}
+				});
+			});
+		</script>
+	</body>
 </html>
