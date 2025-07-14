@@ -113,7 +113,20 @@
 "social": {
   "linkedin": "#",
   "github": "#",
-  "email": "faiz@team10989.org"
+  "email": "#"
+}
+},
+{
+"id": 9,
+"name": "Yubo J.",
+"role": "Organization Manager",
+"initials": "J",
+"description": "In charge of team organization, ensuring all activities are well-coordinated and efficiently executed.",
+"image": "/team/yubo.jpeg",
+"social": {
+  "linkedin": "#",
+  "github": "#",
+  "email": "#"
 }
 }
 ]
