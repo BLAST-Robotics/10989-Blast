@@ -9,13 +9,23 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.10",
+    "@astrojs/partytown": "^2.1.4",
+    "@astrojs/sitemap": "^3.4.1",
+    "@astrojs/vercel": "^8.2.2",
+    "@tailwindcss/vite": "^4.1.11",
     "@vercel/analytics": "^1.5.0",
-    "astro": "^5.11.0",
+    "astro": "5.12.0",
+    "astro-capo": "^0.0.1",
     "astro-loading-indicator": "^0.7.0",
     "bootstrap-icons": "^1.13.1",
     "daisyui": "^5.0.43",
-    "tailwindcss": "^4.1.10"
+    "tailwindcss": "^4.0.0"
   },
-  "packageManager": "pnpm@10.8.0+sha512.0e82714d1b5b43c74610193cb20734897c1d00de89d0e18420aebc5977fa13d780a9cb05734624e81ebd81cc876cd464794850641c48b9544326b5622ca29971"
+  "overrides": {
+    "vite": "npm:rolldown-vite@latest"
+  },
+  "packageManager": "pnpm@10.8.0+sha512.0e82714d1b5b43c74610193cb20734897c1d00de89d0e18420aebc5977fa13d780a9cb05734624e81ebd81cc876cd464794850641c48b9544326b5622ca29971",
+  "trustedDependencies": [
+    "@tailwindcss/oxide"
+  ]
 }

@@ -9,11 +9,13 @@ import Analytics from '@vercel/analytics/astro';
 import { Image } from 'astro:assets';
 import SponsorBar from '../components/SponsorBar.astro';
 import sponsorsData from '../data/sponsors.json';
+import { Head } from 'astro-capo';
 ---
 
 <!DOCTYPE html>
 	<html lang="en" data-theme="">
-	<head>
+	<Head>
+		<link rel="sitemap" href="/sitemap-index.xml" />
 		<meta charset="UTF-8" />
 		<meta name="description" content="Blast Robotics - Inspiring innovation through FIRST Robotics Competition" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -36,7 +38,7 @@ import sponsorsData from '../data/sponsors.json';
 				document.documentElement.setAttribute('data-theme', theme);
 			})();
 		</script>
-	</head>
+	</Head>
 	<body>
 		<!-- Navigation -->
 		<div class="navbar bg-base-100 shadow-lg sticky top-0 z-50 px-2 sm:px-4">

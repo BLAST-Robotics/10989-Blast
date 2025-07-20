@@ -1,0 +1,218 @@
+---
+// Summer Camp Popup Component
+---
+
+<!-- Summer Camp Popup -->
+<div id="summer-camp-popup" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+	<div class="bg-base-100 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto transform scale-95 transition-all duration-300">
+		<!-- Header with close button and image -->
+		<div class="relative p-6 pb-4">
+			<button id="close-popup" class="absolute top-4 right-4 btn btn-ghost btn-sm btn-circle z-10">
+				<i class="bi bi-x text-xl"></i>
+			</button>
+			<div class="flex flex-col md:flex-row items-center gap-6">
+				<!-- Camp Image - Square -->
+				<div class="flex-shrink-0">
+					<img 
+						src="/summercamp.png" 
+						alt="Blast Robotics Summer Camp" 
+						class="w-32 h-32 md:w-40 md:h-40 object-cover rounded-xl shadow-lg"
+						loading="lazy"
+					/>
+				</div>
+				<!-- Text Content -->
+				<div class="text-center md:text-left flex-1">
+					<h2 class="text-3xl md:text-4xl font-bold text-primary mb-2">🏕️ Summer Camp 2025!</h2>
+					<p class="text-lg text-base-content/70">Join us for a summer of fun, learning, and robotics!</p>
+					<!-- Deadline Notice -->
+					<div class="mt-3 p-3 bg-warning/10 border border-warning/20 rounded-lg">
+						<p class="text-sm font-semibold text-warning flex items-center justify-center md:justify-start">
+							<i class="bi bi-exclamation-triangle mr-2"></i>
+							Registration Deadline: August 9th, 2025
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Content -->
+		<div class="px-6 pb-6">
+			<!-- Description -->
+			<div class="prose prose-lg max-w-none mb-6">
+				<p class="text-base-content/80 text-center mb-4">
+					🤖 <strong>Discover the exciting world of robotics</strong> with hands-on activities, team challenges, and STEM learning!
+				</p>
+				<div class="bg-base-200 rounded-xl p-4 mb-4">
+					<h3 class="text-xl font-semibold mb-3 text-center">What You'll Experience:</h3>
+					<ul class="list-none space-y-2">
+						<li class="flex items-center">
+							<span class="text-primary mr-2">🔧</span>
+							Build and program your own robot
+						</li>
+						<li class="flex items-center">
+							<span class="text-primary mr-2">👥</span>
+							Work in teams with experienced mentors
+						</li>
+						<li class="flex items-center">
+							<span class="text-primary mr-2">🏆</span>
+							Compete in fun robotics challenges
+						</li>
+						<li class="flex items-center">
+							<span class="text-primary mr-2">🎓</span>
+							Learn valuable STEM skills
+						</li>
+					</ul>
+				</div>
+
+				<!-- Countdown Timer -->
+				<div class="text-center mb-4 p-4 bg-primary/5 rounded-xl border border-primary/20">
+					<p class="text-sm text-base-content/70 mb-2">Time remaining to register:</p>
+					<div id="countdown-timer" class="text-2xl font-bold text-primary">
+						Loading...
+					</div>
+				</div>
+			</div>
+
+			<!-- Action Buttons -->
+			<div class="flex flex-col sm:flex-row gap-3 justify-center">
+				<a 
+					href="https://tinyurl.com/10989camp" 
+					target="_blank" 
+					rel="noopener noreferrer"
+					class="btn btn-primary btn-lg flex-1 sm:flex-none">
+					<i class="bi bi-calendar-check mr-2"></i>
+					Register Now
+				</a>
+				<a 
+					href="https://docs.google.com/document/d/1Od6694jtXZ8jl5gfXD8Uf9qQAiCZYc1W4YL4YCEIJrw/edit?tab=t.0#heading=h.lwxt343wp2f8" 
+					target="_blank" 
+					rel="noopener noreferrer"
+					class="btn btn-outline btn-lg flex-1 sm:flex-none">
+					<i class="bi bi-file-text mr-2"></i>
+					Program Details
+				</a>
+			</div>
+
+			<!-- Dismissal Options -->
+			<div class="text-center mt-6 pt-4 border-t border-base-300">
+				<p class="text-sm text-base-content/60 mb-3">Don't want to see this again?</p>
+				<div class="flex gap-2 justify-center">
+					<button id="remind-later" class="btn btn-ghost btn-sm">
+						<i class="bi bi-clock mr-1"></i>
+						Remind me later
+					</button>
+					<button id="dont-show-again" class="btn btn-ghost btn-sm">
+						<i class="bi bi-eye-slash mr-1"></i>
+						Don't show again
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		const popup = document.getElementById('summer-camp-popup');
+		const closeBtn = document.getElementById('close-popup');
+		const remindLaterBtn = document.getElementById('remind-later');
+		const dontShowAgainBtn = document.getElementById('dont-show-again');
+		const countdownTimer = document.getElementById('countdown-timer');
+
+		// Deadline: August 9th, 2025 at 11:59 PM
+		const deadline = new Date('2025-08-09T23:59:59').getTime();
+
+		// Countdown function
+		function updateCountdown() {
+			const now = new Date().getTime();
+			const timeLeft = deadline - now;
+
+			if (timeLeft > 0) {
+				const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+				const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+				const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+
+				if (days > 0) {
+					countdownTimer.textContent = `${days} days, ${hours} hours`;
+				} else if (hours > 0) {
+					countdownTimer.textContent = `${hours} hours, ${minutes} minutes`;
+				} else {
+					countdownTimer.textContent = `${minutes} minutes remaining`;
+				}
+			} else {
+				countdownTimer.textContent = 'Registration Closed';
+				countdownTimer.classList.add('text-error');
+			}
+		}
+
+		// Update countdown immediately and every minute
+		updateCountdown();
+		setInterval(updateCountdown, 60000);
+
+		// Check if popup should be shown
+		const dontShow = localStorage.getItem('summer-camp-dont-show');
+		const remindLater = localStorage.getItem('summer-camp-remind-later');
+		const currentTime = new Date().getTime();
+
+		// Don't show if user clicked "don't show again"
+		if (dontShow === 'true') {
+			return;
+		}
+
+		// Don't show if deadline has passed
+		if (currentTime > deadline) {
+			return;
+		}
+
+		// Don't show if "remind later" is active and hasn't expired (24 hours)
+		if (remindLater && currentTime - parseInt(remindLater) < 24 * 60 * 60 * 1000) {
+			return;
+		}
+
+		// Show popup after a short delay
+		setTimeout(() => {
+			showPopup();
+		}, 2000);
+
+		function showPopup() {
+			popup.classList.remove('opacity-0', 'pointer-events-none');
+			popup.querySelector('.bg-base-100').classList.remove('scale-95');
+			popup.querySelector('.bg-base-100').classList.add('scale-100');
+		}
+
+		function hidePopup() {
+			popup.classList.add('opacity-0', 'pointer-events-none');
+			popup.querySelector('.bg-base-100').classList.remove('scale-100');
+			popup.querySelector('.bg-base-100').classList.add('scale-95');
+		}
+
+		// Close popup handlers
+		closeBtn.addEventListener('click', hidePopup);
+		
+		// Close when clicking outside the modal
+		popup.addEventListener('click', function(e) {
+			if (e.target === popup) {
+				hidePopup();
+			}
+		});
+
+		// Remind later (24 hours)
+		remindLaterBtn.addEventListener('click', function() {
+			localStorage.setItem('summer-camp-remind-later', currentTime.toString());
+			hidePopup();
+		});
+
+		// Don't show again
+		dontShowAgainBtn.addEventListener('click', function() {
+			localStorage.setItem('summer-camp-dont-show', 'true');
+			hidePopup();
+		});
+
+		// Close with Escape key
+		document.addEventListener('keydown', function(e) {
+			if (e.key === 'Escape' && !popup.classList.contains('pointer-events-none')) {
+				hidePopup();
+			}
+		});
+	});
+</script>
