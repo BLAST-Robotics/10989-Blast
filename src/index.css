@@ -4,3 +4,15 @@
   themes: light --default, dark --prefersdark;
   logs: false;
 }
+
+@plugin "daisyui/theme" {
+  name: "light";
+  --color-primary: oklch(0.4186 0.171758 29.2339);
+  --color-secondary: oklch(0.6871 0.1549 57.27);
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  --color-primary: oklch(0.6543 0.2713 29.65);
+  --color-secondary: oklch(0.6871 0.1549 57.27);
+}
