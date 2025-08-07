@@ -12,6 +12,7 @@
     "@astrojs/partytown": "^2.1.4",
     "@astrojs/sitemap": "^3.4.1",
     "@astrojs/vercel": "^8.2.2",
+    "@fontsource/dm-sans": "^5.2.6",
     "@tailwindcss/vite": "^4.1.11",
     "@vercel/analytics": "^1.5.0",
     "astro": "5.12.0",

@@ -1,8 +1,13 @@
 @import "tailwindcss";
 @import "bootstrap-icons/font/bootstrap-icons.css";
+
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark;
   logs: false;
+}
+
+@theme {
+  --font-sans: "DM Sans", 'sans-serif';
 }
 
 @plugin "daisyui/theme" {
