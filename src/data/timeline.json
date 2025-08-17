@@ -1,5 +1,14 @@
 [
   {
+    "date": "August 15th, 2025",
+    "title": "FMA Meeting",
+    "description": "<br>Met with Frank Farrell, the executive director of FIRST Mid-Atlantic, to discuss our team's goals and initiatives.",
+    "image": "/journey/farrel.jpg",
+    "type": "overlay",
+    "imagePadding": "p-4",
+    "imageBackground": "bg-white/10 brightness-150"
+  },
+  {
     "date": "June 29, 2025",
     "title": "Community Engagement",
     "description": "Engaged with community members and educators about our program, building strong local support and partnerships for our robotics initiative.",
@@ -7,22 +16,6 @@
     "type": "overlay",
     "imagePadding": "p-4",
     "imageBackground": "bg-white/10"
-  },
-  {
-    "date": "June 27, 2025",
-    "title": "Budget Finalized",
-    "description": "Successfully finalized our comprehensive team budget, establishing clear financial planning and resource allocation for our inaugural season.",
-    "image": "/Logo Transparent.png",
-    "type": "centered",
-    "imagePadding": "p-6",
-    "imageBackground": "bg-gradient-to-br from-primary/10 to-secondary/10"
-  },
-  {
-    "date": "June 23, 2025",
-    "title": "Full Team Meeting",
-    "description": "Held our first comprehensive full-team meeting, bringing together all members to align on goals, roles, and our path forward.",
-    "image": "/Blast Robotics-2-Logo White Square.png",
-    "type": "overlay"
   },
   {
     "date": "June 22, 2025",
@@ -35,15 +28,15 @@
     "date": "June 21, 2025",
     "title": "Workshop Visits & Event",
     "description": "Visited 316 LUNATECS workshop and attended the Duel on the Delaware REEFSCAPE FRC unofficial event, gaining valuable experience and networking.",
-    "image": "/Blast Robotics-3-Logo Alternate Square.png",
+    "image": "/journey/duel.webp",
     "type": "overlay"
   },
   {
     "date": "June 19, 2025",
     "title": "Website Launch & FIRST Meeting",
     "description": "Launched our official team website and met with the Executive Director of FIRST Mid-Atlantic, establishing our presence and connections.",
-    "image": "/Logo Transparent.png",
-    "type": "centered"
+    "image": "/journey/website.png",
+    "type": "card"
   },
   {
     "date": "June 18, 2025",

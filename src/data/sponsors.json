@@ -1,11 +1,36 @@
 [
   {
+    "name": "FIRST® Foundation",
+    "logo": "/sponsors/first.png",
+    "website": "https://firstinspires.org",
+    "description": "The organization that runs the FIRST Robotics Competition",
+    "bg": "white",
+    "padding": "0"
+  },
+  {
     "name": "Eadah Enterprises",
     "logo": "/sponsors/eadeh-logo-white.png",
     "website": "https://eadeh.com/",
     "bg": "#29324a",
     "description": "Local Community Real Estate Company",
     "padding": "10"
+  },
+  
+  {
+    "name": "Dod Stem",
+    "logo": "/sponsors/dodstem.png",
+    "website": "https://www.dodstem.us/",
+    "description": "The STEM program of the Department of Defense",
+    "bg": "white",
+    "padding": "2"
+  },
+  {
+    "name": "Isolite",
+    "logo": "/sponsors/isolite.png",
+    "website": "https://www.isolite.com/",
+    "description": "Emergency lighting solutions",
+    "bg": "white",
+    "padding": "2"
   },
   {
     "name": "Comcast",
@@ -23,27 +48,12 @@
     "bg": "white",
     "padding": "0"
   },
-  {
-    "name": "FIRST® Foundation",
-    "logo": "/sponsors/first.png",
-    "website": "https://firstinspires.org",
-    "description": "The organization that runs the FIRST Robotics Competition",
-    "bg": "white",
-    "padding": "0"
-  },
+  
   {
     "name": "Sol Siesta Apparel",
     "logo": "/sponsors/Sol Siesta.jpg",
     "website": "https://solsiestaapparel.com/",
     "description": "Apparel company that supports our team",
-    "bg": "white",
-    "padding": "2"
-  },
-  {
-    "name": "Dod Stem",
-    "logo": "/sponsors/dodstem.png",
-    "website": "https://www.dodstem.us/",
-    "description": "The STEM program of the Department of Defense",
     "bg": "white",
     "padding": "2"
   }

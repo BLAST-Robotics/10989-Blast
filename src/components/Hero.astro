@@ -1,21 +1,30 @@
 ---
-// Hero component
+
+import carouselData from '../data/hero-carousel.json';
 ---
 
-<section
-    id="home"
-    class="hero min-h-screen lazy-bg"
-    data-bg="linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/team-photo.jpg')">
-    <div class="hero-content text-center px-4">
+<section id="home" class="hero min-h-screen bg-top relative overflow-hidden">
+    <div id="carousel-bg" class="absolute inset-0 w-full h-full z-0" style={`--slides: ${carouselData.length}; --slide-interval: 5s;`}>
+        {carouselData.map((slide, idx) => (
+            <div
+                class={`hero-slide absolute inset-0 w-full h-full ${idx === 0 ? 'opacity-100' : 'opacity-0'} pointer-events-none`}
+                aria-hidden={idx !== 0}
+                style={`--i:${idx}; will-change: opacity; background-image: linear-gradient(${slide.overlay}, ${slide.overlay}), url('${slide.image}'); background-size: cover; background-position: center; filter: ${slide.filter || 'none'};`}
+            >
+                <span class="sr-only">{slide.alt}</span>
+            </div>
+        ))}
+    </div>
+    <div class="hero-content text-center px-4 relative z-10">
         <div class="max-w-4xl">
-            <div class="mb-6 md:mb-8">
+            <!--<div class="mb-6 md:mb-8">
                 <img
                     src="/new_logo_black.png"
                     alt="Blast Robotics Cool Logo"
                     class="mx-auto h-20 rounded-2xl w-20 sm:h-24 sm:w-24 md:h-32 md:w-32 mb-4 md:mb-6"
                     loading="lazy"
                 />
-            </div>
+            </div>-->
             <h1
                 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-6 text-white drop-shadow-lg">
                 Welcome to Blast Robotics
@@ -69,27 +78,31 @@
             </div>
         </div>
     </div>
+    <script type="module">
+      // Minimal toggler: cycles pre-rendered slides and ensures no blank gaps
+      window.addEventListener('DOMContentLoaded', () => {
+        const slides = Array.from(document.querySelectorAll('#carousel-bg .hero-slide'));
+        if (!slides.length) return;
+        const interval = 5000; // ms per slide — keep in sync with your earlier setting
+        let current = 0;
+        // Ensure initial classes
+        slides.forEach((s, i) => {
+          s.classList.remove('opacity-100', 'opacity-0', 'pointer-events-none');
+          if (i === 0) s.classList.add('opacity-100'); else s.classList.add('opacity-0', 'pointer-events-none');
+          s.style.transition = 'opacity 1s ease-in-out';
+        });
+        setInterval(() => {
+          const next = (current + 1) % slides.length;
+          slides[current].classList.remove('opacity-100');
+          slides[current].classList.add('opacity-0', 'pointer-events-none');
+          slides[current].setAttribute('aria-hidden', 'true');
+
+          slides[next].classList.remove('opacity-0', 'pointer-events-none');
+          slides[next].classList.add('opacity-100');
+          slides[next].setAttribute('aria-hidden', 'false');
+
+          current = next;
+        }, interval);
+      });
+    </script>
 </section>
-
-<script>
-    // Lazy load background image
-    document.addEventListener("DOMContentLoaded", function () {
-        const lazyBg = document.querySelector(".lazy-bg");
-
-        if (lazyBg) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        const bg = entry.target.getAttribute("data-bg");
-                        entry.target.style.backgroundImage = bg;
-                        entry.target.style.backgroundSize = "cover";
-                        entry.target.style.backgroundPosition = "center";
-                        observer.unobserve(entry.target);
-                    }
-                });
-            });
-
-            observer.observe(lazyBg);
-        }
-    });
-</script>
