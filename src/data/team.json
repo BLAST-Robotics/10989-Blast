@@ -15,7 +15,7 @@
   {
     "id": 2,
     "name": "Michael P.",
-    "role": "Brand Manager",
+    "role": "Member",
     "initials": "P",
     "description": "Manages team branding, marketing strategies, and public image to promote team visibility.",
     "image": "/team/michael.jpg",
@@ -28,7 +28,7 @@
   {
     "id": 3,
     "name": "Vinay G.",
-    "role": "Mechanical Director",
+    "role": "Member",
     "initials": "G",
     "description": "Leads mechanical design and engineering, overseeing robot construction and mechanical systems.",
     "image": null,
@@ -41,7 +41,7 @@
   {
     "id": 4,
     "name": "Lemuel X.",
-    "role": "Lead Strategist",
+    "role": "Member",
     "initials": "X",
     "description": "Develops competition strategies, analyzes opponents, and coordinates tactical game planning.",
     "image": "/team/lemuel.jpg",
@@ -93,7 +93,7 @@
 {
 "id": 8,
 "name": "Tvisha J.",
-"role": "Brainstormer",
+"role": "Member",
 "initials": "J",
 "description": "Generates creative ideas and innovative solutions for design challenges and team initiatives.",
 "image": "/team/tvisha.jpg",
@@ -106,7 +106,7 @@
 {
 "id": 9,
 "name": "Faiz M.",
-"role": "Newsletter Manager",
+"role": "Member",
 "initials": "M",
 "description": "Creates and manages team newsletters, coordinating internal and external communications to keep everyone informed.",
 "image": "/team/faiz.webp",
@@ -119,7 +119,7 @@
 {
 "id": 9,
 "name": "Yubo J.",
-"role": "Organization Manager",
+"role": "Member",
 "initials": "J",
 "description": "In charge of team organization, ensuring all activities are well-coordinated and efficiently executed.",
 "image": "/team/yubo.jpeg",
@@ -132,7 +132,7 @@
 {
 "id": 9,
 "name": "Mayon S.",
-"role": "Parent and Adult Volunteer Coordinator",
+"role": "Member",
 "initials": "S",
 "description": "Coordinates parent and adult volunteer involvement, ensuring effective support for team activities and events.",
 "image": "/team/mayon.jpg",
