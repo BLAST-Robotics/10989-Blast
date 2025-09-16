@@ -7,6 +7,8 @@ import partytown from '@astrojs/partytown';
 
 import vercel from '@astrojs/vercel';
 
+import compressor from 'astro-compressor';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://team10989.org',
@@ -16,6 +18,6 @@ export default defineConfig({
       plugins: [tailwindcss(), sitemap()],
     },
 
-  integrations: [partytown()],
+  integrations: [partytown(), compressor()],
   adapter: vercel(),
 });

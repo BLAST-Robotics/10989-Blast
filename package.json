@@ -17,6 +17,7 @@
     "@vercel/analytics": "^1.5.0",
     "astro": "5.13.2",
     "astro-capo": "^0.0.1",
+    "astro-compressor": "^1.1.2",
     "astro-loading-indicator": "^0.7.0",
     "bootstrap-icons": "^1.13.1",
     "daisyui": "^5.0.43",
