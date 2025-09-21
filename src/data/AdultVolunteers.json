@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "name": " Murahari “Hari” Ponugoti",
+    "role": "Executive Director",
+    "initials": "P",
+    "description": "Murahari “Hari” Ponugoti is the Executive Director of the Keystone STEM Alliance, where he combines his passion for technology, education, and community service to inspire the next generation of innovators. With over 21 years of global leadership experience in IT, OT, GIS, IoT, SAP, SaaS, and enterprise program management, Hari has successfully led multi-million-dollar initiatives, complex system integrations, and large-scale agile transformations for Fortune 500 companies. A builder at heart, Hari has established multiple departments and Centers of Excellence from the ground up,. guiding organizations through quality maturity journeys aligned with ISO 9001, ISO 27001, and the NIST Cybersecurity Framework. His expertise spans SAP, IoT, GIS/geospatial solutions, and asset management, and he has shared his insights as a published author and international conference speaker. At Keystone STEM Alliance, Hari serves as both coach and mentor, helping students grow as leaders, engineers, and problem-solvers. His leadership style is grounded in servant leadership, with a personal mission to Educate, Empower, and Embrace communities through STEM and robotics. Beyond Keystone, Hari also founded KRISHI.org, a nonprofit dedicated to improving education access for rural children in India. His lifelong commitment to organizational development and youth empowerment continues to shape a thriving ecosystem where students learn, innovate, and give back to their communities.",
+    "image": "/team/Murahari.jpg",
+    "social": {
+      "linkedin": "#",
+      "github": "#",
+      "email": "mailto:p.murahari@gmail.com"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Swapna TN",
+    "role": "Mentor – Staff Development",
+    "initials": "TN",
+    "description": "Naga Swapna brings over 20 years of experience in the IT industry with advanced expertise in geospatial technologies, data engineering, and enterprise solution delivery. She has successfully led large-scale projects for Fortune 500 companies including Comcast, Travelers, Nielsen, AIG, and Maersk Oil & Gas, with global experience spanning the USA, Germany, Norway, Singapore, and India. She holds dual Master’s degrees in Spatial Information Technology and Information Systems, and has a proven record of mentoring teams, driving innovation, and building strong delivery frameworks across industries such as insurance, utilities, telecom, and finance.Passionate about giving back, Swapna has actively volunteered at FIRST Robotics and VEX Robotics events. At Team 10989, her focus is on staff development, helping students grow as leaders, collaborators, and problem-solvers. Her professional expertise and commitment to youth development strengthen the team’s foundation and future. Swapna also played a key role in providing the exposure and connections that led to the launch of the FIRST Robotics chapter in Berwyn, PA, making her an integral part of the team’s journey and impact.",
+    "image": "/team/Swapna.jpg",
+    "social": {
+      "linkedin": "#",
+      "github": "#",
+      "email": "mailto:nagaswapna@gmail.com"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Jessica L. Tinneny",
+    "role": "Safety Mentor",
+    "initials": "L",
+    "description": "Jessica L. Tinney brings a unique blend of educational expertise, youth leadership, and a passion for safety and well-being to her role as Safety Mentor with FIRST Robotics programs. She holds a Master’s Degree in Education and has experience teaching and supervising students, giving her the ability to connect with young team members while fostering a safe and inclusive learning environment. Jessica’s long-standing commitment to health, safety, and the environment complements FIRST’s emphasis on safety culture in robotics. She is skilled at guiding students in best practices for workshop safety, risk awareness, and emergency preparedness—while reinforcing teamwork, responsibility, and accountability. Her combined background in education, mentoring, and safety leadership makes her a valuable asset to the team, ensuring students not only grow as innovators but also develop habits of safety, respect, and care that extend beyond robotics.",
+    "image": null,
+    "social": {
+      "linkedin": "#",
+      "github": "#",
+      "email": "#"
+    }
+  }
+]
