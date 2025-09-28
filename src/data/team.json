@@ -9,7 +9,7 @@
     "social": {
       "linkedin": "#",
       "github": "#",
-      "email": "vivaan@team10989.org"
+      "email": "#"
     }
   },
   {
@@ -22,50 +22,37 @@
     "social": {
       "linkedin": "#",
       "github": "#",
-      "email": "michael@team10989.org"
+      "email": "#"
     }
   },
   {
     "id": 3,
-    "name": "Vinay G.",
-    "role": "Member",
-    "initials": "G",
-    "description": "Leads mechanical design and engineering, overseeing robot construction and mechanical systems.",
-    "image": null,
-    "social": {
-      "linkedin": "#",
-      "github": "#",
-      "email": "vinay@team10989.org"
-    }
-  },
-  {
-    "id": 4,
     "name": "Lemuel X.",
-    "role": "Member",
+    "role": "Mechanical Captain",
     "initials": "X",
     "description": "Develops competition strategies, analyzes opponents, and coordinates tactical game planning.",
     "image": "/team/lemuel.jpg",
     "social": {
       "linkedin": "#",
       "github": "#",
-      "email": "lemuel@team10989.org"
+      "email": "#"
     }
   },
 {
-"id": 5,
+"id": 4,
 "name": "Virat P.",
-"role": "Director of Operations",
+"role": "Co-Captain",
 "initials": "P",
 "description": "Oversees team operations, logistics, and project management to ensure smooth workflow and efficiency.",
 "image": "/team/virat.jpg",
 "social": {
   "linkedin": "#",
   "github": "https://github.com/vrobot-2",
-  "email": "virat@team10989.org"
+  "email": "#"
 }
 },
 {
-"id": 6,
+"id": 5,
 "name": "Madeleine L.",
 "role": "Outreach/Social Media Manager",
 "initials": "L",
@@ -74,11 +61,11 @@
 "social": {
   "linkedin": "#",
   "github": "#",
-  "email": "madeline@team10989.org"
+  "email": "#"
 }
 },
 {
-"id": 7,
+"id": 6,
 "name": "Rishit V.",
 "role": "Programming/Planning Lead",
 "initials": "V",
@@ -91,33 +78,7 @@
 }
 },
 {
-"id": 8,
-"name": "Tvisha J.",
-"role": "Member",
-"initials": "J",
-"description": "Generates creative ideas and innovative solutions for design challenges and team initiatives.",
-"image": "/team/tvisha.jpg",
-"social": {
-  "linkedin": "#",
-  "github": "#",
-  "email": "tvisha@team10989.org"
-}
-},
-{
-"id": 9,
-"name": "Faiz M.",
-"role": "Member",
-"initials": "M",
-"description": "Creates and manages team newsletters, coordinating internal and external communications to keep everyone informed.",
-"image": "/team/faiz.webp",
-"social": {
-  "linkedin": "#",
-  "github": "#",
-  "email": "#"
-}
-},
-{
-"id": 9,
+"id": 7,
 "name": "Yubo J.",
 "role": "Member",
 "initials": "J",
@@ -130,9 +91,9 @@
 }
 },
 {
-"id": 9,
+"id": 8,
 "name": "Mayon S.",
-"role": "Member",
+"role": "Director of Operations",
 "initials": "S",
 "description": "Coordinates parent and adult volunteer involvement, ensuring effective support for team activities and events.",
 "image": "/team/mayon.jpg",

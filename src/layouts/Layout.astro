@@ -6,7 +6,6 @@ export interface Props {
 const { title } = Astro.props;
 import "../index.css";
 import Analytics from '@vercel/analytics/astro';
-import { Image } from 'astro:assets';
 import SponsorBar from '../components/SponsorBar.astro';
 import sponsorsData from '../data/sponsors.json';
 import { Head } from 'astro-capo';
@@ -47,7 +46,8 @@ import '@fontsource/dm-sans';
 				<div class="dropdown">
 					<div tabindex="0" role="button" class="btn btn-ghost btn-sm lg:hidden p-1">
 						<i class="bi bi-list text-lg"></i>
-					</div>					<ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+					</div>
+					<ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
 						<li><a href="/">Home</a></li>
 						<li><a href="/about">About</a></li>
 						<li><a href="/journey">Journey</a></li>
@@ -55,21 +55,37 @@ import '@fontsource/dm-sans';
 						<li><a href="/#team">Team</a></li>
 						<li><a href="/partners">Partners</a></li>
 						<li><a href="/#contact">Contact</a></li>
+						<li class="mt-2">
+							<a
+								href="https://www.paypal.com/donate/?hosted_button_id=C4APA8EZM93MS"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="btn btn-warning btn-sm text-sm font-semibold text-neutral-900 shadow-md"
+							>
+								<i class="bi bi-heart-fill mr-2 text-neutral-900"></i>
+								Donate
+							</a>
+						</li>
 					</ul>
-				</div>						<div class="flex items-center min-w-0 mr-2 sm:mr-4">
+				</div>
+				<div class="flex items-center min-w-0 mr-2 sm:mr-4">
 					<a href="/" class="btn btn-ghost h-auto min-h-0 hover:bg-transparent flex-shrink-0">
-						<Image 
+						<img
 							src="/placardwhite.png"
-							alt="Blast Robotics Logo" 
-							class="h-8 sm:h-10 md:h-12 w-auto theme-logo" 
-							width={60}
-							height={60}
+							alt="Blast Robotics Logo"
+							class="h-8 sm:h-10 md:h-12 w-auto"
 							loading="eager"
-							format="png"
+							width="60"
+							height="60"
+							data-theme-logo
+							data-light-src="/placardwhite.png"
+							data-dark-src="/placardblack.png"
 						/>
 					</a>
 				</div>
-			</div>			<div class="navbar-center hidden lg:flex">				<ul class="menu menu-horizontal font-semibold text-base px-1">
+			</div>
+			<div class="navbar-center hidden lg:flex">
+				<ul class="menu menu-horizontal font-semibold text-base px-1">
 					<li><a href="/" class="hover:text-primary">Home</a></li>
 					<li><a href="/about" class="hover:text-primary">About</a></li>
 					<li><a href="/journey" class="hover:text-primary">Journey</a></li>
@@ -92,6 +108,16 @@ import '@fontsource/dm-sans';
 					<span class="hidden sm:inline">Join Us</span>
 					<span class="sm:hidden">Join</span>
 				</a>
+				<a
+					href="https://www.paypal.com/donate/?hosted_button_id=C4APA8EZM93MS"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="btn btn-sm sm:btn-md text-xs sm:text-sm font-semibold ml-2 bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 text-neutral-900 border border-yellow-200 shadow-lg hover:shadow-xl hover:from-amber-200 hover:to-amber-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-yellow-400"
+					aria-label="Donate to Blast Robotics via PayPal"
+				>
+					<i class="bi bi-heart-fill mr-2 hidden sm:inline text-neutral-900"></i>
+					Donate
+				</a>
 			</div>		</div>
 		
 		<!-- Sponsor Bar -->
@@ -112,14 +138,13 @@ import '@fontsource/dm-sans';
 					<div class="lg:col-span-1">
 						<div class="flex items-center mb-4">
 							<a href="/" class="flex-shrink-0">
-								<Image 
-									src="/placardblack.png" 
-									alt="Blast Robotics Logo" 
-									class="h-16 w-auto" 
-									width={80}
-									height={80}
+								<img
+									src="/placardblack.png"
+									alt="Blast Robotics Logo"
+									class="h-16 w-auto"
+									width="80"
+									height="80"
 									loading="lazy"
-									format="png"
 								/>
 							</a>
 						</div>
@@ -172,53 +197,69 @@ import '@fontsource/dm-sans';
 			<div>
 				<p>Copyright © {new Date().getFullYear()} - Blast Robotics Team. All rights reserved.</p>
 			</div>
-		</div>		<script type="text/partytown">
-			// Theme toggle functionality
-			document.addEventListener('DOMContentLoaded', function() {
-				const themeToggle = document.getElementById('theme-toggle');
+		</div>
+		<script is:inline>
+			// Theme toggle functionality with multi-logo support
+			document.addEventListener('DOMContentLoaded', () => {
 				const html = document.documentElement;
-				const themeLogo = document.querySelector('.theme-logo');
-				
-				// Function to update logo based on theme
-				function updateLogo(theme) {
-					if (themeLogo) {
-						const logoSrc = theme === 'dark' 
-							? '/placardblack.png'
-							: '/placardwhite.png';
-						themeLogo.src = logoSrc;
+				const themeToggle = document.getElementById('theme-toggle');
+				const themeLogoElements = Array.from(document.querySelectorAll('[data-theme-logo]'));
+
+				const prefersDarkMedia = window.matchMedia('(prefers-color-scheme: dark)');
+
+				const updateLogos = (theme) => {
+					themeLogoElements.forEach((el) => {
+						const lightSrc = el.getAttribute('data-light-src') || el.dataset.lightSrc;
+						const darkSrc = el.getAttribute('data-dark-src') || el.dataset.darkSrc;
+						const target = theme === 'dark' ? darkSrc : lightSrc;
+						if (!target) return;
+
+						if (el instanceof HTMLImageElement) {
+							if (el.src !== target) {
+								el.src = target;
+							}
+						} else {
+							const img = el.querySelector('img');
+							if (img && img.src !== target) {
+								img.src = target;
+							}
+						}
+					});
+				};
+
+				const applyTheme = (theme, persist = true) => {
+					html.setAttribute('data-theme', theme);
+					if (persist) {
+						localStorage.setItem('theme', theme);
 					}
-				}
-				
-				// Set initial state of toggle based on current theme
-				const currentTheme = html.getAttribute('data-theme');
-				if (themeToggle) {
-					themeToggle.checked = currentTheme === 'dark';
-				}
-				
-				// Update logo on initial load
-				updateLogo(currentTheme);
-				
-				// Handle theme toggle
-				if (themeToggle) {
-					themeToggle.addEventListener('change', function() {
-						const newTheme = this.checked ? 'dark' : 'light';
-						html.setAttribute('data-theme', newTheme);
-						localStorage.setItem('theme', newTheme);
-						updateLogo(newTheme);
+					if (themeToggle instanceof HTMLInputElement) {
+						themeToggle.checked = theme === 'dark';
+					}
+					updateLogos(theme);
+				};
+
+				const storedTheme = localStorage.getItem('theme');
+				const initialTheme = storedTheme || html.getAttribute('data-theme') || (prefersDarkMedia.matches ? 'dark' : 'light');
+				applyTheme(initialTheme, false);
+
+				if (themeToggle instanceof HTMLInputElement) {
+					themeToggle.checked = initialTheme === 'dark';
+					themeToggle.addEventListener('change', () => {
+						applyTheme(themeToggle.checked ? 'dark' : 'light');
 					});
 				}
-				
-				// Listen for system theme changes
-				window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+
+				const handleSystemThemeChange = (event) => {
 					if (!localStorage.getItem('theme')) {
-						const newTheme = e.matches ? 'dark' : 'light';
-						html.setAttribute('data-theme', newTheme);
-						updateLogo(newTheme);
-						if (themeToggle) {
-							themeToggle.checked = newTheme === 'dark';
-						}
+						applyTheme(event.matches ? 'dark' : 'light', false);
 					}
-				});
+				};
+
+				if (typeof prefersDarkMedia.addEventListener === 'function') {
+					prefersDarkMedia.addEventListener('change', handleSystemThemeChange);
+				} else if (typeof prefersDarkMedia.addListener === 'function') {
+					prefersDarkMedia.addListener(handleSystemThemeChange);
+				}
 			});
 		</script>
 	</body>
