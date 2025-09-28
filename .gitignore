@@ -26,3 +26,6 @@ bun.lock
 
 # jetbrains setting folder
 .idea/
+
+dist/
+.vercel/
