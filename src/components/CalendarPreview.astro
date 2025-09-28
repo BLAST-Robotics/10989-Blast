@@ -33,7 +33,6 @@ const formatDateLabel = (date: Date) =>
 	<section
 		aria-labelledby="calendar-preview-heading"
 		class="calendar-preview"
-		data-theme="light"
 	>
 		<div class="preview-grid">
 			<div class="highlight-card" role="group" aria-label="Next upcoming event">
@@ -105,7 +104,7 @@ const formatDateLabel = (date: Date) =>
 		</div>
 	</section>
 ) : (
-	<section class="calendar-preview empty" data-theme="light">
+	<section class="calendar-preview empty">
 		<div class="empty-state">
 			<i class="bi bi-calendar4-week"></i>
 			<p>No upcoming events scheduled this week.</p>
@@ -236,14 +235,15 @@ const formatDateLabel = (date: Date) =>
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
-		color: rgba(255, 255, 255, 0.7);
+		color: var(--base-content);
+		opacity: 0.7;
 	}
 
 	.compact-title {
 		margin: 0;
 		font-size: 1rem;
 		font-weight: 600;
-		color: white;
+		color: var(--base-content);
 	}
 
 	.compact-meta {
@@ -252,7 +252,8 @@ const formatDateLabel = (date: Date) =>
 		align-items: center;
 		gap: 0.45rem;
 		font-size: 0.85rem;
-		color: rgba(255, 255, 255, 0.8);
+		color: var(--base-content);
+		opacity: 0.8;
 	}
 
 	.empty {
@@ -290,7 +291,7 @@ const formatDateLabel = (date: Date) =>
 		}
 
 		.compact-event {
-			background: #ffffff;
+			background: var(--base-100);
 		}
 	}
 

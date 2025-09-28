@@ -119,7 +119,8 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 		{JSON.stringify({ initialSelectedDate })}
 	</script>
 	<script type="module">
-		console.log('Calendar script starting...');
+		function initializeCalendar() {
+			console.log('Calendar script starting...');
 		const calendarRoot = document.querySelector('[data-calendar]');
 		if (!calendarRoot) {
 			console.warn('Calendar root element not found.');
@@ -146,8 +147,12 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 		const eventData = parseJson(eventsNode, []);
 		const config = parseJson(configNode, {});
 		
-		console.log('Parsed eventData:', eventData);
-		console.log('Parsed config:', config);
+		console.log('Parsed eventData:', JSON.stringify(eventData, null, 2));
+		console.log('Parsed config:', JSON.stringify(config, null, 2));
+
+		if (!eventData || eventData.length === 0) {
+			console.warn('No event data found or parsed. Calendar will not be fully functional.');
+		}
 
 		const monthLabel = calendarRoot.querySelector('[data-calendar-month]');
 		const prevButton = calendarRoot.querySelector('[data-calendar-prev]');
@@ -155,6 +160,12 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 		const body = calendarRoot.querySelector('[data-calendar-body]');
 		const weekLabel = calendarRoot.querySelector('[data-calendar-week-label]');
 		const weekContainer = calendarRoot.querySelector('[data-calendar-week-events]');
+
+		if (!monthLabel || !prevButton || !nextButton || !body || !weekLabel || !weekContainer) {
+			console.error('One or more required calendar elements are missing from the DOM.');
+			return;
+		}
+		console.log('All calendar DOM elements found.');
 
 			const monthNames = [
 				'January',
@@ -436,6 +447,9 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 		renderCalendar();
 		renderWeekAgenda();
+
+		}
+		initializeCalendar();
 	</script>
 
 	<style>

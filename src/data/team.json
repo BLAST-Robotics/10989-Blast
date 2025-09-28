@@ -12,12 +12,26 @@
       "email": "#"
     }
   },
+  
+{
+"id": 8,
+"name": "Mayon S.",
+"role": "Director of Operations",
+"initials": "S",
+"description": "Coordinates parent and adult volunteer involvement, ensuring effective support for team activities and events.",
+"image": "/team/mayon.jpg",
+"social": {
+  "linkedin": "#",
+  "github": "#",
+  "email": "#"
+}
+},
   {
     "id": 2,
     "name": "Michael P.",
     "role": "Member",
     "initials": "P",
-    "description": "Manages team branding, marketing strategies, and public image to promote team visibility.",
+    "description": "Helps with building and strategy.",
     "image": "/team/michael.jpg",
     "social": {
       "linkedin": "#",
@@ -28,9 +42,9 @@
   {
     "id": 3,
     "name": "Lemuel X.",
-    "role": "Mechanical Captain",
+    "role": "Mechanical Lead",
     "initials": "X",
-    "description": "Develops competition strategies, analyzes opponents, and coordinates tactical game planning.",
+    "description": "Manages design, fabrication, and assembly of mechanical components.",
     "image": "/team/lemuel.jpg",
     "social": {
       "linkedin": "#",
@@ -74,16 +88,16 @@
 "social": {
   "linkedin": "#",
   "github": "#",
-  "email": "rishit@team10989.org"
+  "email": "#"
 }
 },
 {
-"id": 7,
-"name": "Yubo J.",
-"role": "Member",
-"initials": "J",
-"description": "In charge of team organization, ensuring all activities are well-coordinated and efficiently executed.",
-"image": "/team/yubo.jpeg",
+"id": 6,
+"name": "Vinay G.",
+"role": "Builder",
+"initials": "V",
+"description": "Assists in building and assembling the robot and other mechanical tasks.",
+"image": null,
 "social": {
   "linkedin": "#",
   "github": "#",
@@ -91,12 +105,12 @@
 }
 },
 {
-"id": 8,
-"name": "Mayon S.",
-"role": "Director of Operations",
-"initials": "S",
-"description": "Coordinates parent and adult volunteer involvement, ensuring effective support for team activities and events.",
-"image": "/team/mayon.jpg",
+"id": 7,
+"name": "Yubo J.",
+"role": "Safety Captain",
+"initials": "J",
+"description": "In charge of team safety protocols and ensuring a safe working environment for all members.",
+"image": "/team/yubo.jpeg",
 "social": {
   "linkedin": "#",
   "github": "#",
