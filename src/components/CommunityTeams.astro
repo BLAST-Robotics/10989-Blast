@@ -1,0 +1,147 @@
+---
+// Community Teams Component - Thank you to supporting teams in the area
+import AnimatedSection from './AnimatedSection.astro';
+import communityTeams from '../data/community-teams.json';
+
+const teams = communityTeams;
+---
+
+<section id="community-teams" class="py-20 bg-base-200">
+    <div class="container mx-auto px-6">
+        <AnimatedSection class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                Our FRC Community
+            </h2>
+            <p class="text-xl text-base-content/70 max-w-3xl mx-auto">
+                We're grateful to be part of an amazing community of FIRST Robotics teams in the Philadelphia area. 
+                These incredible teams inspire us, mentor us, and show us what excellence in robotics looks like.
+            </p>
+        </AnimatedSection>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {teams.map((team, index) => (
+                <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 animated-card" data-delay={index * 0.1}>
+                    <div class="card-body">
+                        <!-- Team Number Badge -->
+                        <div class="badge badge-primary badge-lg mb-2">
+                            <i class="bi bi-gear-fill mr-2"></i>
+                            Team {team.number}
+                        </div>
+                        
+                        <!-- Team Name -->
+                        <h3 class="card-title text-2xl mb-2">
+                            {team.name}
+                        </h3>
+                        
+                        <!-- Location -->
+                        <div class="flex items-center text-base-content/70 mb-3">
+                            <i class="bi bi-geo-alt-fill mr-2 text-primary"></i>
+                            <span class="text-sm">{team.location}</span>
+                        </div>
+                        
+                        <!-- Description -->
+                        <p class="text-base-content/80 mb-4 flex-grow">
+                            {team.description}
+                        </p>
+                        
+                        <!-- Thank You Message -->
+                        <div class="alert alert-success shadow-lg mb-4">
+                            <div class="flex items-start">
+                                <i class="bi bi-heart-fill text-xl mr-2 flex-shrink-0"></i>
+                                <span class="text-sm italic">
+                                    {team.thankyou}
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <!-- Website Link -->
+                        <div class="card-actions justify-end">
+                            <a 
+                                href={team.website} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="btn btn-outline btn-sm gap-2"
+                            >
+                                <i class="bi bi-globe"></i>
+                                Visit Website
+                                <i class="bi bi-arrow-up-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+
+        <!-- Call to Action -->
+        <AnimatedSection class="text-center mt-16">
+            <div class="card bg-primary text-primary-content shadow-xl max-w-3xl mx-auto">
+                <div class="card-body">
+                    <h3 class="card-title text-2xl justify-center mb-4">
+                        <i class="bi bi-people-fill text-3xl mr-2"></i>
+                        Stronger Together
+                    </h3>
+                    <p class="text-lg opacity-90 mb-4">
+                        The Philadelphia FIRST Robotics community is one of the strongest in the country. 
+                        We're proud to learn from and collaborate with these amazing teams as we grow together.
+                    </p>
+                    <div class="card-actions justify-center">
+                        <a 
+                            href="https://www.firstinspires.org/robotics/frc" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="btn btn-secondary gap-2"
+                        >
+                            <i class="bi bi-robot"></i>
+                            Learn About FIRST Robotics
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </AnimatedSection>
+
+        <!-- Interactive Map Note -->
+        <AnimatedSection class="text-center mt-12">
+            <div class="inline-flex items-center gap-2 px-6 py-3 bg-base-100 rounded-full shadow-lg">
+                <i class="bi bi-map text-primary text-xl"></i>
+                <span class="text-base-content/70">
+                    All teams are located within the greater Philadelphia area
+                </span>
+            </div>
+        </AnimatedSection>
+    </div>
+</section>
+
+<style>
+    .animated-card {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.3s ease;
+    }
+    
+    .animated-card.in-view {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
+
+<script>
+    import { inView } from 'motion';
+
+    document.addEventListener('astro:page-load', () => {
+        const cards = document.querySelectorAll('.animated-card');
+        
+        cards.forEach((card) => {
+            const delay = parseFloat(card.getAttribute('data-delay') || '0');
+            
+            inView(
+                card as HTMLElement,
+                ({ target }) => {
+                    setTimeout(() => {
+                        target.classList.add('in-view');
+                    }, delay * 1000);
+                },
+                { amount: 0.2 }
+            );
+        });
+    });
+</script>

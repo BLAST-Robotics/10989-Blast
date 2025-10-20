@@ -8,6 +8,14 @@
     "padding": "0"
   },
   {
+    "name": "Keystone STEM Alliance",
+    "logo": "/keystonelogo.png",
+    "website": "https://www.keystonestemai.org/",
+    "description": "Supporting STEM education and robotics teams in Pennsylvania",
+    "bg": "white",
+    "padding": "5"
+  },
+  {
     "name": "Eadah Enterprises",
     "logo": "/sponsors/eadeh-logo-white.png",
     "website": "https://eadeh.com/",

@@ -1,0 +1,71 @@
+---
+/**
+ * MagneticButton - Button that follows cursor on hover (magnetic effect)
+ */
+interface Props {
+  href?: string;
+  class?: string;
+}
+
+const { href, class: className = '' } = Astro.props;
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  href={href}
+  class={`magnetic-btn ${className}`}
+>
+  <slot />
+</Tag>
+
+<style>
+  .magnetic-btn {
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    display: inline-block;
+  }
+</style>
+
+<script>
+  import { animate } from 'motion';
+
+  document.addEventListener('astro:page-load', () => {
+    const magneticButtons = document.querySelectorAll('.magnetic-btn');
+    
+    magneticButtons.forEach((button) => {
+      let isHovering = false;
+      
+      button.addEventListener('mouseenter', () => {
+        isHovering = true;
+      });
+      
+      button.addEventListener('mouseleave', () => {
+        isHovering = false;
+        animate(
+          button as HTMLElement,
+          { x: 0, y: 0 },
+          { duration: 0.5, easing: [0.23, 1, 0.32, 1] }
+        );
+      });
+      
+      button.addEventListener('mousemove', (e) => {
+        if (!isHovering) return;
+        
+        const rect = button.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const mouseX = (e as MouseEvent).clientX;
+        const mouseY = (e as MouseEvent).clientY;
+        
+        const deltaX = (mouseX - centerX) * 0.3;
+        const deltaY = (mouseY - centerY) * 0.3;
+        
+        animate(
+          button as HTMLElement,
+          { x: deltaX, y: deltaY },
+          { duration: 0.3, easing: 'ease-out' }
+        );
+      });
+    });
+  });
+</script>

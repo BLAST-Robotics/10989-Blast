@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import sponsorsData from '../data/sponsors.json';
+import communityTeams from '../data/community-teams.json';
 ---
 
 <Layout title="Our Sponsors & Partners - Blast Robotics">
@@ -62,6 +63,93 @@ import sponsorsData from '../data/sponsors.json';
             </a>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Community Teams Section -->
+  <section class="py-20 bg-base-100">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Our FRC Community</h2>
+        <p class="text-xl text-base-content/70 max-w-3xl mx-auto">
+          We're grateful to be part of an amazing community of FIRST Robotics teams in the Philadelphia area. 
+          These incredible teams inspire us, mentor us, and show us what excellence in robotics looks like.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <div class="grid gap-4">
+          {communityTeams.map((team, index) => (
+            <div class="community-team-item opacity-0 translate-y-4">
+              <a 
+                href={team.website} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="block group"
+              >
+                <div class="flex items-center gap-6 p-6 bg-base-200 hover:bg-primary/10 rounded-lg border-l-4 border-primary transition-all duration-300 hover:shadow-lg">
+                  <!-- Team Number -->
+                  <div class="flex-shrink-0">
+                    <div class="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-primary-content font-bold text-xl shadow-lg group-hover:scale-110 transition-transform">
+                      {team.number}
+                    </div>
+                  </div>
+                  
+                  <!-- Team Info -->
+                  <div class="flex-grow">
+                    <div class="flex items-center gap-3 mb-2">
+                      <h3 class="text-2xl font-bold text-base-content group-hover:text-primary transition-colors">
+                        {team.name}
+                      </h3>
+                      <i class="bi bi-arrow-up-right text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                    <div class="flex items-center gap-2 text-base-content/70 mb-2">
+                      <i class="bi bi-geo-alt-fill text-primary"></i>
+                      <span class="text-sm font-medium">{team.location}</span>
+                    </div>
+                    <p class="text-base-content/80 text-sm mb-3">
+                      {team.description}
+                    </p>
+                    <div class="flex items-start gap-2 bg-success/10 border-l-2 border-success pl-3 py-2 rounded">
+                      <i class="bi bi-heart-fill text-success text-sm mt-0.5"></i>
+                      <span class="text-sm italic text-base-content/70">
+                        {team.thankyou}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Community Message -->
+      <div class="text-center mt-12">
+        <div class="card bg-primary text-primary-content shadow-xl max-w-3xl mx-auto">
+          <div class="card-body">
+            <h3 class="card-title text-2xl justify-center mb-4">
+              <i class="bi bi-people-fill text-3xl mr-2"></i>
+              Stronger Together
+            </h3>
+            <p class="text-lg opacity-90 mb-4">
+              The Philadelphia FIRST Robotics community is one of the strongest in the country. 
+              We're proud to learn from and collaborate with these amazing teams as we grow together.
+            </p>
+            <div class="card-actions justify-center">
+              <a 
+                href="https://www.firstinspires.org/robotics/frc" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="btn btn-secondary gap-2"
+              >
+                <i class="bi bi-robot"></i>
+                Learn About FIRST Robotics
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -158,6 +246,12 @@ import sponsorsData from '../data/sponsors.json';
     </div>
   </section>
 
+  <style>
+    .community-team-item {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  </style>
+
   <script>
     // Intersection Observer for sponsor card animations
     document.addEventListener('DOMContentLoaded', function() {
@@ -181,6 +275,28 @@ import sponsorsData from '../data/sponsors.json';
       
       sponsorCards.forEach((card) => {
         observer.observe(card);
+      });
+
+      // Community teams animation
+      const communityItems = document.querySelectorAll('.community-team-item');
+      
+      const communityObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.remove('opacity-0', 'translate-y-4');
+              entry.target.classList.add('opacity-100', 'translate-y-0');
+            }, index * 100);
+            communityObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+      });
+      
+      communityItems.forEach((item) => {
+        communityObserver.observe(item);
       });
     });
   </script>

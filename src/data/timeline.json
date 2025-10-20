@@ -1,12 +1,35 @@
 [
   {
-    "date": "August 15th, 2025",
+    "date": "October 18, 2025",
+    "title": "Ramp Riot XXV",
+    "description": "Competed at Ramp Riot XXV off-season competition and received the Gardener Award, recognizing our dedication to cultivating STEM opportunities and supporting local students in the robotics community.",
+    "image": "/journey/award.webp",
+    "type": "overlay"
+  },
+  {
+    "date": "August 11-15, 2025",
+    "title": "Mainline Robotics Summer Camp",
+    "description": "Successfully hosted our inaugural 5-day summer camp for grades 4-9, serving students with VEX IQ robotics, 3D printing, Python coding, and team challenges. Raised $2.5K and generated 300+ service hours from our team members.",
+    "image": "/summercamp.png",
+    "type": "card"
+  },
+  {
+    "date": "August 15, 2025",
     "title": "FMA Meeting",
     "description": "<br>Met with Frank Farrell, the executive director of FIRST Mid-Atlantic, to discuss our team's goals and initiatives.",
     "image": "/journey/farrel.jpg",
     "type": "overlay",
     "imagePadding": "p-4",
     "imageBackground": "bg-white/10 brightness-150"
+  },
+  {
+    "date": "July 2025",
+    "title": "DoD STEM Grant Award",
+    "description": "Awarded a $6,300 DoD STEM Grant for the 2025-26 season, securing funding for our competition registration fees and supporting our inaugural competitive season.",
+    "image": "/sponsors/dodstem.png",
+    "type": "centered",
+    "imagePadding": "p-4",
+    "imageBackground": "bg-white/10"
   },
   {
     "date": "June 29, 2025",
@@ -23,6 +46,16 @@
     "description": "Partnered with Sol Siesta Apparel for a merchandising deal, enabling us to create branded team merchandise and additional revenue streams.",
     "image": "/sponsors/Sol Siesta.jpg",
     "type": "card"
+  },
+  {
+    "date": "June 2025",
+    "title": "Workshop Space Secured",
+    "description": "Secured our permanent workshop at 15 Waterloo Avenue, 2nd Floor from Eadeh Enterprises, valued at $48,000-$60,000 annually, provided at no cost for our first season. This dedicated space became our home for robot development and team operations.",
+    "image": "/sponsors/eadeh-logo-white.png",
+    "type": "centered",
+    "imagePadding": "px-6",
+    "imageBackground": "bg-black/35",
+    "lightColor": true
   },
   {
     "date": "June 21, 2025",

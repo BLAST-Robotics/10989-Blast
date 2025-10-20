@@ -66,19 +66,6 @@
 }
 },
 {
-"id": 5,
-"name": "Madeleine L.",
-"role": "Outreach/Social Media Manager",
-"initials": "L",
-"description": "Manages social media presence, community outreach, and coordinates team communication efforts.",
-"image": "/team/maddie.webp",
-"social": {
-  "linkedin": "#",
-  "github": "#",
-  "email": "#"
-}
-},
-{
 "id": 6,
 "name": "Rishit V.",
 "role": "Programming/Planning Lead",

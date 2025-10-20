@@ -1,5 +1,6 @@
 ---
 // Team component
+import { Image } from 'astro:assets';
 import teamData from "../data/team.json";
 
 // Helper function to get Bootstrap icon class
@@ -33,11 +34,15 @@ function getBootstrapIcon(platform: string): string {
                             <div class="avatar">
                                 <div class="w-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                                     {member.image ? (
-                                        <img
+                                        <Image
                                             src={member.image}
                                             alt={member.name}
                                             class="w-full h-full object-cover rounded-full"
+                                            width={128}
+                                            height={128}
                                             loading="lazy"
+                                            format="webp"
+                                            quality={85}
                                         />
                                     ) : (
                                         <div class="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">

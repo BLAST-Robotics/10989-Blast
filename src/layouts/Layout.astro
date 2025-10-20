@@ -4,17 +4,27 @@ export interface Props {
 }
 
 const { title } = Astro.props;
+
 import "../index.css";
+import "../styles/animations.css";
+import { Image } from 'astro:assets';
 import Analytics from '@vercel/analytics/astro';
 import SponsorBar from '../components/SponsorBar.astro';
 import sponsorsData from '../data/sponsors.json';
 import { Head } from 'astro-capo';
 import '@fontsource/dm-sans';
+
+// Import logo images
+import placardWhite from '../../public/placardwhite.png';
+import placardBlack from '../../public/placardblack.png';
+import keystoneLogo from '../../public/keystonelogo.png';
 ---
 
 <!DOCTYPE html>
 	<html lang="en" data-theme="">
 	<Head>
+		<meta name="astro-view-transitions-enabled" content="true" />
+		<meta name="astro-view-transitions-fallback" content="animate" />
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -89,26 +99,30 @@ import '@fontsource/dm-sans';
 				</div>
 				<div class="flex items-center gap-2 sm:gap-4">
 					<a href="/" class="btn btn-ghost h-auto min-h-0 p-0 hover:bg-transparent flex-shrink-0">
-						<img
-							src="/placardwhite.png"
+						<Image
+							src={placardWhite}
 							alt="Blast Robotics Logo"
 							class="h-8 sm:h-10 md:h-12 w-auto"
 							loading="eager"
-							width="60"
-							height="60"
+							width={200}
+							height={200}
+							format="png"
+							quality={100}
 							data-theme-logo
 							data-light-src="/placardwhite.png"
 							data-dark-src="/placardblack.png"
 						/>
 					</a>
 					<a href="https://www.keystonestem.org/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost h-auto min-h-0 p-0 hover:bg-transparent flex-shrink-0">
-						<img
-						   src="/keystonelogo.png"
+						<Image
+						   src={keystoneLogo}
 						   alt="Keystone STEM Alliance Logo"
 						   class="h-8 sm:h-10 md:h-12 w-auto"
 						   loading="eager"
-						   width="60"
-						   height="60"
+						   width={200}
+						   height={200}
+						   format="png"
+						   quality={100}
 						/>
 				   </a>
 				</div>
@@ -118,7 +132,7 @@ import '@fontsource/dm-sans';
 					<li><a href="/" class="hover:text-primary">Home</a></li>
 					<li><a href="/about" class="hover:text-primary">About</a></li>
 					<li><a href="/journey" class="hover:text-primary">Journey</a></li>
-					<li><a href="/#features" class="hover:text-primary">Programs</a></li>
+					<li><a href="/programs" class="hover:text-primary">Programs</a></li>
 					<li><a href="/#team" class="hover:text-primary">Team</a></li>
 					<li><a href="/partners" class="hover:text-primary">Partners</a></li>
 					<li><a href="/#calendar" class="hover:text-primary">Calendar</a></li>
@@ -168,13 +182,15 @@ import '@fontsource/dm-sans';
 					<div class="lg:col-span-1">
 						<div class="flex items-center mb-4">
 							<a href="/" class="flex-shrink-0">
-								<img
-									src="/placardblack.png"
+								<Image
+									src={placardBlack}
 									alt="Blast Robotics Logo"
 									class="h-16 w-auto"
-									width="80"
-									height="80"
+									width={256}
+									height={256}
 									loading="lazy"
+									format="png"
+									quality={100}
 								/>
 							</a>
 						</div>
@@ -209,13 +225,13 @@ import '@fontsource/dm-sans';
 					<div>
 						<h4 class="text-base font-semibold mb-4 text-neutral-content">Connect</h4>
 						<ul class="space-y-2 mb-4">
-							<li><a href="mailto:outreach@team10989.org" class="text-sm text-neutral-content/80 hover:text-primary transition-colors">outreach@team10989.org</a></li>
+							<li><a href="mailto:admin@team10989.org" class="text-sm text-neutral-content/80 hover:text-primary transition-colors">admin@team10989.org</a></li>
 						</ul>
 						<div class="flex space-x-4">
 							<a href="https://instagram.com/10989blast" target="_blank" rel="noopener noreferrer" class="text-neutral-content/80 hover:text-primary transition-colors" aria-label="Follow us on Instagram">
 								<i class="bi bi-instagram text-xl"></i>
 							</a>
-							<a href="mailto:outreach@team10989.org" class="text-neutral-content/80 hover:text-primary transition-colors" aria-label="Email us">
+							<a href="mailto:admin@team10989.org" class="text-neutral-content/80 hover:text-primary transition-colors" aria-label="Email us">
 								<i class="bi bi-envelope text-xl"></i>
 							</a>
 						</div>
@@ -292,5 +308,17 @@ import '@fontsource/dm-sans';
 				}
 			});
 		</script>
+		
+<!-- Start of OpenWidget (www.openwidget.com) code -->
+<script>
+  window.__ow = window.__ow || {};
+  window.__ow.organizationId = "993a24df-7bf0-4a33-8b9a-0efb3b8773d7";
+  window.__ow.integration_name = "manual_settings";
+  window.__ow.product_name = "openwidget";   
+  ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[OpenWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.openwidget.com/openwidget.js",t.head.appendChild(n)}};!n.__ow.asyncInit&&e.init(),n.OpenWidget=n.OpenWidget||e}(window,document,[].slice))
+</script>
+<noscript>You need to <a href="https://www.openwidget.com/enable-javascript" rel="noopener nofollow">enable JavaScript</a> to use the communication tool powered by <a href="https://www.openwidget.com/" rel="noopener nofollow" target="_blank">OpenWidget</a></noscript>
+<!-- End of OpenWidget code -->
+
 	</body>
 </html>

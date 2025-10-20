@@ -1,7 +1,10 @@
 ---
-
+import { Image } from 'astro:assets';
 import carouselData from '../data/hero-carousel.json';
 import CalendarPreview from './CalendarPreview.astro';
+
+// Import logo if you uncomment it later
+import newLogoBlack from '../../public/new_logo_black.png';
 ---
 
 <section id="home" class="hero min-h-screen bg-top relative overflow-hidden">
@@ -19,11 +22,15 @@ import CalendarPreview from './CalendarPreview.astro';
     <div class="hero-content text-center px-4 relative z-10">
         <div class="max-w-4xl">
             <!--<div class="mb-6 md:mb-8">
-                <img
-                    src="/new_logo_black.png"
+                <Image
+                    src={newLogoBlack}
                     alt="Blast Robotics Cool Logo"
                     class="mx-auto h-20 rounded-2xl w-20 sm:h-24 sm:w-24 md:h-32 md:w-32 mb-4 md:mb-6"
-                    loading="lazy"
+                    width={128}
+                    height={128}
+                    loading="eager"
+                    format="webp"
+                    quality={90}
                 />
             </div>-->
             <h1
@@ -78,9 +85,6 @@ import CalendarPreview from './CalendarPreview.astro';
                 </div>
             </div>
 
-            <div class="mt-12 flex justify-center">
-                
-            </div>
         </div>
     </div>
     <script type="module">

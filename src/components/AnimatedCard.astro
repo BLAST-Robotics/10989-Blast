@@ -1,0 +1,59 @@
+---
+/**
+ * AnimatedCard - Card with hover effects and scroll animations
+ * Usage: <AnimatedCard><YourCardContent /></AnimatedCard>
+ */
+interface Props {
+  class?: string;
+  delay?: number;
+}
+
+const { class: className = '', delay = 0 } = Astro.props;
+---
+
+<div 
+  class={`animated-card ${className}`}
+  data-delay={delay}
+>
+  <slot />
+</div>
+
+<style>
+  .animated-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+  }
+  
+  .animated-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  .animated-card.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  import { inView } from 'motion';
+
+  document.addEventListener('astro:page-load', () => {
+    const cards = document.querySelectorAll('.animated-card');
+    
+    cards.forEach((card) => {
+      const delay = parseFloat(card.getAttribute('data-delay') || '0');
+      
+      inView(
+        card as HTMLElement,
+        ({ target }) => {
+          setTimeout(() => {
+            target.classList.add('in-view');
+          }, delay * 1000);
+        },
+        { amount: 0.2 }
+      );
+    });
+  });
+</script>

@@ -1,0 +1,43 @@
+---
+/**
+ * AnimatedSection - Fade in elements as they scroll into view
+ * Usage: <AnimatedSection><YourContent /></AnimatedSection>
+ */
+interface Props {
+  class?: string;
+  delay?: number;
+}
+
+const { class: className = '', delay = 0 } = Astro.props;
+---
+
+<div 
+  class={`animate-section ${className}`}
+  data-delay={delay}
+>
+  <slot />
+</div>
+
+<script>
+  import { animate, inView } from 'motion';
+
+  document.addEventListener('astro:page-load', () => {
+    const sections = document.querySelectorAll('.animate-section');
+    
+    sections.forEach((section) => {
+      const delay = parseFloat(section.getAttribute('data-delay') || '0');
+      
+      inView(
+        section as HTMLElement,
+        ({ target }) => {
+          animate(
+            target,
+            { opacity: [0, 1], y: [30, 0] },
+            { duration: 0.8, delay, easing: 'ease-out' }
+          );
+        },
+        { amount: 0.3 }
+      );
+    });
+  });
+</script>

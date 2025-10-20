@@ -1,17 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AnimatedSection from '../components/AnimatedSection.astro';
+import AnimatedCard from '../components/AnimatedCard.astro';
 ---
 
 <Layout title="About Us - Blast Robotics">
   <!-- Hero Section -->
   <section class="hero min-h-[60vh] bg-gradient-to-br from-primary/10 to-secondary/10">
     <div class="hero-content text-center">
-      <div class="max-w-4xl">
+      <AnimatedSection class="max-w-4xl">
         <h1 class="text-5xl md:text-6xl font-bold mb-6">About FRC Team 10989</h1>
         <p class="text-xl md:text-2xl text-base-content/80">
           Providing opportunities for students to learn and grow through robotics, engineering, and community engagement.
         </p>
-      </div>
+      </AnimatedSection>
     </div>
   </section>
 
@@ -19,7 +21,7 @@ import Layout from '../layouts/Layout.astro';
   <section class="py-20 bg-base-100">
     <div class="container mx-auto px-6">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <div>
+        <AnimatedSection>
           <h2 class="text-4xl font-bold mb-6">Our Mission</h2>
           <p class="text-lg text-base-content/70 mb-6">
             Empowering the next generation of innovators through hands-on robotics experiences, fostering a passion for STEM, and building a community of learners.
@@ -27,15 +29,15 @@ import Layout from '../layouts/Layout.astro';
           <p class="text-lg text-base-content/70">
             We believe in the power of robotics to inspire creativity, teamwork, and problem-solving skills among students. Our mission is to provide a platform where students can explore their interests in technology and engineering while making a positive impact in their communities.
           </p>
-        </div>
-        <div class="card bg-primary text-primary-content shadow-xl">
+        </AnimatedSection>
+        <AnimatedCard class="card bg-primary text-primary-content shadow-xl" delay={0.2}>
           <div class="card-body">
             <h3 class="card-title text-2xl mb-4">Our Vision</h3>
             <p class="text-lg opacity-90">
               To be the a team where students can explore and participate in the FIRST Robotics Competition and STEM education, inspiring them to become future leaders in technology and engineering.
             </p>
           </div>
-        </div>
+        </AnimatedCard>
       </div>
     </div>
   </section>
@@ -43,16 +45,16 @@ import Layout from '../layouts/Layout.astro';
   <!-- Company Values -->
   <section class="py-20 bg-base-200">
     <div class="container mx-auto px-6">
-      <div class="text-center mb-16">
+      <AnimatedSection class="text-center mb-16">
         <h2 class="text-4xl md:text-5xl font-bold mb-4">Our Values</h2>
         <p class="text-xl text-base-content/70 max-w-2xl mx-auto">
           The principles that guide everything we do and shape our company culture.
         </p>
-      </div>
+      </AnimatedSection>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Value 1 -->
-        <div class="card bg-base-100 shadow-xl">
+        <AnimatedCard class="card bg-base-100 shadow-xl" delay={0}>
           <div class="card-body text-center">
             <div class="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
               <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -64,10 +66,10 @@ import Layout from '../layouts/Layout.astro';
               Even though we are a new team, we are committed to pushing the boundaries of technology and creativity in robotics.
             </p>
           </div>
-        </div>
+        </AnimatedCard>
 
         <!-- Value 2 -->
-        <div class="card bg-base-100 shadow-xl">
+        <AnimatedCard class="card bg-base-100 shadow-xl" delay={0.1}>
           <div class="card-body text-center">
             <div class="mx-auto w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
               <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -79,10 +81,10 @@ import Layout from '../layouts/Layout.astro';
               We operate with transparency, honesty, and ethical practices in all our team operations.
             </p>
           </div>
-        </div>
+        </AnimatedCard>
 
         <!-- Value 3 -->
-        <div class="card bg-base-100 shadow-xl">
+        <AnimatedCard class="card bg-base-100 shadow-xl" delay={0.2}>
           <div class="card-body text-center">
             <div class="mx-auto w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-4">
               <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -94,10 +96,10 @@ import Layout from '../layouts/Layout.astro';
               We strive for perfection in every project, delivering quality that exceeds expectations.
             </p>
           </div>
-        </div>
+        </AnimatedCard>
 
         <!-- Value 4 -->
-        <div class="card bg-base-100 shadow-xl">
+        <AnimatedCard class="card bg-base-100 shadow-xl" delay={0.3}>
           <div class="card-body text-center">
             <div class="mx-auto w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mb-4">
               <svg class="w-8 h-8 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -109,10 +111,10 @@ import Layout from '../layouts/Layout.astro';
               We believe in the power of teamwork and partnership to achieve extraordinary results.
             </p>
           </div>
-        </div>
+        </AnimatedCard>
 
         <!-- Value 5 -->
-        <div class="card bg-base-100 shadow-xl">
+        <AnimatedCard class="card bg-base-100 shadow-xl" delay={0.4}>
           <div class="card-body text-center">
             <div class="mx-auto w-16 h-16 bg-warning/10 rounded-full flex items-center justify-center mb-4">
               <svg class="w-8 h-8 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -124,10 +126,10 @@ import Layout from '../layouts/Layout.astro';
               We are committed to continuous learning and development for our team and members.
             </p>
           </div>
-        </div>
+        </AnimatedCard>
 
         <!-- Value 6 -->
-        <div class="card bg-base-100 shadow-xl">
+        <AnimatedCard class="card bg-base-100 shadow-xl" delay={0.5}>
           <div class="card-body text-center">
             <div class="mx-auto w-16 h-16 bg-info/10 rounded-full flex items-center justify-center mb-4">
               <svg class="w-8 h-8 text-info" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -139,9 +141,147 @@ import Layout from '../layouts/Layout.astro';
               We embrace diversity and create an inclusive environment where everyone feels valued and empowered.
             </p>
           </div>
-        </div>
+        </AnimatedCard>
       </div>
     </div>  </section>
+
+  <!-- What We Do: Technical Focus -->
+  <section class="py-20 bg-base-100">
+    <div class="container mx-auto px-6">
+      <AnimatedSection class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">What We Do</h2>
+        <p class="text-xl text-base-content/70 max-w-2xl mx-auto">
+          Building competitive robots and developing critical STEM skills across multiple disciplines
+        </p>
+      </AnimatedSection>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <AnimatedCard class="card bg-base-100 shadow-xl border border-base-300" delay={0}>
+          <div class="card-body">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                </svg>
+              </div>
+              <h3 class="card-title text-xl">Design & Build</h3>
+            </div>
+            <p class="text-base-content/70">
+              Engineer competitive robots using CAD design (Onshape, Fusion 360, SolidWorks), machining, and advanced manufacturing techniques. Currently building a pre-season drivetrain with support from FRC 1168.
+            </p>
+          </div>
+        </AnimatedCard>
+
+        <AnimatedCard class="card bg-base-100 shadow-xl border border-base-300" delay={0.1}>
+          <div class="card-body">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                </svg>
+              </div>
+              <h3 class="card-title text-xl">Programming & Controls</h3>
+            </div>
+            <p class="text-base-content/70">
+              Develop control systems using Java, C++, and Python. Learn autonomous routines, path planning (A*, RRT, Dijkstra), sensor/vision integration, WPILib, and ROS basics.
+            </p>
+          </div>
+        </AnimatedCard>
+
+        <AnimatedCard class="card bg-base-100 shadow-xl border border-base-300" delay={0.2}>
+          <div class="card-body">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+              <h3 class="card-title text-xl">Technical Skills</h3>
+            </div>
+            <p class="text-base-content/70">
+              Master Mechanical Engineering (drivetrain/chassis design, gear ratios), Electrical Engineering (wiring, power distribution), Applied Physics (torque, friction), and Data Analytics (scouting systems).
+            </p>
+          </div>
+        </AnimatedCard>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Leadership & Workshop -->
+  <section class="py-20 bg-base-200">
+    <div class="container mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <!-- Leadership Section -->
+        <AnimatedSection>
+          <h2 class="text-4xl font-bold mb-6">Team Leadership</h2>
+          <div class="space-y-4">
+            <div class="p-4 bg-base-100 rounded-lg shadow">
+              <h3 class="font-bold text-lg mb-2">Student Leadership</h3>
+              <ul class="space-y-2 text-base-content/70">
+                <li><strong>Captain:</strong> Vivaan P.</li>
+                <li><strong>Co-Captain:</strong> Virat P.</li>
+                <li><strong>Mechanical Captain:</strong> Lemuel X.</li>
+                <li><strong>Outreach & Social Media Manager:</strong> Madeleine L.</li>
+                <li><strong>Director of Operations:</strong> Mayon S.</li>
+              </ul>
+            </div>
+            <div class="p-4 bg-base-100 rounded-lg shadow">
+              <h3 class="font-bold text-lg mb-2">Adult Mentors</h3>
+              <p class="text-base-content/70 mb-2">
+                Experienced mentors guide our team across technical areas (Mechanical, Electrical, Programming) and operational areas (Fundraising, Marketing, Safety).
+              </p>
+              <ul class="space-y-1 text-base-content/70">
+                <li><strong>FRC Judge & Mentor:</strong> Swapna Tallapaneni</li>
+                <li><strong>Teacher Sponsor:</strong> Christopher Abbott</li>
+              </ul>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        <!-- Workshop Hours -->
+        <AnimatedSection delay={0.2}>
+          <h2 class="text-4xl font-bold mb-6">Workshop Hours</h2>
+          <div class="card bg-base-100 shadow-xl">
+            <div class="card-body">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                  </svg>
+                </div>
+                <h3 class="text-xl font-bold">15 Waterloo Avenue, 2nd Floor</h3>
+              </div>
+              <p class="text-base-content/70 mb-4">
+                Our workshop is generously provided by Eadeh Enterprises at no cost for our first season (valued at $48,000-$60,000 annually).
+              </p>
+              <div class="divider"></div>
+              <h4 class="font-bold mb-3">Regular Meeting Schedule:</h4>
+              <div class="space-y-2">
+                <div class="flex justify-between items-center p-2 bg-base-200 rounded">
+                  <span class="font-semibold">Tuesday</span>
+                  <span class="text-base-content/70">4:00 PM – 9:00 PM</span>
+                </div>
+                <div class="flex justify-between items-center p-2 bg-base-200 rounded">
+                  <span class="font-semibold">Friday</span>
+                  <span class="text-base-content/70">4:00 PM – 9:00 PM</span>
+                </div>
+              </div>
+              <div class="mt-4 p-3 bg-success/10 border border-success/20 rounded-lg">
+                <p class="text-sm text-success-content/90 flex items-start gap-2">
+                  <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                  </svg>
+                  <span>
+                    <strong>Safety First:</strong> All supervising adults are background checked and registered with FIRST. CPR & First Aid certified staff on-site with daily safety briefings.
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+      </div>
+    </div>
+  </section>
 
   <!-- Organization Information -->
   <section class="py-20 bg-base-100">
@@ -165,10 +305,21 @@ import Layout from '../layouts/Layout.astro';
               of future STEM leaders.
             </p>
             <div class="mt-6 p-4 bg-base-200 rounded-lg">
-              <p class="text-sm text-base-content/70">
+              <p class="text-sm text-base-content/70 mb-3">
                 <strong>Keystone STEM Alliance Inc.</strong> provides organizational support, mentorship, and resources 
                 to help teams like ours thrive in the FIRST Robotics Competition while making a meaningful impact 
                 in our local communities.
+              </p>
+              <p class="text-sm text-base-content/70">
+                For more information about our chartered organization, including government and organizational details 
+                for donations or company partnerships, visit 
+                <a 
+                  href="https://keystonestemai.org" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="text-primary hover:underline font-semibold">
+                  keystonestemai.org
+                </a>
               </p>
             </div>
           </div>

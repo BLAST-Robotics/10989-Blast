@@ -1,0 +1,41 @@
+---
+/**
+ * ParallaxSection - Creates parallax scrolling effect
+ */
+interface Props {
+  speed?: number;
+  class?: string;
+}
+
+const { speed = 0.5, class: className = '' } = Astro.props;
+---
+
+<div class={`parallax-container ${className}`} data-speed={speed}>
+  <slot />
+</div>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const parallaxElements = document.querySelectorAll('.parallax-container');
+    
+    const handleScroll = () => {
+      parallaxElements.forEach((element) => {
+        const speed = parseFloat(element.getAttribute('data-speed') || '0.5');
+        const rect = element.getBoundingClientRect();
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * speed;
+        
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          (element as HTMLElement).style.transform = `translateY(${rate}px)`;
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Cleanup on navigation
+    document.addEventListener('astro:before-preparation', () => {
+      window.removeEventListener('scroll', handleScroll);
+    }, { once: true });
+  });
+</script>

@@ -1,0 +1,50 @@
+[
+  {
+    "number": "1391",
+    "name": "The Metal Moose",
+    "location": "West Chester, PA",
+    "website": "https://www.thebluealliance.com/team/1391",
+    "description": "Representing Westtown School with a focus on innovative robot designs and engineering excellence since 2004.",
+    "thankyou": "Thank you for your dedication to robotics and inspiring the next generation of engineers in our region!"
+  },
+  {
+    "number": "1168",
+    "name": "Malvern Robotics",
+    "location": "Malvern, PA",
+    "website": "https://www.thebluealliance.com/team/1168",
+    "description": "From Malvern Preparatory School, combining technical excellence with community outreach since 2003.",
+    "thankyou": "Your commitment to STEM education and teamwork is an inspiration to teams across the area!"
+  },
+  {
+    "number": "1712",
+    "name": "Dawgma",
+    "location": "Ardmore, PA",
+    "website": "https://www.thebluealliance.com/team/1712",
+    "description": "Lower Merion High School's competitive team known for creative problem-solving and multiple district awards since 2006.",
+    "thankyou": "We appreciate your innovative approach and the positive impact you have on local robotics!"
+  },
+  {
+    "number": "316",
+    "name": "LUNATECS",
+    "location": "Carneys Point, NJ",
+    "website": "https://www.thebluealliance.com/team/316",
+    "description": "A veteran team since 1999 from Salem County Community College, three-time FIRST Impact Award winner with a strong legacy in FRC.",
+    "thankyou": "Thank you for being a pillar of the FRC community and supporting teams across our district!"
+  },
+  {
+    "number": "1640",
+    "name": "Sab-BOT-age",
+    "location": "Downingtown, PA",
+    "website": "https://www.thebluealliance.com/team/1640",
+    "description": "Building robots and relationships since 2005, known for Innovation in Control Awards and strong technical skills.",
+    "thankyou": "Your collaboration and sportsmanship make our robotics community stronger!"
+  },
+  {
+    "number": "5181",
+    "name": "Explorer Robotics",
+    "location": "Wyndmoor, PA",
+    "website": "https://www.thebluealliance.com/team/5181",
+    "description": "From La Salle College High School, dedicated to exploring new technologies and inspiring students since 2014.",
+    "thankyou": "We're grateful for your enthusiasm and the positive energy you bring to every event!"
+  }
+]

@@ -1,0 +1,48 @@
+---
+/**
+ * AnimatedStats - Numbers that count up when scrolled into view
+ */
+interface Props {
+  value: number;
+  label: string;
+  suffix?: string;
+  duration?: number;
+  class?: string;
+}
+
+const { value, label, suffix = '', duration = 2, class: className = '' } = Astro.props;
+---
+
+<div class={`stat ${className}`}>
+  <div class="stat-value text-primary">
+    <span class="counter" data-target={value} data-duration={duration}>0</span>{suffix}
+  </div>
+  <div class="stat-title">{label}</div>
+</div>
+
+<script>
+  import { animate, inView } from 'motion';
+
+  document.addEventListener('astro:page-load', () => {
+    const counters = document.querySelectorAll('.counter');
+    
+    counters.forEach((counter) => {
+      const target = parseFloat(counter.getAttribute('data-target') || '0');
+      const duration = parseFloat(counter.getAttribute('data-duration') || '2');
+      
+      inView(
+        counter as HTMLElement,
+        ({ target: element }) => {
+          animate(
+            (progress) => {
+              const current = Math.floor(progress * target);
+              element.textContent = current.toString();
+            },
+            { duration, easing: 'ease-out' }
+          );
+        },
+        { amount: 0.5 }
+      );
+    });
+  });
+</script>

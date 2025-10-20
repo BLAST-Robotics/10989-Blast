@@ -117,8 +117,7 @@ const formatDateLabel = (date: Date) =>
 		width: min(100%, 1000px);
 		margin: 0 auto;
 		padding: 1rem;
-		color-scheme: light;
-		color: white;
+		color: var(--base-content);
 		background: transparent;
 	}
 
@@ -134,7 +133,7 @@ const formatDateLabel = (date: Date) =>
 		border: none;
 		border-radius: 1.5rem;
 		padding: clamp(1.5rem, 3vw, 2rem);
-		color: white;
+		color: var(--base-content);
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
@@ -195,8 +194,8 @@ const formatDateLabel = (date: Date) =>
 		gap: 0.5rem;
 		border-radius: 9999px;
 		padding: 0.6rem 1.25rem;
-		background: rgba(255, 255, 255, 0.2);
-		color: white;
+		background: var(--primary);
+		color: var(--primary-content);
 		font-weight: 600;
 		transition: transform 0.15s ease, background 0.15s ease;
 	}
@@ -204,7 +203,7 @@ const formatDateLabel = (date: Date) =>
 	.highlight-action:hover,
 	.highlight-action:focus-visible {
 		transform: translateY(-2px);
-		background: rgba(255, 255, 255, 0.5);
+		background: color-mix(in srgb, var(--primary) 80%, black);
 	}
 
 	.compact-list {
@@ -272,7 +271,7 @@ const formatDateLabel = (date: Date) =>
 		flex-direction: column;
 		align-items: center;
 		gap: 0.85rem;
-		color: white;
+		color: var(--base-content);
 	}
 
 	.empty-state i {

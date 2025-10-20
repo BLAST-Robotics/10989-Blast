@@ -1,0 +1,541 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import AnimatedSection from '../components/AnimatedSection.astro';
+import AnimatedCard from '../components/AnimatedCard.astro';
+import summerCampImg from '../../public/summercamp.png';
+---
+
+<Layout title="Programs & Outreach - Blast Robotics">
+  <!-- Hero Section -->
+  <section class="hero min-h-[60vh] bg-gradient-to-br from-primary/10 to-secondary/10">
+    <div class="hero-content text-center">
+      <AnimatedSection class="max-w-4xl">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6">Programs & Outreach</h1>
+        <p class="text-xl md:text-2xl text-base-content/80">
+          Building a comprehensive STEM pipeline and fostering innovation in the Mainline area
+        </p>
+      </AnimatedSection>
+    </div>
+  </section>
+
+  <!-- STEM Pipeline Vision -->
+  <section class="py-20 bg-base-100">
+    <div class="container mx-auto px-6">
+      <AnimatedSection class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Our STEM Pipeline Vision</h2>
+        <p class="text-xl text-base-content/70 max-w-3xl mx-auto">
+          Creating a vertically integrated robotics program that progresses students from elementary through high school
+        </p>
+      </AnimatedSection>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <AnimatedCard class="card bg-gradient-to-br from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 shadow-xl" delay={0}>
+          <div class="card-body">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-yellow-500/20 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                </svg>
+              </div>
+              <h3 class="card-title text-xl">FIRST LEGO League</h3>
+            </div>
+            <div class="badge badge-warning mb-3">Grades PreK-8</div>
+            <p class="text-base-content/70">
+              Introductory program using LEGO robotics to teach fundamental STEM concepts, teamwork, and problem-solving through hands-on challenges.
+            </p>
+          </div>
+        </AnimatedCard>
+
+        <AnimatedCard class="card bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-500/20 shadow-xl" delay={0.1}>
+          <div class="card-body">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <h3 class="card-title text-xl">FIRST Tech Challenge</h3>
+            </div>
+            <div class="badge badge-info mb-3">Grades 7-12</div>
+            <p class="text-base-content/70 mb-3">
+              Middle and high school program operating at a smaller scale to build technical confidence with Android-based robot control and engineering notebooks.
+            </p>
+            <div class="alert alert-info">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span class="text-sm"><strong>Coming Soon:</strong> FTC Team 31922 Flame</span>
+            </div>
+          </div>
+        </AnimatedCard>
+
+        <AnimatedCard class="card bg-gradient-to-br from-red-500/10 to-orange-500/10 border border-red-500/20 shadow-xl" delay={0.2}>
+          <div class="card-body">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"></path>
+                </svg>
+              </div>
+              <h3 class="card-title text-xl">FIRST Robotics</h3>
+            </div>
+            <div class="badge badge-error mb-3">Grades 9-12</div>
+            <p class="text-base-content/70 mb-3">
+              Our flagship competitive high school team focused on multi-disciplinary engineering skills and full-scale robot competition.
+            </p>
+            <div class="badge badge-success badge-lg">FRC Team 10989 (Active)</div>
+          </div>
+        </AnimatedCard>
+      </div>
+    </div>
+  </section>
+
+  <!-- Summer Camp Section -->
+  <section class="py-20 bg-base-200">
+    <div class="container mx-auto px-6">
+      <AnimatedSection class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">🏕️ Mainline Robotics Summer Camp</h2>
+        <p class="text-xl text-base-content/70 max-w-3xl mx-auto">
+          A 5-day immersive robotics experience fostering innovation and STEM passion in young students
+        </p>
+      </AnimatedSection>
+
+      <div class="grid lg:grid-cols-2 gap-12 mb-12">
+        <AnimatedSection>
+          <div class="card bg-base-100 shadow-xl">
+            <figure class="px-6 pt-6">
+              <Image
+                src={summerCampImg}
+                alt="Blast Robotics Summer Camp"
+                width={500}
+                height={300}
+                format="webp"
+                quality={90}
+                class="rounded-xl"
+              />
+            </figure>
+            <div class="card-body">
+              <h3 class="card-title text-2xl mb-4">Camp Overview</h3>
+              <div class="space-y-3">
+                <div class="flex items-start gap-3">
+                  <svg class="w-6 h-6 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                  </svg>
+                  <div>
+                    <strong>Who:</strong> Students in grades 4-9 from the Mainline area
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <svg class="w-6 h-6 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                  <div>
+                    <strong>When:</strong> 5-day camp (Previous: August 11-15, 2025)
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <svg class="w-6 h-6 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <div>
+                    <strong>Time:</strong> Monday-Friday, 9:00 AM - 1:30 PM
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <svg class="w-6 h-6 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                  <div>
+                    <strong>Location:</strong> 15 Waterloo Avenue, 2nd Floor, Berwyn PA
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        <AnimatedSection delay={0.2}>
+          <div class="card bg-primary text-primary-content shadow-xl h-full">
+            <div class="card-body">
+              <h3 class="card-title text-2xl mb-4">2025 Camp Impact</h3>
+              <div class="stats stats-vertical shadow bg-primary-content text-primary">
+                <div class="stat">
+                  <div class="stat-figure text-primary">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                  </div>
+                  <div class="stat-title">Funds Raised</div>
+                  <div class="stat-value">$2,500</div>
+                  <div class="stat-desc">Supporting team operations</div>
+                </div>
+                
+                <div class="stat">
+                  <div class="stat-figure text-primary">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                  </div>
+                  <div class="stat-title">Service Hours</div>
+                  <div class="stat-value">300+</div>
+                  <div class="stat-desc">Team member dedication</div>
+                </div>
+
+                <div class="stat">
+                  <div class="stat-figure text-primary">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                    </svg>
+                  </div>
+                  <div class="stat-title">Man-Hours (Aug 11)</div>
+                  <div class="stat-value">252.5</div>
+                  <div class="stat-desc">Opening day effort</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+      </div>
+
+      <!-- Camp Details -->
+      <div class="grid md:grid-cols-2 gap-8 mb-12">
+        <AnimatedCard class="card bg-base-100 shadow-xl">
+          <div class="card-body">
+            <h3 class="card-title text-xl mb-4">💰 Pricing & Registration</h3>
+            <div class="space-y-3">
+              <div class="flex justify-between items-center p-3 bg-base-200 rounded-lg">
+                <span class="font-semibold">Base Admission</span>
+                <span class="text-lg font-bold text-primary">$210</span>
+              </div>
+              <div class="flex justify-between items-center p-3 bg-base-200 rounded-lg">
+                <span>Late Pickup Fee</span>
+                <span class="text-lg font-bold">$15</span>
+              </div>
+              <div class="flex justify-between items-center p-3 bg-base-200 rounded-lg">
+                <span>Late Registration (after Aug 1)</span>
+                <span class="text-lg font-bold">$20</span>
+              </div>
+              <div class="flex justify-between items-center p-3 bg-base-200 rounded-lg">
+                <span>Optional Lunch (per day)</span>
+                <span class="text-lg font-bold">$12</span>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <p class="text-sm text-base-content/70">
+              Payments handled by <strong>Keystone STEM Alliance Inc.</strong> (EIN 39-3589749). 
+              Note: Payment is not tax-deductible as it is for a service received.
+            </p>
+          </div>
+        </AnimatedCard>
+
+        <AnimatedCard class="card bg-base-100 shadow-xl" delay={0.1}>
+          <div class="card-body">
+            <h3 class="card-title text-xl mb-4">🎒 What to Bring</h3>
+            <ul class="space-y-2">
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-success mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span><strong>Laptop (required)</strong> - Backup devices available if needed</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-success mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span><strong>Packed lunch</strong> - Or purchase lunch for $12/day</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-success mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span><strong>Water bottle</strong> - Stay hydrated!</span>
+              </li>
+            </ul>
+            <div class="divider"></div>
+            <h4 class="font-bold mb-2">✨ What We Provide:</h4>
+            <ul class="space-y-1 text-base-content/70">
+              <li>• Snacks (chips, candy, juice)</li>
+              <li>• VEX IQ robot kits</li>
+              <li>• 3D printing materials</li>
+              <li>• All building supplies</li>
+              <li>• Camp T-shirt</li>
+              <li>• Certificate of completion</li>
+            </ul>
+          </div>
+        </AnimatedCard>
+      </div>
+
+      <!-- Daily Schedule -->
+      <AnimatedSection>
+        <h3 class="text-3xl font-bold mb-8 text-center">📅 Daily Activities</h3>
+        <div class="space-y-4">
+          <!-- Monday -->
+          <div class="collapse collapse-arrow bg-base-100 shadow-xl border border-base-300">
+            <input type="radio" name="camp-accordion" checked />
+            <div class="collapse-title text-xl font-medium">
+              <div class="flex items-center gap-3">
+                <div class="badge badge-primary">Day 1</div>
+                <span>Making Monday</span>
+              </div>
+            </div>
+            <div class="collapse-content">
+              <ul class="space-y-2 text-base-content/70 mt-4">
+                <li>• Team introductions & safety review</li>
+                <li>• Name Flair Game (creative name tags)</li>
+                <li>• Introduction to VEX IQ Kits - Planning and starting bot builds</li>
+                <li>• <strong>Bridge Blitz:</strong> Spaghetti bridge building challenge</li>
+                <li>• Team-building games</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Tuesday -->
+          <div class="collapse collapse-arrow bg-base-100 shadow-xl border border-base-300">
+            <input type="radio" name="camp-accordion" />
+            <div class="collapse-title text-xl font-medium">
+              <div class="flex items-center gap-3">
+                <div class="badge badge-secondary">Day 2</div>
+                <span>Terrific Tuesday</span>
+              </div>
+            </div>
+            <div class="collapse-content">
+              <ul class="space-y-2 text-base-content/70 mt-4">
+                <li>• <strong>Print and Present:</strong> Design personalized trinkets for 3D printing</li>
+                <li>• Design a toy for donation (community service project)</li>
+                <li>• Finalize 3D print designs</li>
+                <li>• Complete VEX IQ Kit Bot building in partners</li>
+                <li>• <strong>Rock The Block:</strong> Paint rocks for community distribution</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Wednesday -->
+          <div class="collapse collapse-arrow bg-base-100 shadow-xl border border-base-300">
+            <input type="radio" name="camp-accordion" />
+            <div class="collapse-title text-xl font-medium">
+              <div class="flex items-center gap-3">
+                <div class="badge badge-accent">Day 3</div>
+                <span>Well-Planned Wednesday</span>
+              </div>
+            </div>
+            <div class="collapse-content">
+              <ul class="space-y-2 text-base-content/70 mt-4">
+                <li>• Bot strategy development</li>
+                <li>• Game introduction and demonstration</li>
+                <li>• Bot practice sessions</li>
+                <li>• <strong>The Great Foil Toss:</strong> Launch a ball of tin foil challenge</li>
+                <li>• <strong>Catapult Quest:</strong> Research and design popsicle stick catapults</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Thursday -->
+          <div class="collapse collapse-arrow bg-base-100 shadow-xl border border-base-300">
+            <input type="radio" name="camp-accordion" />
+            <div class="collapse-title text-xl font-medium">
+              <div class="flex items-center gap-3">
+                <div class="badge badge-warning">Day 4</div>
+                <span>Tournament Thursday</span>
+              </div>
+            </div>
+            <div class="collapse-content">
+              <div class="mt-4 space-y-3">
+                <div class="alert alert-warning">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  </svg>
+                  <span class="font-bold">VEX IQ Bot Tournament (9:00-11:30 AM)</span>
+                </div>
+                <div class="pl-4 space-y-2 text-base-content/70">
+                  <p><strong>Tournament Format:</strong></p>
+                  <ul class="list-disc list-inside space-y-1">
+                    <li>1v1 Round Robin matches</li>
+                    <li>Alliance Selection (2v2)</li>
+                    <li>2v2 Best of 3 Playoffs</li>
+                    <li>Winning Team 1v1 Showdown</li>
+                  </ul>
+                  <p class="mt-3"><strong>Awards:</strong> Tournament Winner, Best Driving Skills, Innovation Award, Teamwork Award</p>
+                </div>
+                <div class="divider"></div>
+                <ul class="space-y-1 text-base-content/70">
+                  <li>• <strong>Popsicle Link Showdown:</strong> Build the longest popsicle stick chain</li>
+                  <li>• Team mural creation</li>
+                  <li>• <strong>The Great Human Puzzle:</strong> Human knot teamwork challenge</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Friday -->
+          <div class="collapse collapse-arrow bg-base-100 shadow-xl border border-base-300">
+            <input type="radio" name="camp-accordion" />
+            <div class="collapse-title text-xl font-medium">
+              <div class="flex items-center gap-3">
+                <div class="badge badge-success">Day 5</div>
+                <span>Farewell Friday</span>
+              </div>
+            </div>
+            <div class="collapse-content">
+              <ul class="space-y-2 text-base-content/70 mt-4">
+                <li>• <strong>Introduction to Python coding</strong> (9:00-11:00 AM)</li>
+                <li>• Counselor Challenge competition</li>
+                <li>• <strong>The Sweet Counsel-Splat:</strong> Pie the 2 lowest-scoring counselors!</li>
+                <li>• T-shirt signing ceremony</li>
+                <li>• Certificate presentation</li>
+                <li>• Closing celebration</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      <!-- Safety & Staffing -->
+      <div class="mt-12">
+        <AnimatedCard class="card bg-success/5 border border-success/20 shadow-xl">
+          <div class="card-body">
+            <h3 class="card-title text-2xl mb-4">
+              <svg class="w-8 h-8 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+              Safety is Our #1 Priority
+            </h3>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-bold mb-3">Supervision & Staffing:</h4>
+                <ul class="space-y-2 text-base-content/70">
+                  <li>✓ Minimum 4 student counselors from FRC Team 10989</li>
+                  <li>✓ Minimum 1 adult supervisor at all times</li>
+                  <li>✓ All counselors are passionate, trained team members</li>
+                  <li>✓ Parents welcome to stay during camp</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-bold mb-3">Safety Certifications:</h4>
+                <ul class="space-y-2 text-base-content/70">
+                  <li>✓ All staff CPR & First Aid certified (American Red Cross)</li>
+                  <li>✓ Background checks for all supervising adults</li>
+                  <li>✓ FIRST organization registration verified</li>
+                  <li>✓ Daily safety briefings and procedures review</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </AnimatedCard>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fundraising & Community Support -->
+  <section class="py-20 bg-base-100">
+    <div class="container mx-auto px-6">
+      <AnimatedSection class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Supporting Our Growth</h2>
+        <p class="text-xl text-base-content/70 max-w-3xl mx-auto">
+          As a student-led non-profit, we rely on community support and fundraising to achieve our goals
+        </p>
+      </AnimatedSection>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <AnimatedCard class="card bg-base-100 shadow-xl border border-base-300" delay={0}>
+          <div class="card-body">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                </svg>
+              </div>
+              <h3 class="card-title text-xl">STEM Tutoring</h3>
+            </div>
+            <p class="text-base-content/70">
+              After-school tutoring program offering weekly sessions in math, science, and introductory robotics for students of all levels.
+            </p>
+            <div class="badge badge-outline mt-3">Coming Soon</div>
+          </div>
+        </AnimatedCard>
+
+        <AnimatedCard class="card bg-base-100 shadow-xl border border-base-300" delay={0.1}>
+          <div class="card-body">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                </svg>
+              </div>
+              <h3 class="card-title text-xl">Robot Demos</h3>
+            </div>
+            <p class="text-base-content/70">
+              Interactive demonstrations at community centers and libraries featuring Q&A sessions and hands-on mini-build activities.
+            </p>
+            <div class="badge badge-outline mt-3">Upcoming Events</div>
+          </div>
+        </AnimatedCard>
+
+        <AnimatedCard class="card bg-base-100 shadow-xl border border-base-300" delay={0.2}>
+          <div class="card-body">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                </svg>
+              </div>
+              <h3 class="card-title text-xl">Workshop Tours</h3>
+            </div>
+            <p class="text-base-content/70">
+              Guided tours of our 15 Waterloo Avenue facility for potential sponsors, schools, and families to see our operations firsthand.
+            </p>
+            <div class="badge badge-outline mt-3">Schedule a Visit</div>
+          </div>
+        </AnimatedCard>
+
+        <AnimatedCard class="card bg-base-100 shadow-xl border border-base-300" delay={0.3}>
+          <div class="card-body">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                </svg>
+              </div>
+              <h3 class="card-title text-xl">Community Events</h3>
+            </div>
+            <p class="text-base-content/70">
+              Seasonal fundraisers including car washes, bake sales, and restaurant give-back nights partnering with local eateries.
+            </p>
+            <div class="badge badge-outline mt-3">Community Partners</div>
+          </div>
+        </AnimatedCard>
+
+        <AnimatedCard class="card bg-primary text-primary-content shadow-xl col-span-full lg:col-span-1" delay={0.4}>
+          <div class="card-body">
+            <h3 class="card-title text-xl mb-3">Fundraising Goal</h3>
+            <div class="text-4xl font-bold mb-2">~$14,000</div>
+            <p class="opacity-90">
+              Target funding for essential tools, machinery, and equipment to support our competitive robotics program.
+            </p>
+            <div class="card-actions justify-end mt-4">
+              <a href="/#contact" class="btn btn-accent">Support Our Team</a>
+            </div>
+          </div>
+        </AnimatedCard>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-20 bg-gradient-to-r from-primary to-secondary text-primary-content">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">Get Involved</h2>
+      <p class="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
+        Whether you're a student, parent, or community partner, there are many ways to support our mission
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/#contact" class="btn btn-accent btn-lg">Contact Us</a>
+        <a href="/partners" class="btn btn-outline btn-lg border-white text-white hover:bg-white hover:text-primary">
+          Our Partners
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

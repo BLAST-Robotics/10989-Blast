@@ -10,7 +10,7 @@ export interface CalendarEvent {
 }
 
 const CALENDAR_URL =
-	'https://calendar.google.com/calendar/ical/c_5ced3b5d7c83e41617dce78e1925c590e8b03a35909a6b66de06a517de2fb0d2%40group.calendar.google.com/public/basic.ics';
+	'https://calendar.google.com/calendar/ical/admin%40team10989.org/private-56ce5cce0ea423375f0383dec6afa218/basic.ics';
 
 export const fetchCalendarEvents = async (): Promise<CalendarEvent[]> => {
 	try {
@@ -40,7 +40,11 @@ export const fetchCalendarEvents = async (): Promise<CalendarEvent[]> => {
 						}
 					}
 
+					// Preserve the original time from the event
+					const originalStart = new Date(event.start);
 					const start = new Date(date);
+					start.setHours(originalStart.getHours(), originalStart.getMinutes(), originalStart.getSeconds(), originalStart.getMilliseconds());
+					
 					const duration = event.end ? event.end.getTime() - event.start.getTime() : 0;
 					const end = duration > 0 ? new Date(start.getTime() + duration) : start;
 
