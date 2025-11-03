@@ -95,3 +95,60 @@
         </div>
     </div>
 </section>
+
+<script is:inline>
+// Animate stat numbers on scroll using Intersection Observer and count-up effect
+window.addEventListener("DOMContentLoaded", function () {
+    function animateCount(el, target, duration = 1200) {
+        let start = 0;
+        let startTime = null;
+        const isCurrency = /\$/g.test(target);
+        const isPlus = /\+/g.test(target);
+        const isK = /K/g.test(target);
+        const isTeams = /Teams/g.test(target);
+        let cleanTarget = target.replace(/[^\d]/g, "");
+        let end = parseInt(cleanTarget, 10);
+        if (isNaN(end)) return;
+        function step(ts) {
+            if (!startTime) startTime = ts;
+            let progress = Math.min((ts - startTime) / duration, 1);
+            let value = Math.floor(progress * end);
+            let display = value.toLocaleString();
+            if (isCurrency) display = "$" + display;
+            if (isK) display += "K";
+            if (isPlus) display += "+";
+            if (isTeams) display += " Teams";
+            el.textContent = display;
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                el.textContent = target;
+            }
+        }
+        requestAnimationFrame(step);
+    }
+    const statNumbers = document.querySelectorAll(".stat-value, .text-3xl.font-bold");
+    statNumbers.forEach((el) => {
+        el.style.opacity = "0";
+        el.style.transform = "scale(0.8)";
+        el.style.transition = "opacity 0.7s cubic-bezier(.5,1.5,.5,1), transform 0.7s cubic-bezier(.5,1.5,.5,1)";
+    });
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "scale(1)";
+                animateCount(entry.target, entry.target.getAttribute("data-final") || entry.target.textContent.trim());
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: "0px 0px -40px 0px",
+    });
+    statNumbers.forEach((el) => {
+        el.setAttribute("data-final", el.textContent.trim());
+        observer.observe(el);
+    });
+});
+</script>

@@ -128,35 +128,4 @@
     </div>
 </section>
 
-<script type="text/partytown">
-    // Lazy load feature cards with intersection observer
-    document.addEventListener("DOMContentLoaded", function () {
-        const featureCards = document.querySelectorAll("#features .card");
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.style.opacity = "1";
-                            entry.target.style.transform = "translateY(0)";
-                        }, index * 150); // Stagger animation
-                        observer.unobserve(entry.target);
-                    }
-                });
-            },
-            {
-                threshold: 0.1,
-                rootMargin: "0px 0px -30px 0px",
-            }
-        );
-
-        featureCards.forEach((card) => {
-            card.style.opacity = "0";
-            card.style.transform = "translateY(30px)";
-            card.style.transition =
-                "opacity 0.8s ease-out, transform 0.8s ease-out";
-            observer.observe(card);
-        });
-    });
-</script>

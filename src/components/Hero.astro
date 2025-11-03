@@ -8,7 +8,7 @@ import newLogoBlack from '../../public/new_logo_black.png';
 ---
 
 <section id="home" class="hero min-h-screen bg-top relative overflow-hidden">
-    <div id="carousel-bg" class="absolute inset-0 w-full h-full z-0" style={`--slides: ${carouselData.length}; --slide-interval: 5s;`}>
+    <div id="carousel-bg" class="absolute inset-0 w-full h-full z-0 parallax-bg" style={`--slides: ${carouselData.length}; --slide-interval: 5s;`}>
         {carouselData.map((slide, idx) => (
             <div
                 class={`hero-slide absolute inset-0 w-full h-full ${idx === 0 ? 'opacity-100' : 'opacity-0'} pointer-events-none`}
@@ -54,64 +54,43 @@ import newLogoBlack from '../../public/new_logo_black.png';
                     >Learn More</a
                 >
             </div>
-            <!-- Feature badges -->
-            <div
-                class="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mt-8 md:mt-12">
-                <div
-                    class="badge badge-primary badge-sm sm:badge-md lg:badge-lg p-2 sm:p-3 lg:p-4">
-                    <i
-                        class="bi bi-lightbulb mr-1 sm:mr-2 text-sm sm:text-base lg:text-lg"
-                    ></i>
-                    <span class="text-xs sm:text-sm lg:text-base"
-                        >Innovation</span
-                    >
-                </div>
-                <div
-                    class="badge badge-secondary badge-sm sm:badge-md lg:badge-lg p-2 sm:p-3 lg:p-4">
-                    <i
-                        class="bi bi-people mr-1 sm:mr-2 text-sm sm:text-base lg:text-lg"
-                    ></i>
-                    <span class="text-xs sm:text-sm lg:text-base">Teamwork</span
-                    >
-                </div>
-                <div
-                    class="badge badge-accent badge-sm sm:badge-md lg:badge-lg p-2 sm:p-3 lg:p-4">
-                    <i
-                        class="bi bi-trophy mr-1 sm:mr-2 text-sm sm:text-base lg:text-lg"
-                    ></i>
-                    <span class="text-xs sm:text-sm lg:text-base"
-                        >Excellence</span
-                    >
-                </div>
-            </div>
-
         </div>
     </div>
-    <script type="module">
-      // Minimal toggler: cycles pre-rendered slides and ensures no blank gaps
-      window.addEventListener('DOMContentLoaded', () => {
-        const slides = Array.from(document.querySelectorAll('#carousel-bg .hero-slide'));
-        if (!slides.length) return;
-        const interval = 5000; // ms per slide — keep in sync with your earlier setting
-        let current = 0;
-        // Ensure initial classes
-        slides.forEach((s, i) => {
-          s.classList.remove('opacity-100', 'opacity-0', 'pointer-events-none');
-          if (i === 0) s.classList.add('opacity-100'); else s.classList.add('opacity-0', 'pointer-events-none');
-          s.style.transition = 'opacity 1s ease-in-out';
-        });
-        setInterval(() => {
-          const next = (current + 1) % slides.length;
-          slides[current].classList.remove('opacity-100');
-          slides[current].classList.add('opacity-0', 'pointer-events-none');
-          slides[current].setAttribute('aria-hidden', 'true');
+        <script type="module">
+            // Minimal toggler: cycles pre-rendered slides and ensures no blank gaps
+            window.addEventListener('DOMContentLoaded', () => {
+                const slides = Array.from(document.querySelectorAll('#carousel-bg .hero-slide'));
+                if (!slides.length) return;
+                const interval = 5000; // ms per slide — keep in sync with your earlier setting
+                let current = 0;
+                // Ensure initial classes
+                slides.forEach((s, i) => {
+                    s.classList.remove('opacity-100', 'opacity-0', 'pointer-events-none');
+                    if (i === 0) s.classList.add('opacity-100'); else s.classList.add('opacity-0', 'pointer-events-none');
+                    s.style.transition = 'opacity 1s ease-in-out';
+                });
+                setInterval(() => {
+                    const next = (current + 1) % slides.length;
+                    slides[current].classList.remove('opacity-100');
+                    slides[current].classList.add('opacity-0', 'pointer-events-none');
+                    slides[current].setAttribute('aria-hidden', 'true');
 
-          slides[next].classList.remove('opacity-0', 'pointer-events-none');
-          slides[next].classList.add('opacity-100');
-          slides[next].setAttribute('aria-hidden', 'false');
+                    slides[next].classList.remove('opacity-0', 'pointer-events-none');
+                    slides[next].classList.add('opacity-100');
+                    slides[next].setAttribute('aria-hidden', 'false');
 
-          current = next;
-        }, interval);
-      });
-    </script>
+                    current = next;
+                }, interval);
+            });
+
+            // Logarithmic zoom-in effect for hero background as you scroll
+            window.addEventListener('scroll', () => {
+                const bg = document.getElementById('carousel-bg');
+                if (!bg) return;
+                const scrolled = window.scrollY;
+                // Logarithmic scale: starts at 1, approaches 1.2 as scroll increases
+                const scale = 1 + 0.2 * Math.log10(1 + scrolled / 200);
+                bg.style.transform = `scale(${scale})`;
+            });
+        </script>
 </section>

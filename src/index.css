@@ -1,3 +1,28 @@
+/* Apple-style scroll-jack for stats section */
+.stats-scroll-jack {
+  position: relative;
+  z-index: 2;
+}
+/* Apple-style scroll-jack for features section */
+.features-scroll-jack {
+  position: relative;
+  z-index: 2;
+}
+.parallax-bg {
+  will-change: transform;
+}
+/* Parallax background effect for main page */
+.parallax-bg {
+  position: relative;
+  overflow: hidden;
+}
+.parallax-bg > section.hero {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  will-change: background-position;
+}
 @import "tailwindcss";
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
@@ -20,4 +45,48 @@
   name: "dark";
   --color-primary: oklch(0.6543 0.2713 29.65);
   --color-secondary: oklch(0.6871 0.1549 57.27);
+}
+
+/* Custom Scrollbar Styles */
+/* For Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: oklch(var(--b2));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, 
+    oklch(0.6543 0.2713 29.65) 0%, 
+    oklch(0.5543 0.2513 25.65) 100%
+  );
+  border-radius: 10px;
+  border: 2px solid oklch(var(--b2));
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, 
+    oklch(0.7043 0.2913 29.65) 0%, 
+    oklch(0.6043 0.2713 25.65) 100%
+  );
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: oklch(0.5543 0.2513 25.65);
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(0.6543 0.2713 29.65) oklch(var(--b2));
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
