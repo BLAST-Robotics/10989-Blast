@@ -23,148 +23,173 @@ import timelineData from "../data/timeline.json";
     <!-- Timeline Section -->
     <section class="py-20 bg-base-100">
         <div class="container mx-auto px-6">
-            <ul
-                class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
-                {
-                    timelineData.map((item, index) => (
-                        <li>
-                            {index > 0 && <hr />}
-                            <div class="timeline-middle">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    class="h-5 w-5">
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                                        clip-rule="evenodd"
-                                    />
-                                </svg>
-                            </div>
-                            <div
-                                class={`${index % 2 === 0 ? "timeline-start mb-10 md:text-end" : "timeline-end md:mb-10"}`}>
-                                {item.type === "overlay" ? (
-                                    <div class="timeline-card card bg-base-100 image-full w-96 shadow-xl border border-base-300 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-primary opacity-0 translate-y-8">
-                                        <figure>
-                                            <div
-                                                class={`${item.imageBackground || ""} ${item.imagePadding ? "rounded-xl" : ""}`}>
-                                                <Image
-                                                    src={item.image}
-                                                    alt={`${item.title} background`}
-                                                    class={`w-full h-full object-cover ${item.imagePadding ? "rounded-lg" : ""}`}
-                                                    width={384}
-                                                    height={256}
-                                                    loading="lazy"
-                                                    format="webp"
-                                                />
-                                            </div>
-                                        </figure>
-                                        <div class="card-body">
-                                            <h2 class={`card-title ${item.lightColor ? "text-gray-900 dark:text-white drop-shadow-sm" : "text-white"}`}>
-                                                {item.title}
-                                            </h2>
-                                            <p class={`${item.lightColor ? "text-gray-800 dark:text-white/90 drop-shadow-sm" : "text-white/90"}`}>
-                                                {item.description}
-                                            </p>
-                                            <div class="card-actions justify-end">
-                                                <time class={`font-mono italic text-sm opacity-90 ${item.lightColor ? "text-gray-900 dark:text-white drop-shadow-sm" : "text-white"}`}>
-                                                    {item.date}
-                                                </time>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ) : item.type === "card" ? (
-                                    <div class="timeline-card card bg-base-100 w-96 shadow-xl border border-base-300 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-primary opacity-0 translate-y-8">
-                                        <figure>
+            <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
+                {timelineData.map((item, index) => (
+                    <li>
+                        {index > 0 && <hr />}
+                        <div class="timeline-middle">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                                class="h-5 w-5">
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                                    clip-rule="evenodd"
+                                />
+                            </svg>
+                        </div>
+                        <div class={`${index % 2 === 0 ? "timeline-start mb-10 md:text-end" : "timeline-end md:mb-10"}`}>
+                            {item.type === "overlay" ? (
+                                <div class="timeline-card card bg-base-100 image-full w-96 shadow-xl border border-base-300 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-primary opacity-0 translate-y-8">
+                                    <figure>
+                                        <div class={`${item.imageBackground || ""} ${item.imagePadding ? "rounded-xl" : ""}`}>
                                             <Image
                                                 src={item.image}
-                                                alt={`${item.title} image`}
-                                                class="w-full h-48 object-cover"
+                                                alt={`${item.title} background`}
+                                                class={`w-full h-full object-cover ${item.imagePadding ? "rounded-lg" : ""}`}
                                                 width={384}
-                                                height={192}
+                                                height={256}
                                                 loading="lazy"
                                                 format="webp"
                                             />
-                                        </figure>
-                                        <div class="card-body">
-                                            <h2 class="card-title">
-                                                {item.title}
-                                            </h2>
-                                            <p>{item.description}</p>
-                                            <div class="card-actions justify-end">
-                                                <time class="font-mono italic text-sm opacity-70">
-                                                    {item.date}
-                                                </time>
-                                            </div>
+                                        </div>
+                                    </figure>
+                                    <div class="card-body">
+                                        <h2 class={`card-title ${item.lightColor ? "text-gray-900 dark:text-white drop-shadow-sm" : "text-white"}`}>
+                                            {item.title}
+                                        </h2>
+                                        <p class={`${item.lightColor ? "text-gray-800 dark:text-white/90 drop-shadow-sm" : "text-white/90"}`}>
+                                            {item.description}
+                                        </p>
+                                        <div class="card-actions justify-end">
+                                            <time class={`font-mono italic text-sm opacity-90 ${item.lightColor ? "text-gray-900 dark:text-white drop-shadow-sm" : "text-white"}`}>
+                                                {item.date}
+                                            </time>
                                         </div>
                                     </div>
-                                ) : (
-                                    <div class="timeline-card card bg-base-100 w-96 shadow-xl border border-base-300 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-primary opacity-0 translate-y-8">
-                                        <div class="card-body text-center">
-                                            <div
-                                                class={`flex items-center justify-center mx-auto mb-4 ${item.imageBackground || "bg-base-200"} ${item.imagePadding || ""} rounded-xl w-fit`}>
-                                                <Image
-                                                    src={item.image}
-                                                    alt={`${item.title} logo`}
-                                                    class="h-16 w-16 object-contain"
-                                                    width={64}
-                                                    height={64}
-                                                    loading="lazy"
-                                                    format="webp"
-                                                />
-                                            </div>
-                                            <h2 class="card-title justify-center">
-                                                {item.title}
-                                            </h2>
-                                            <p>{item.description}</p>
-                                            <div class="card-actions justify-center mt-4">
-                                                <time class="font-mono italic text-sm opacity-70">
-                                                    {item.date}
-                                                </time>
-                                            </div>
+                                </div>
+                            ) : item.type === "card" ? (
+                                <div class="timeline-card card bg-base-100 w-96 shadow-xl border border-base-300 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-primary opacity-0 translate-y-8">
+                                    <figure>
+                                        <Image
+                                            src={item.image}
+                                            alt={`${item.title} image`}
+                                            class="w-full h-48 object-cover"
+                                            width={384}
+                                            height={192}
+                                            loading="lazy"
+                                            format="webp"
+                                        />
+                                    </figure>
+                                    <div class="card-body">
+                                        <h2 class="card-title">
+                                            {item.title}
+                                        </h2>
+                                        <p>{item.description}</p>
+                                        <div class="card-actions justify-end">
+                                            <time class="font-mono italic text-sm opacity-70">
+                                                {item.date}
+                                            </time>
                                         </div>
                                     </div>
-                                )}
-                            </div>
-                            {index < timelineData.length - 1 && <hr />}
-                        </li>
-                    ))
-                }
+                                </div>
+                            ) : (
+                                <div class="timeline-card card bg-base-100 w-96 shadow-xl border border-base-300 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-primary opacity-0 translate-y-8">
+                                    <div class="card-body text-center">
+                                        <div
+                                            class={`flex items-center justify-center mx-auto mb-4 ${item.imageBackground || "bg-base-200"} ${item.imagePadding || ""} rounded-xl w-fit`}>
+                                            <Image
+                                                src={item.image}
+                                                alt={`${item.title} logo`}
+                                                class="h-16 w-16 object-contain"
+                                                width={64}
+                                                height={64}
+                                                loading="lazy"
+                                                format="webp"
+                                            />
+                                        </div>
+                                        <h2 class="card-title justify-center">
+                                            {item.title}
+                                        </h2>
+                                        <p>{item.description}</p>
+                                        <div class="card-actions justify-center mt-4">
+                                            <time class="font-mono italic text-sm opacity-70">
+                                                {item.date}
+                                            </time>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                        {index < timelineData.length - 1 && <hr />}
+                    </li>
+                ))}
             </ul>
 
             <script>
-                // Intersection Observer for timeline card animations
+                // DaisyUI timeline animation: reveal cards and animate connectors
                 document.addEventListener("DOMContentLoaded", function () {
-                    const timelineCards =
-                        document.querySelectorAll(".timeline-card");
-
-                    const observer = new IntersectionObserver(
-                        (entries) => {
-                            entries.forEach((entry) => {
-                                if (entry.isIntersecting) {
-                                    entry.target.classList.remove(
-                                        "opacity-0",
-                                        "translate-y-8"
-                                    );
-                                    entry.target.classList.add(
-                                        "opacity-100",
-                                        "translate-y-0"
-                                    );
-                                    observer.unobserve(entry.target); // Stop observing once animated
+                    const timelineItems = document.querySelectorAll(".timeline li");
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add("active");
+                                // Animate card
+                                const card = entry.target.querySelector(".timeline-card");
+                                if (card) {
+                                    card.classList.remove("opacity-0", "translate-y-8");
+                                    card.classList.add("opacity-100", "translate-y-0");
                                 }
-                            });
-                        },
-                        {
-                            threshold: 0.3,
-                            rootMargin: "0px 0px -50px 0px",
-                        }
-                    );
-
-                    timelineCards.forEach((card) => {
-                        observer.observe(card);
+                                // Animate connector
+                                const connector = entry.target.querySelector(".timeline-connector");
+                                if (connector) {
+                                    connector.classList.add("active");
+                                }
+                            } else {
+                                entry.target.classList.remove("active");
+                                const card = entry.target.querySelector(".timeline-card");
+                                if (card) {
+                                    card.classList.remove("opacity-100", "translate-y-0");
+                                    card.classList.add("opacity-0", "translate-y-8");
+                                }
+                                const connector = entry.target.querySelector(".timeline-connector");
+                                if (connector) {
+                                    connector.classList.remove("active");
+                                }
+                            }
+                        });
+                    }, {
+                        threshold: 0.3,
+                        rootMargin: "0px 0px -50px 0px",
+                    });
+                    timelineItems.forEach((item) => {
+                        observer.observe(item);
                     });
                 });
+                    </script>
+                    <script>
+                        // Intersection Observer for timeline card reveal only
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const timelineCards = document.querySelectorAll(".timeline-card");
+                            const observer = new IntersectionObserver((entries) => {
+                                entries.forEach((entry) => {
+                                    if (entry.isIntersecting) {
+                                        entry.target.classList.remove("opacity-0", "translate-y-8");
+                                        entry.target.classList.add("opacity-100", "translate-y-0");
+                                        observer.unobserve(entry.target);
+                                    }
+                                });
+                            }, {
+                                threshold: 0.3,
+                                rootMargin: "0px 0px -50px 0px",
+                            });
+                            timelineCards.forEach((card) => {
+                                observer.observe(card);
+                            });
+                        });
+                    </script>
             </script>
         </div>
     </section>
@@ -192,4 +217,44 @@ import timelineData from "../data/timeline.json";
             </div>
         </div>
     </section>
+
+    <script is:inline>
+        // Parallax effect for 'Our Journey' hero background (background only)
+        window.addEventListener('scroll', () => {
+            const heroBg = document.querySelector('.journey-parallax-bg .hero-bg');
+            if (!heroBg) return;
+            const scrolled = window.scrollY;
+            // Logarithmic scale: starts at 1, approaches 1.15 as scroll increases
+            const scale = 1 + 0.15 * Math.log10(1 + scrolled / 200);
+            heroBg.style.transform = `scale(${scale})`;
+        });
+
+        // Timeline progress bar animation
+        window.addEventListener('DOMContentLoaded', function () {
+            const timelineItems = document.querySelectorAll('.timeline li');
+            timelineItems.forEach((item) => {
+                const hr = item.querySelector('hr');
+                if (hr) {
+                    hr.classList.remove('active');
+                }
+            });
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    const hr = entry.target.querySelector('hr');
+                    if (hr) {
+                        if (entry.isIntersecting) {
+                            hr.classList.add('active');
+                        } else {
+                            hr.classList.remove('active');
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.5,
+            });
+            timelineItems.forEach((item) => {
+                observer.observe(item);
+            });
+        });
+    </script>
 </Layout>

@@ -1,3 +1,22 @@
+/* Timeline vertical center line fix */
+.timeline {
+  position: relative;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 100%;
+  background: #d1d5db;
+  z-index: 0;
+}
+.timeline li {
+  position: relative;
+  z-index: 1;
+}
 /* Apple-style scroll-jack for stats section */
 .stats-scroll-jack {
   position: relative;
@@ -90,3 +109,19 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Parallax effect for Our Journey hero background only */
+.journey-parallax-bg {
+  position: relative;
+  overflow: hidden;
+}
+.journey-parallax-bg .hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: inherit;
+  will-change: transform;
+}
+
