@@ -1,3 +1,5 @@
+
+// Calendar fetch logic enforces cache busting and always uses America/New_York timezone for display.
 import { fromURL } from 'node-ical';
 
 export interface CalendarEvent {
@@ -14,7 +16,19 @@ const CALENDAR_URL =
 
 export const fetchCalendarEvents = async (): Promise<CalendarEvent[]> => {
 	try {
-		const events = await fromURL(CALENDAR_URL);
+		// Add cache-busting timestamp to prevent stale data in production
+		// This ensures fresh calendar data on every request
+		const cacheBuster = new Date().getTime();
+		const urlWithCacheBuster = `${CALENDAR_URL}?_=${cacheBuster}`;
+		
+		// Fetch with no-cache headers to prevent CDN/browser caching
+		const events = await fromURL(urlWithCacheBuster, {
+			headers: {
+				'Cache-Control': 'no-cache, no-store, must-revalidate',
+				'Pragma': 'no-cache',
+				'Expires': '0'
+			}
+		});
 		const processedEvents: CalendarEvent[] = [];
 
 		const now = new Date();
@@ -92,21 +106,27 @@ export const formatEventTimeRange = (event: CalendarEvent): string => {
 	const start = event.start;
 	const end = event.end;
 
+	// Always display in EST (America/New_York)
+	const timeZone = 'America/New_York';
+
 	if (!end || start.getTime() === end.getTime()) {
-		return start.toLocaleTimeString(undefined, {
+		return start.toLocaleTimeString('en-US', {
 			hour: 'numeric',
 			minute: '2-digit',
+			timeZone: timeZone,
 		});
 	}
 
-	const startStr = start.toLocaleTimeString(undefined, {
+	const startStr = start.toLocaleTimeString('en-US', {
 		hour: 'numeric',
 		minute: '2-digit',
+		timeZone: timeZone,
 	});
 
-	const endStr = end.toLocaleTimeString(undefined, {
+	const endStr = end.toLocaleTimeString('en-US', {
 		hour: 'numeric',
 		minute: '2-digit',
+		timeZone: timeZone,
 	});
 
 	return `${startStr} – ${endStr}`;

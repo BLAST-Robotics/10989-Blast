@@ -5,22 +5,28 @@ const events = import.meta.env.SSR ? await fetchCalendarEvents() : [];
 console.log('SSR Events fetched:', events.length);
 
 // Test with hardcoded events if none fetched
+// All test events are 3:00 to 5:00 PM America/New_York
+function getNYDate(year, month, day, hour, minute) {
+	// month is 1-based for input, 0-based for JS
+	return new Date(Date.UTC(year, month - 1, day, hour + 4, minute)); // EST is UTC-5, EDT is UTC-4, so 3pm NY is 19:00 UTC (Nov is EST)
+}
+
 const testEvents = events.length > 0 ? events : [
 	{
-		start: new Date('2025-09-28T10:00:00'),
-		end: new Date('2025-09-28T11:00:00'),
+		start: getNYDate(2025, 11, 2, 15, 0), // Nov 2, 2025, 3:00 PM NY
+		end: getNYDate(2025, 11, 2, 17, 0),   // Nov 2, 2025, 5:00 PM NY
 		summary: 'Test Event 1',
 		description: 'This is a test event',
 		location: 'School',
 		allDay: false,
 	},
 	{
-		start: new Date('2025-09-29T14:00:00'),
-		end: null,
+		start: getNYDate(2025, 11, 3, 15, 0), // Nov 3, 2025, 3:00 PM NY
+		end: getNYDate(2025, 11, 3, 17, 0),   // Nov 3, 2025, 5:00 PM NY
 		summary: 'Test Event 2',
 		description: 'Another test event',
 		location: '',
-		allDay: true,
+		allDay: false,
 	}
 ];
 
@@ -323,10 +329,11 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 				weekContainer.innerHTML = days
 					.map((day) => {
-						const heading = day.date.toLocaleDateString(undefined, {
+						const heading = day.date.toLocaleDateString('en-US', {
 							weekday: 'long',
 							month: 'short',
 							day: 'numeric',
+							timeZone: 'America/New_York',
 						});
 
 						const eventsHtml = day.events.length
@@ -334,15 +341,17 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 									.map((event) => {
 										const timeLabel = event.allDay
 											? 'All day'
-											: event.startDate.toLocaleTimeString(undefined, {
+											: event.startDate.toLocaleTimeString('en-US', {
 													hour: 'numeric',
 													minute: '2-digit',
+													timeZone: 'America/New_York',
 												});
 
 										const endLabel = !event.allDay && event.endDate
-											? ` – ${event.endDate.toLocaleTimeString(undefined, {
+											? ` – ${event.endDate.toLocaleTimeString('en-US', {
 													hour: 'numeric',
 													minute: '2-digit',
+													timeZone: 'America/New_York',
 												})}`
 											: '';
 
@@ -400,12 +409,12 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 			function formatWeekLabel(start, end) {
 				const sameYear = start.getFullYear() === end.getFullYear();
-				const baseOptions = { weekday: 'long', month: 'long', day: 'numeric' };
-				const startLabel = start.toLocaleDateString(undefined, {
+				const baseOptions = { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'America/New_York' };
+				const startLabel = start.toLocaleDateString('en-US', {
 					...baseOptions,
 					year: sameYear ? undefined : 'numeric',
 				});
-				const endLabel = end.toLocaleDateString(undefined, {
+				const endLabel = end.toLocaleDateString('en-US', {
 					...baseOptions,
 					year: 'numeric',
 				});
