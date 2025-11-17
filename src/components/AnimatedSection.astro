@@ -21,14 +21,27 @@ const { class: className = '', delay = 0 } = Astro.props;
 <script>
   import { animate, inView } from 'motion';
 
-  document.addEventListener('astro:page-load', () => {
+  const initAnimatedSections = () => {
     const sections = document.querySelectorAll('.animate-section');
-    
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     sections.forEach((section) => {
-      const delay = parseFloat(section.getAttribute('data-delay') || '0');
-      
+      const element = section as HTMLElement;
+      if (element.dataset.animateReady === 'true') {
+        return;
+      }
+      element.dataset.animateReady = 'true';
+
+      const delay = parseFloat(element.getAttribute('data-delay') || '0');
+
+      if (prefersReducedMotion) {
+        element.style.opacity = '1';
+        element.style.transform = 'none';
+        return;
+      }
+
       inView(
-        section as HTMLElement,
+        element,
         ({ target }) => {
           animate(
             target,
@@ -39,5 +52,18 @@ const { class: className = '', delay = 0 } = Astro.props;
         { amount: 0.3 }
       );
     });
-  });
+  };
+
+  const bootstrap = () => {
+    if (typeof window === 'undefined') return;
+    initAnimatedSections();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootstrap, { once: true });
+  } else {
+    bootstrap();
+  }
+
+  document.addEventListener('astro:page-load', bootstrap);
 </script>

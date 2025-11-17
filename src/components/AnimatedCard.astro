@@ -39,12 +39,23 @@ const { class: className = '', delay = 0 } = Astro.props;
 <script>
   import { inView } from 'motion';
 
-  document.addEventListener('astro:page-load', () => {
+  const initAnimatedCards = () => {
     const cards = document.querySelectorAll('.animated-card');
-    
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     cards.forEach((card) => {
+      if ((card as HTMLElement).dataset.animatedReady === 'true') {
+        return;
+      }
+      (card as HTMLElement).dataset.animatedReady = 'true';
+
       const delay = parseFloat(card.getAttribute('data-delay') || '0');
-      
+
+      if (prefersReducedMotion) {
+        card.classList.add('in-view');
+        return;
+      }
+
       inView(
         card as HTMLElement,
         ({ target }) => {
@@ -55,5 +66,18 @@ const { class: className = '', delay = 0 } = Astro.props;
         { amount: 0.2 }
       );
     });
-  });
+  };
+
+  const bootstrap = () => {
+    if (typeof window === 'undefined') return;
+    initAnimatedCards();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootstrap, { once: true });
+  } else {
+    bootstrap();
+  }
+
+  document.addEventListener('astro:page-load', bootstrap);
 </script>

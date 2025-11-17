@@ -41,6 +41,54 @@
     "padding": "2"
   },
   {
+    "name": "Vanguard",
+    "logo": "/sponsors/vanguard.png",
+    "website": "https://www.vanguard.com/",
+    "description": "Investment management company",
+    "bg": "white",
+    "padding": "3"
+  },
+  {
+    "name": "TE Connectivity",
+    "logo": "/sponsors/teconn.png",
+    "website": "https://www.te.com/",
+    "description": "Technology company specializing in connectivity and sensors",
+    "bg": "white",
+    "padding": "6"
+  },
+  {
+    "name": "Cogent IBS",
+    "logo": "/sponsors/cogent.png",
+    "website": "https://www.cogentibs.com/",
+    "description": "IT services and solutions provider", 
+    "bg": "white",
+    "padding": "1"
+  },
+  {
+    "name": "Boeing",
+    "logo": "/sponsors/boeing.png",
+    "website": "https://www.boeing.com/",
+    "description": "Aerospace and defense company",
+    "bg": "white",
+    "padding": "4"
+  },
+  {
+    "name": "Gene Haas Foundation",
+    "logo": "/sponsors/Haas.webp",
+    "website": "https://www.haascnc.com/company/haas-foundation.html",
+    "description": "Supporting STEM education and technical training",
+    "bg": "white",
+    "padding": "0"
+  },
+  {
+    "name": "Argosy Foundation",
+    "logo": "/sponsors/argosy.webp",
+    "website": "https://www.argosyfoundation.org/",
+    "description": "Philanthropic organization supporting community initiatives",
+    "bg": "white",
+    "padding": "2"
+  },
+  {
     "name": "Comcast",
     "logo": "/sponsors/comcast.svg",
     "website": "https://comcast.com",
@@ -49,20 +97,11 @@
     "padding": "10"
   },
   {
-    "name": "Home Depot",
-    "logo": "/sponsors/home depot.webp",
-    "website": "https://homedepot.com",
-    "description": "Home improvement and construction products retailer",
+    "name": "NASA",
+    "logo": "/sponsors/nasa.jpeg",
+    "website": "https://www.nasa.gov/",
+    "description": "National Aeronautics and Space Administration",
     "bg": "white",
     "padding": "0"
-  },
-  
-  {
-    "name": "Sol Siesta Apparel",
-    "logo": "/sponsors/Sol Siesta.jpg",
-    "website": "https://solsiestaapparel.com/",
-    "description": "Apparel company that supports our team",
-    "bg": "white",
-    "padding": "2"
   }
 ]
