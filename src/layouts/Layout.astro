@@ -35,6 +35,8 @@ import keystoneLogo from '../../public/keystonelogo.png';
 		<title>{title}</title>
 		<meta name="title" content={title} />
 		<meta name="description" content="Blast Robotics - Inspiring innovation through FIRST Robotics Competition" />
+		<meta name="keywords" content="FIRST Robotics, FRC Team 10989, Blast Robotics, STEM education, robotics competition, Mainline Pennsylvania, Keystone STEM Alliance" />
+		<link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).href} />
 
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
@@ -72,9 +74,9 @@ import keystoneLogo from '../../public/keystonelogo.png';
 		<div class="navbar bg-base-100 shadow-lg sticky top-0 z-50 px-2 sm:px-4">
 			<div class="navbar-start">
 				<div class="dropdown">
-					<div tabindex="0" role="button" class="btn btn-ghost btn-sm lg:hidden p-1">
-						<i class="bi bi-list text-lg"></i>
-					</div>
+					<button class="btn btn-ghost btn-sm lg:hidden p-1" aria-label="Open navigation menu">
+						<i class="bi bi-list text-lg" aria-hidden="true"></i>
+					</button>
 					<ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
 						<li><a href="/">Home</a></li>
 						<li><a href="/about">About</a></li>
@@ -142,11 +144,11 @@ import keystoneLogo from '../../public/keystonelogo.png';
 			<div class="navbar-end">
 				<!-- Theme Controller -->
 				<label class="swap swap-rotate mr-2 sm:mr-4">
-					<input type="checkbox" class="theme-controller" id="theme-toggle" />
+					<input type="checkbox" class="theme-controller" id="theme-toggle" aria-label="Toggle between light and dark theme" />
 					<!-- sun icon -->
-					<i class="bi bi-sun swap-off text-lg sm:text-2xl"></i>
+					<i class="bi bi-sun swap-off text-lg sm:text-2xl" aria-hidden="true"></i>
 					<!-- moon icon -->
-					<i class="bi bi-moon swap-on text-lg sm:text-2xl"></i>
+					<i class="bi bi-moon swap-on text-lg sm:text-2xl" aria-hidden="true"></i>
 				</label>
 				<a href="/#contact" class="btn btn-primary btn-sm sm:btn-md text-xs sm:text-sm">
 					<span class="hidden sm:inline">Join Us</span>
@@ -229,10 +231,10 @@ import keystoneLogo from '../../public/keystonelogo.png';
 						</ul>
 						<div class="flex space-x-4">
 							<a href="https://instagram.com/10989blast" target="_blank" rel="noopener noreferrer" class="text-neutral-content/80 hover:text-primary transition-colors" aria-label="Follow us on Instagram">
-								<i class="bi bi-instagram text-xl"></i>
+								<i class="bi bi-instagram text-xl" aria-hidden="true"></i>
 							</a>
 							<a href="mailto:admin@team10989.org" class="text-neutral-content/80 hover:text-primary transition-colors" aria-label="Email us">
-								<i class="bi bi-envelope text-xl"></i>
+								<i class="bi bi-envelope text-xl" aria-hidden="true"></i>
 							</a>
 						</div>
 					</div>

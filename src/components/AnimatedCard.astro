@@ -20,14 +20,18 @@ const { class: className = '', delay = 0 } = Astro.props;
 
 <style>
   .animated-card {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  .animated-card.will-animate {
     opacity: 0;
     transform: translateY(20px);
-    transition: all 0.3s ease;
   }
   
   .animated-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
   }
   
   .animated-card.in-view {
@@ -52,19 +56,29 @@ const { class: className = '', delay = 0 } = Astro.props;
       const delay = parseFloat(card.getAttribute('data-delay') || '0');
 
       if (prefersReducedMotion) {
-        card.classList.add('in-view');
+        // Skip animation
         return;
       }
 
-      inView(
-        card as HTMLElement,
-        ({ target }) => {
-          setTimeout(() => {
-            target.classList.add('in-view');
-          }, delay * 1000);
-        },
-        { amount: 0.2 }
-      );
+      try {
+        // Mark card as ready for animation
+        card.classList.add('will-animate');
+        
+        inView(
+          card as HTMLElement,
+          ({ target }) => {
+            setTimeout(() => {
+              target.classList.add('in-view');
+              target.classList.remove('will-animate');
+            }, delay * 1000);
+          },
+          { amount: 0.2 }
+        );
+      } catch (error) {
+        // Fallback: remove animation classes if motion library fails
+        console.warn('Animation error, showing card immediately:', error);
+        card.classList.remove('will-animate');
+      }
     });
   };
 
