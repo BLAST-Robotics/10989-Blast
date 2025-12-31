@@ -17,6 +17,6 @@
     "strings": false
   },
   "editor.suggest.showStatusBar": false,
-  "editor.hover.enabled": false,
+  "editor.hover.enabled": "off",
   "workbench.problemMatchers": []
 }

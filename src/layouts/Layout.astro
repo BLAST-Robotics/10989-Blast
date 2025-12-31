@@ -4,12 +4,14 @@ export interface Props {
 }
 
 const { title } = Astro.props;
+const membershipFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSc08W-5vNVMxpgvFpXAPsfIbfbVQDaQMu30xrIZcVzSU7336g/viewform';
 
 import "../index.css";
 import "../styles/animations.css";
 import { Image } from 'astro:assets';
 import Analytics from '@vercel/analytics/astro';
 import SponsorBar from '../components/SponsorBar.astro';
+import SummerCampPopup from '../components/SummerCampPopup.astro';
 import sponsorsData from '../data/sponsors.json';
 import { Head } from 'astro-capo';
 import '@fontsource/dm-sans';
@@ -150,7 +152,12 @@ import keystoneLogo from '../../public/keystonelogo.png';
 					<!-- moon icon -->
 					<i class="bi bi-moon swap-on text-lg sm:text-2xl" aria-hidden="true"></i>
 				</label>
-				<a href="/#contact" class="btn btn-primary btn-sm sm:btn-md text-xs sm:text-sm">
+				<a
+					href={membershipFormUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="btn btn-primary btn-sm sm:btn-md text-xs sm:text-sm"
+				>
 					<span class="hidden sm:inline">Join Us</span>
 					<span class="sm:hidden">Join</span>
 				</a>
@@ -175,6 +182,8 @@ import keystoneLogo from '../../public/keystonelogo.png';
 		</main>
 
 		<Analytics />
+
+		<SummerCampPopup />
 
 		<!-- Footer -->
 		<footer class="bg-neutral text-neutral-content">
@@ -219,7 +228,16 @@ import keystoneLogo from '../../public/keystonelogo.png';
 						<ul class="space-y-2">
 							<li><a href="/#team" class="text-sm text-neutral-content/80 hover:text-primary transition-colors">Meet the Team</a></li>
 							<li><a href="/partners" class="text-sm text-neutral-content/80 hover:text-primary transition-colors">Partners</a></li>
-							<li><a href="/#contact" class="text-sm text-neutral-content/80 hover:text-primary transition-colors">Join Us</a></li>
+							<li>
+								<a
+									href={membershipFormUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="text-sm text-neutral-content/80 hover:text-primary transition-colors"
+								>
+									Join Us
+								</a>
+							</li>
 						</ul>
 					</div>
 

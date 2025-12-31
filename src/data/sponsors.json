@@ -89,6 +89,14 @@
     "padding": "2"
   },
   {
+    "name": "Chester County Community Foundation",
+    "logo": "/sponsors/cccf.png",
+    "website": "https://www.chescocf.org/",
+    "description": "Supporting local nonprofits and community projects",
+    "bg": "white",
+    "padding": "3"
+  },
+  {
     "name": "Comcast",
     "logo": "/sponsors/comcast.svg",
     "website": "https://comcast.com",

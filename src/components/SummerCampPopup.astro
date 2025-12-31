@@ -28,12 +28,12 @@ import newLogoBlack from '../../public/new_logo_black.png';
 				</div>
 				<!-- Text Content -->
 				<div class="text-center md:text-left flex-1">
-					<h2 class="text-3xl md:text-4xl font-bold text-base-content mb-2">🏕️ Summer Camp 2025!</h2>
-					<p class="text-lg text-base-content/70">Join us for a summer of fun, learning, and robotics!</p>
-					<!-- Deadline Notice -->
-					<div class="mt-3 p-3 bg-warning/10 border border-warning/20 rounded-lg">
-						<p class="text-sm font-semibold text-warning flex items-center justify-center md:justify-start">
-							Registration Deadline: August 9th, 2025
+					<h2 class="text-3xl md:text-4xl font-bold text-base-content mb-2">🏕️ Summer Camp 2026 Interest</h2>
+					<p class="text-lg text-base-content/70">Be the first to hear when registration opens for next summer.</p>
+					<!-- Interest Notice -->
+					<div class="mt-3 p-3 bg-secondary/10 border border-secondary/20 rounded-lg">
+						<p class="text-sm font-semibold text-secondary flex items-center justify-center md:justify-start">
+							Let us know you're planning to join us in 2026.
 						</p>
 					</div>
 				</div>
@@ -47,54 +47,34 @@ import newLogoBlack from '../../public/new_logo_black.png';
 				<p class="text-base-content/80 text-center mb-4">
 					🤖 <strong>Discover the exciting world of robotics</strong> with hands-on activities, team challenges, and STEM learning!
 				</p>
-				<div class="bg-base-200 rounded-xl p-4 mb-4">
-					<h3 class="text-xl font-semibold mb-3 text-center">What You'll Experience:</h3>
+				<div class="bg-base-200 rounded-xl p-4">
+					<h3 class="text-xl font-semibold mb-3 text-center">Why share your interest?</h3>
 					<ul class="list-none space-y-2">
 						<li class="flex items-center">
-							<span class="text-primary mr-2">🔧</span>
-							Build and program your own robot
+							<span class="text-primary mr-2">📬</span>
+							Receive early registration updates and reminders
 						</li>
 						<li class="flex items-center">
-							<span class="text-primary mr-2">👥</span>
-							Work in teams with experienced mentors
+							<span class="text-primary mr-2">🗓️</span>
+							Help us plan session sizes and scheduling
 						</li>
 						<li class="flex items-center">
-							<span class="text-primary mr-2">🏆</span>
-							Compete in fun robotics challenges
-						</li>
-						<li class="flex items-center">
-							<span class="text-primary mr-2">🎓</span>
-							Learn valuable STEM skills
+							<span class="text-primary mr-2">🎁</span>
+							Unlock exclusive sneak peeks for next summer's activities
 						</li>
 					</ul>
-				</div>
-
-				<!-- Countdown Timer -->
-				<div class="text-center mb-4 p-4 bg-primary/5 rounded-xl border border-primary/20">
-					<p class="text-sm text-base-content/70 mb-2">Time remaining to register:</p>
-					<div id="countdown-timer" class="text-2xl font-bold text-primary">
-						Loading...
-					</div>
 				</div>
 			</div>
 
 			<!-- Action Buttons -->
 			<div class="flex flex-col sm:flex-row gap-3 justify-center">
 				<a 
-					href="https://tinyurl.com/10989camp" 
+					href="https://docs.google.com/forms/d/1qdwnVLdFZ_W9DJPAMDnNmmj99GNiGHPbJGHPRTg88I0/viewform" 
 					target="_blank" 
 					rel="noopener noreferrer"
 					class="btn btn-primary btn-lg flex-1 sm:flex-none">
-					<i class="bi bi-calendar-check mr-2"></i>
-					Register Now
-				</a>
-				<a 
-					href="https://docs.google.com/document/d/1Od6694jtXZ8jl5gfXD8Uf9qQAiCZYc1W4YL4YCEIJrw/edit?tab=t.0#heading=h.lwxt343wp2f8" 
-					target="_blank" 
-					rel="noopener noreferrer"
-					class="btn btn-outline btn-lg flex-1 sm:flex-none">
-					<i class="bi bi-file-text mr-2"></i>
-					Program Details
+					<i class="bi bi-envelope-open-heart mr-2"></i>
+					Express Interest
 				</a>
 			</div>
 
@@ -117,105 +97,67 @@ import newLogoBlack from '../../public/new_logo_black.png';
 </div>
 
 <script>
-	document.addEventListener('DOMContentLoaded', function() {
+	document.addEventListener('DOMContentLoaded', () => {
 		const popup = document.getElementById('summer-camp-popup');
+		if (!popup) {
+			return;
+		}
+
 		const closeBtn = document.getElementById('close-popup');
 		const remindLaterBtn = document.getElementById('remind-later');
 		const dontShowAgainBtn = document.getElementById('dont-show-again');
-		const countdownTimer = document.getElementById('countdown-timer');
+		const storagePrefix = 'summer-camp-2026';
+		const dontShowKey = `${storagePrefix}-dont-show`;
+		const remindLaterKey = `${storagePrefix}-remind-later`;
 
-		// Deadline: August 9th, 2025 at 11:59 PM
-		const deadline = new Date('2025-08-09T23:59:59').getTime();
+		if (localStorage.getItem(dontShowKey) === 'true') {
+			return;
+		}
 
-		// Countdown function
-		function updateCountdown() {
-			const now = new Date().getTime();
-			const timeLeft = deadline - now;
-
-			if (timeLeft > 0) {
-				const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-				const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-				const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-
-				if (days > 0) {
-					countdownTimer.textContent = `${days} days, ${hours} hours`;
-				} else if (hours > 0) {
-					countdownTimer.textContent = `${hours} hours, ${minutes} minutes`;
-				} else {
-					countdownTimer.textContent = `${minutes} minutes remaining`;
-				}
-			} else {
-				countdownTimer.textContent = 'Registration Closed';
-				countdownTimer.classList.add('text-error');
+		const remindLaterStored = localStorage.getItem(remindLaterKey);
+		if (remindLaterStored) {
+			const remindTimestamp = parseInt(remindLaterStored, 10);
+			if (!Number.isNaN(remindTimestamp) && Date.now() - remindTimestamp < 24 * 60 * 60 * 1000) {
+				return;
 			}
 		}
 
-		// Update countdown immediately and every minute
-		updateCountdown();
-		setInterval(updateCountdown, 60000);
+		const card = popup.querySelector('.bg-base-100');
 
-		// Check if popup should be shown
-		const dontShow = localStorage.getItem('summer-camp-dont-show');
-		const remindLater = localStorage.getItem('summer-camp-remind-later');
-		const currentTime = new Date().getTime();
-
-		// Don't show if user clicked "don't show again"
-		if (dontShow === 'true') {
-			return;
-		}
-
-		// Don't show if deadline has passed
-		if (currentTime > deadline) {
-			return;
-		}
-
-		// Don't show if "remind later" is active and hasn't expired (24 hours)
-		if (remindLater && currentTime - parseInt(remindLater) < 24 * 60 * 60 * 1000) {
-			return;
-		}
-
-		// Show popup after a short delay
-		setTimeout(() => {
-			showPopup();
-		}, 2000);
-
-		function showPopup() {
+		const showPopup = () => {
 			popup.classList.remove('opacity-0', 'pointer-events-none');
-			popup.querySelector('.bg-base-100').classList.remove('scale-95');
-			popup.querySelector('.bg-base-100').classList.add('scale-100');
-		}
+			card?.classList.remove('scale-95');
+			card?.classList.add('scale-100');
+		};
 
-		function hidePopup() {
+		const hidePopup = () => {
 			popup.classList.add('opacity-0', 'pointer-events-none');
-			popup.querySelector('.bg-base-100').classList.remove('scale-100');
-			popup.querySelector('.bg-base-100').classList.add('scale-95');
-		}
+			card?.classList.remove('scale-100');
+			card?.classList.add('scale-95');
+		};
 
-		// Close popup handlers
-		closeBtn.addEventListener('click', hidePopup);
-		
-		// Close when clicking outside the modal
-		popup.addEventListener('click', function(e) {
-			if (e.target === popup) {
+		setTimeout(showPopup, 2000);
+
+		closeBtn?.addEventListener('click', hidePopup);
+
+		popup.addEventListener('click', (event) => {
+			if (event.target === popup) {
 				hidePopup();
 			}
 		});
 
-		// Remind later (24 hours)
-		remindLaterBtn.addEventListener('click', function() {
-			localStorage.setItem('summer-camp-remind-later', currentTime.toString());
+		remindLaterBtn?.addEventListener('click', () => {
+			localStorage.setItem(remindLaterKey, Date.now().toString());
 			hidePopup();
 		});
 
-		// Don't show again
-		dontShowAgainBtn.addEventListener('click', function() {
-			localStorage.setItem('summer-camp-dont-show', 'true');
+		dontShowAgainBtn?.addEventListener('click', () => {
+			localStorage.setItem(dontShowKey, 'true');
 			hidePopup();
 		});
 
-		// Close with Escape key
-		document.addEventListener('keydown', function(e) {
-			if (e.key === 'Escape' && !popup.classList.contains('pointer-events-none')) {
+		document.addEventListener('keydown', (event) => {
+			if (event.key === 'Escape' && !popup.classList.contains('pointer-events-none')) {
 				hidePopup();
 			}
 		});

@@ -1,5 +1,6 @@
 ---
 // Contact component
+const membershipFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSc08W-5vNVMxpgvFpXAPsfIbfbVQDaQMu30xrIZcVzSU7336g/viewform';
 ---
 
 <section id="contact" class="py-20 bg-base-200">
@@ -8,13 +9,26 @@
             <h2 class="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h2>
             <p class="text-xl text-base-content/70 max-w-2xl mx-auto">
                 Ready to join our team? Support us and show interest by filling
-                out this form! Whether you have questions, want to collaborate,
-                or need more information about our programs, we're here to help.
-                We'll get back to you as soon as possible. For other questions,
-                you can also reach us at <a
+                out <a
+                    href={membershipFormUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-primary font-semibold underline-offset-4 hover:underline"
+                >our membership form</a>. Whether you have questions, want to
+                collaborate, or need more information about our programs, we're
+                here to help. We'll get back to you as soon as possible. For
+                other questions, you can also reach us at <a
                     href="mailto:admin@team10989.org"
                     class="text-primary hover:underline">admin@team10989.org</a>
             </p>
+            <div class="mt-6 flex justify-center">
+                <a
+                    href={membershipFormUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-primary btn-lg"
+                >Join the Team</a>
+            </div>
         </div>
 
         <div class="flex justify-center">
