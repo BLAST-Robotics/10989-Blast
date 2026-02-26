@@ -9,7 +9,7 @@
   {
     "date": "August 11-15, 2025",
     "title": "Mainline Robotics Summer Camp",
-    "description": "Successfully hosted our inaugural 5-day summer camp for grades 4-9, serving students with VEX IQ robotics, 3D printing, Python coding, and team challenges. Raised $2.5K and generated 300+ service hours from our team members.",
+    "description": "Successfully hosted our inaugural 5-day summer camp for grades 4-9, serving students with VEX IQ robotics, 3D printing, Python coding, and team challenges. Generated 300+ service hours from our team members and mentored 20 students.",
     "image": "/summercamp.png",
     "type": "card"
   },
@@ -25,7 +25,7 @@
   {
     "date": "July 2025",
     "title": "DoD STEM Grant Award",
-    "description": "Awarded a $6,300 DoD STEM Grant for the 2025-26 season, securing funding for our competition registration fees and supporting our inaugural competitive season.",
+    "description": "Awarded a DoD STEM Grant for the 2025-26 season, securing resources for our competition registration fees and supporting our inaugural competitive season.",
     "image": "/sponsors/dodstem.png",
     "type": "centered",
     "imagePadding": "p-4",
@@ -50,7 +50,7 @@
   {
     "date": "June 2025",
     "title": "Workshop Space Secured",
-    "description": "Secured our permanent workshop at 15 Waterloo Avenue, 2nd Floor from Eadeh Enterprises, valued at $48,000-$60,000 annually, provided at no cost for our first season. This dedicated space became our home for robot development and team operations.",
+    "description": "Secured our permanent workshop at 15 Waterloo Avenue, 2nd Floor from Eadeh Enterprises, provided at no cost for our first season. This dedicated space became our home for robot development and team operations.",
     "image": "/sponsors/eadeh-logo-white.png",
     "type": "centered",
     "imagePadding": "px-6",
@@ -80,8 +80,8 @@
   },
   {
     "date": "June 16, 2025",
-    "title": "GoFundMe Launch",
-    "description": "Launched our GoFundMe campaign to raise funds for equipment, travel, and competition expenses for our inaugural season.",
+    "title": "Community Campaign Launch",
+    "description": "Launched our community campaign to gather support for equipment, travel, and competition expenses for our inaugural season.",
     "image": "/journey/gofundme.png",
     "type": "card",
     "imageBackground": "bg-primary"
@@ -152,7 +152,7 @@
   {
     "date": "May 24, 2025",
     "title": "Comcast Commitment",
-    "description": "Received a $3000 commitment from Comcast, our first major sponsorship that provided crucial funding for our team's launch.",
+    "description": "Received a significant commitment from Comcast, our first major sponsorship that provided crucial resources for our team's launch.",
     "image": "/sponsors/comcast.svg",
     "type": "centered",
     "imageBackground": "bg-white",
