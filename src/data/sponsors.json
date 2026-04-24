@@ -41,14 +41,6 @@
     "padding": "2"
   },
   {
-    "name": "Vanguard",
-    "logo": "/sponsors/vanguard.png",
-    "website": "https://www.vanguard.com/",
-    "description": "Investment management company",
-    "bg": "white",
-    "padding": "3"
-  },
-  {
     "name": "TE Connectivity",
     "logo": "/sponsors/teconn.png",
     "website": "https://www.te.com/",
