@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, passthroughImageService } from 'astro/config';
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from '@astrojs/sitemap';
 
@@ -13,11 +13,16 @@ import compressor from 'astro-compressor';
 export default defineConfig({
   site: 'https://team10989.org',
   prefetch: true,
+  output: 'static',
+
+  image: {
+    service: passthroughImageService(),
+  },
 
   vite: {
-      plugins: [tailwindcss(), sitemap()],
+      plugins: [tailwindcss()],
     },
 
-  integrations: [partytown(), compressor()],
-  adapter: vercel(),
+  integrations: [sitemap(), partytown(), compressor()],
+  adapter: vercel({ imageService: false }),
 });

@@ -2,9 +2,11 @@
 // Features component
 ---
 
-<section id="features" class="py-20 bg-base-100">
-    <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
+<section id="features" class="py-20 bg-base-100 relative overflow-hidden">
+    <div class="gradient-mesh absolute inset-0 opacity-50 pointer-events-none"></div>
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <span class="badge badge-outline badge-primary uppercase tracking-wide mb-4">Activities</span>
             <h2 class="text-4xl md:text-5xl font-bold mb-4">What We Do</h2>
             <p class="text-xl text-base-content/70 max-w-2xl mx-auto">
                 Discover what makes Team 10989 Blast Robotics a competitive
@@ -12,116 +14,118 @@
             </p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Activity 1 -->
-            <div
-                class="card bg-base-200 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                <div class="card-body text-center">
-                    <div
-                        class="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                        <i class="bi bi-gear text-3xl text-primary" aria-hidden="true"></i>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <!-- Activity 1 - Featured (spans 2 cols) -->
+            <div class="md:col-span-2 lg:col-span-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="card glass-card hover-lift h-full">
+                    <div class="card-body text-center md:text-left md:flex-row md:items-center gap-6">
+                        <div class="mx-auto md:mx-0 w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="bi bi-gear text-3xl text-primary" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title justify-center md:justify-start text-2xl mb-2">
+                                Design & Build Robots
+                            </h3>
+                            <p class="text-base-content/70">
+                                Engineer and construct competitive robots using CAD
+                                design, machining, and advanced manufacturing
+                                techniques.
+                            </p>
+                        </div>
                     </div>
-                    <h3 class="card-title justify-center text-2xl mb-2">
-                        Design & Build Robots
-                    </h3>
-                    <p class="text-base-content/70">
-                        Engineer and construct competitive robots using CAD
-                        design, machining, and advanced manufacturing
-                        techniques.
-                    </p>
                 </div>
             </div>
 
             <!-- Activity 2 -->
-            <div
-                class="card bg-base-200 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                <div class="card-body text-center">
-                    <div
-                        class="mx-auto w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
-                        <i class="bi bi-code-slash text-3xl text-secondary" aria-hidden="true"></i>
+            <div data-aos="fade-up" data-aos-delay="200">
+                <div class="card glass-card hover-lift h-full">
+                    <div class="card-body text-center">
+                        <div class="mx-auto w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mb-4">
+                            <i class="bi bi-code-slash text-3xl text-secondary" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="card-title justify-center text-2xl mb-2">
+                            Programming & Controls
+                        </h3>
+                        <p class="text-base-content/70">
+                            Develop autonomous and teleoperated robot control
+                            systems using Java and advanced programming techniques.
+                        </p>
                     </div>
-                    <h3 class="card-title justify-center text-2xl mb-2">
-                        Programming & Controls
-                    </h3>
-                    <p class="text-base-content/70">
-                        Develop autonomous and teleoperated robot control
-                        systems using Java and advanced programming techniques.
-                    </p>
                 </div>
             </div>
 
             <!-- Activity 3 -->
-            <div
-                class="card bg-base-200 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                <div class="card-body text-center">
-                    <div
-                        class="mx-auto w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-4">
-                        <i class="bi bi-trophy text-3xl text-accent" aria-hidden="true"></i>
+            <div data-aos="fade-up" data-aos-delay="300">
+                <div class="card glass-card hover-lift h-full">
+                    <div class="card-body text-center">
+                        <div class="mx-auto w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mb-4">
+                            <i class="bi bi-trophy text-3xl text-accent" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="card-title justify-center text-2xl mb-2">
+                            Compete Globally
+                        </h3>
+                        <p class="text-base-content/70">
+                            Participate in regional and world championship
+                            competitions, showcasing our skills against top teams
+                            worldwide.
+                        </p>
                     </div>
-                    <h3 class="card-title justify-center text-2xl mb-2">
-                        Compete Globally
-                    </h3>
-                    <p class="text-base-content/70">
-                        Participate in regional and world championship
-                        competitions, showcasing our skills against top teams
-                        worldwide.
-                    </p>
                 </div>
             </div>
 
             <!-- Activity 4 -->
-            <div
-                class="card bg-base-200 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                <div class="card-body text-center">
-                    <div
-                        class="mx-auto w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mb-4">
-                        <i class="bi bi-people-fill text-3xl text-success" aria-hidden="true"></i>
+            <div data-aos="fade-up" data-aos-delay="100">
+                <div class="card glass-card hover-lift h-full">
+                    <div class="card-body text-center">
+                        <div class="mx-auto w-16 h-16 bg-success/20 rounded-full flex items-center justify-center mb-4">
+                            <i class="bi bi-people-fill text-3xl text-success" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="card-title justify-center text-2xl mb-2">
+                            Community Outreach
+                        </h3>
+                        <p class="text-base-content/70">
+                            Inspire STEM education through demonstrations,
+                            workshops, and mentoring younger students in our
+                            community.
+                        </p>
                     </div>
-                    <h3 class="card-title justify-center text-2xl mb-2">
-                        Community Outreach
-                    </h3>
-                    <p class="text-base-content/70">
-                        Inspire STEM education through demonstrations,
-                        workshops, and mentoring younger students in our
-                        community.
-                    </p>
                 </div>
             </div>
 
             <!-- Activity 5 -->
-            <div
-                class="card bg-base-200 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                <div class="card-body text-center">
-                    <div
-                        class="mx-auto w-16 h-16 bg-warning/10 rounded-full flex items-center justify-center mb-4">
-                        <i class="bi bi-graph-up text-3xl text-warning" aria-hidden="true"></i>
+            <div data-aos="fade-up" data-aos-delay="200">
+                <div class="card glass-card hover-lift h-full">
+                    <div class="card-body text-center">
+                        <div class="mx-auto w-16 h-16 bg-warning/20 rounded-full flex items-center justify-center mb-4">
+                            <i class="bi bi-graph-up text-3xl text-warning" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="card-title justify-center text-2xl mb-2">
+                            Skill Development
+                        </h3>
+                        <p class="text-base-content/70">
+                            Build technical, leadership, and teamwork skills through
+                            hands-on projects and collaborative problem solving.
+                        </p>
                     </div>
-                    <h3 class="card-title justify-center text-2xl mb-2">
-                        Skill Development
-                    </h3>
-                    <p class="text-base-content/70">
-                        Build technical, leadership, and teamwork skills through
-                        hands-on projects and collaborative problem solving.
-                    </p>
                 </div>
             </div>
 
             <!-- Activity 6 -->
-            <div
-                class="card bg-base-200 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                <div class="card-body text-center">
-                    <div
-                        class="mx-auto w-16 h-16 bg-info/10 rounded-full flex items-center justify-center mb-4">
-                        <i class="bi bi-star-fill text-3xl text-info" aria-hidden="true"></i>
+            <div data-aos="fade-up" data-aos-delay="300">
+                <div class="card glass-card hover-lift h-full">
+                    <div class="card-body text-center">
+                        <div class="mx-auto w-16 h-16 bg-info/20 rounded-full flex items-center justify-center mb-4">
+                            <i class="bi bi-star-fill text-3xl text-info" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="card-title justify-center text-2xl mb-2">
+                            Awards & Recognition
+                        </h3>
+                        <p class="text-base-content/70">
+                            Earn prestigious awards and recognition for excellence
+                            in engineering, innovation, and gracious
+                            professionalism.
+                        </p>
                     </div>
-                    <h3 class="card-title justify-center text-2xl mb-2">
-                        Awards & Recognition
-                    </h3>
-                    <p class="text-base-content/70">
-                        Earn prestigious awards and recognition for excellence
-                        in engineering, innovation, and gracious
-                        professionalism.
-                    </p>
                 </div>
             </div>
         </div>

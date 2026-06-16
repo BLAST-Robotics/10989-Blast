@@ -9,7 +9,7 @@ const sponsorsToDisplay = sponsorsData.length < minSponsors
   : sponsorsData;
 ---
 
-<div class="bg-base-200 border-b border-base-300 py-4 overflow-hidden">
+<div class="glass-card border-b border-base-300/20 py-4 overflow-hidden" data-aos="fade-in">
   <div class="relative">
     <div class="flex animate-scroll">
       <!-- Multiple sets of sponsors for better coverage on large screens -->
@@ -21,7 +21,7 @@ const sponsorsToDisplay = sponsorsData.length < minSponsors
                 href={sponsor.website} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                class="flex-shrink-0 group transition-all duration-300 hover:scale-105"
+                class="flex-shrink-0 group transition-all duration-300 hover:scale-110 hover:drop-shadow-[0_0_12px_hsl(var(--p)/0.3)]"
                 aria-label={`Visit ${sponsor.name} website`}
                 title={sponsor.description}
                 key={`set-${setIndex}-${index}`}
@@ -88,12 +88,12 @@ const sponsorsToDisplay = sponsorsData.length < minSponsors
   
   .overflow-hidden::before {
     left: 0;
-    background: linear-gradient(to right, rgb(229 231 235), transparent);
+    background: linear-gradient(to right, hsl(var(--b1) / 0.9), transparent);
   }
   
   .overflow-hidden::after {
     right: 0;
-    background: linear-gradient(to left, rgb(229 231 235), transparent);
+    background: linear-gradient(to left, hsl(var(--b1) / 0.9), transparent);
   }
 </style>
 

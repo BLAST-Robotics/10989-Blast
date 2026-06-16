@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://team10989.org/sitemap-index.xml

@@ -1,118 +1,107 @@
 ---
-import {
-	fetchCalendarEvents,
-	formatEventTimeRange,
-	CalendarEvent,
-} from '../utils/calendar';
-
-let events: CalendarEvent[] = [];
-
-if (import.meta.env.SSR) {
-	events = await fetchCalendarEvents();
-}
-
-const now = new Date();
-const upcoming = events
-	.filter((event) => {
-		const end = event.end ?? event.start;
-		return end.getTime() >= now.getTime();
-	})
-	.slice(0, 4);
-
-const [primaryEvent, ...secondaryEvents] = upcoming;
-
-const formatDateLabel = (date: Date) =>
-	date.toLocaleDateString(undefined, {
-		weekday: 'short',
-		month: 'short',
-		day: 'numeric',
-	});
+// Calendar Preview
 ---
 
-{upcoming.length ? (
-	<section
-		aria-labelledby="calendar-preview-heading"
-		class="calendar-preview"
-	>
-		<div class="preview-grid">
-			<div class="highlight-card" role="group" aria-label="Next upcoming event">
-				<p class="highlight-label">Next up</p>
-				<h3 id="calendar-preview-heading" class="highlight-title">
-					{primaryEvent.summary}
-				</h3>
-				<dl class="highlight-details">
-					<div>
-						<dt class="sr-only">Date</dt>
-						<dd>
-							<i class="bi bi-calendar-event"></i>
-							<span>{formatDateLabel(primaryEvent.start)}</span>
-						</dd>
-					</div>
-					<div>
-						<dt class="sr-only">Time</dt>
-						<dd>
-							<i class="bi bi-clock"></i>
-							<span>{formatEventTimeRange(primaryEvent)}</span>
-						</dd>
-					</div>
-					{primaryEvent.location && (
-						<div>
-							<dt class="sr-only">Location</dt>
-							<dd>
-								<i class="bi bi-geo-alt"></i>
-								<span>{primaryEvent.location}</span>
-							</dd>
-						</div>
-					)}
-				</dl>
-				{primaryEvent.description && (
-					<p class="highlight-description">
-						{primaryEvent.description}
-					</p>
-				)}
-				<a
-					href="#calendar"
-					class="highlight-action"
-				>
-					View full calendar
-					<i class="bi bi-arrow-right"></i>
-				</a>
-			</div>
+<div id="calendar-preview" class="calendar-preview"></div>
 
-			{secondaryEvents.length > 0 && (
-				<div class="compact-list" role="list" aria-label="Following events">
-					{secondaryEvents.map((event) => (
-						<article role="listitem" class="compact-event">
-							<header>
-								<p class="compact-date">{formatDateLabel(event.start)}</p>
-								<h4 class="compact-title">{event.summary}</h4>
-							</header>
-							<p class="compact-meta">
-								<i class="bi bi-clock"></i>
-								<span>{formatEventTimeRange(event)}</span>
-							</p>
-							{event.location && (
-								<p class="compact-meta">
-									<i class="bi bi-geo-alt"></i>
-									<span>{event.location}</span>
-								</p>
-							)}
-						</article>
-					))}
-				</div>
-			)}
-		</div>
-	</section>
-) : (
-	<section class="calendar-preview empty">
-		<div class="empty-state">
-			<i class="bi bi-calendar4-week"></i>
-			<p>No upcoming events scheduled this week.</p>
-		</div>
-	</section>
-)}
+<script is:inline>
+	(function() {
+		var root = document.getElementById('calendar-preview');
+		if (!root) return;
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', '/api/calendar', true);
+		xhr.onload = function() {
+			if (xhr.status !== 200) return;
+			var events, now, upcoming, primary, secondary, grid, card, label, title, dl, link, arrow, list, art, header, dp, ht, mp, mi, ms, lp, li, ls, i, e, empty, icon, msg, desc;
+			try { events = JSON.parse(xhr.responseText); } catch(e) { return; }
+			if (!events || !events.length) return;
+			now = new Date();
+			upcoming = events.filter(function(e) { return new Date(e.end || e.start).getTime() >= now.getTime(); }).sort(function(a,b) { return new Date(a.start).getTime() - new Date(b.start).getTime(); }).slice(0,4);
+			primary = upcoming[0];
+			secondary = upcoming.slice(1);
+			if (!primary) return;
 
-<style>
+			function fd(d) { return new Date(d).toLocaleDateString(undefined, {weekday:'short',month:'short',day:'numeric'}); }
+			function ft(e) {
+				if (e.allDay) return 'All day';
+				var s = new Date(e.start).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',timeZone:'America/New_York'});
+				if (!e.end) return s;
+				return s + ' \u2013 ' + new Date(e.end).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',timeZone:'America/New_York'});
+			}
+			function ad(dl,ic,t) {
+				var div = dl.appendChild(document.createElement('div'));
+				div.appendChild(document.createElement('dt')).className = 'sr-only';
+				var dd = div.appendChild(document.createElement('dd'));
+				var icn = dd.appendChild(document.createElement('i'));
+				icn.className = ic;
+				var sp = dd.appendChild(document.createElement('span'));
+				sp.textContent = t;
+			}
+
+			grid = root.appendChild(document.createElement('div'));
+			grid.className = 'preview-grid';
+			card = grid.appendChild(document.createElement('div'));
+			card.className = 'highlight-card';
+			card.setAttribute('role','group');
+			card.setAttribute('aria-label','Next upcoming event');
+			label = card.appendChild(document.createElement('p'));
+			label.className = 'highlight-label';
+			label.textContent = 'Next up';
+			title = card.appendChild(document.createElement('h3'));
+			title.className = 'highlight-title';
+			title.textContent = primary.summary;
+			dl = card.appendChild(document.createElement('dl'));
+			dl.className = 'highlight-details';
+			ad(dl,'bi bi-calendar-event',fd(primary.start));
+			ad(dl,'bi bi-clock',ft(primary));
+			if (primary.location) ad(dl,'bi bi-geo-alt',primary.location);
+			if (primary.description) { desc = card.appendChild(document.createElement('p')); desc.className = 'highlight-description'; desc.textContent = primary.description; }
+			link = card.appendChild(document.createElement('a'));
+			link.href = '#calendar';
+			link.className = 'highlight-action';
+			link.textContent = 'View full calendar';
+			arrow = link.appendChild(document.createElement('i'));
+			arrow.className = 'bi bi-arrow-right';
+
+			if (secondary.length) {
+				list = grid.appendChild(document.createElement('div'));
+				list.className = 'compact-list';
+				list.setAttribute('role','list');
+				list.setAttribute('aria-label','Following events');
+				for (i = 0; i < secondary.length; i++) {
+					e = secondary[i];
+					art = list.appendChild(document.createElement('article'));
+					art.setAttribute('role','listitem');
+					art.className = 'compact-event';
+					header = art.appendChild(document.createElement('header'));
+					dp = header.appendChild(document.createElement('p'));
+					dp.className = 'compact-date';
+					dp.textContent = fd(e.start);
+					ht = header.appendChild(document.createElement('h4'));
+					ht.className = 'compact-title';
+					ht.textContent = e.summary;
+					mp = art.appendChild(document.createElement('p'));
+					mp.className = 'compact-meta';
+					mi = mp.appendChild(document.createElement('i'));
+					mi.className = 'bi bi-clock';
+					ms = mp.appendChild(document.createElement('span'));
+					ms.textContent = ft(e);
+					if (e.location) {
+						lp = art.appendChild(document.createElement('p'));
+						lp.className = 'compact-meta';
+						li = lp.appendChild(document.createElement('i'));
+						li.className = 'bi bi-geo-alt';
+						ls = lp.appendChild(document.createElement('span'));
+						ls.textContent = e.location;
+					}
+				}
+			}
+		};
+		xhr.send();
+	})();
+</script>
+
+<style is:global>
 	.calendar-preview {
 		width: min(100%, 1000px);
 		margin: 0 auto;
@@ -129,8 +118,10 @@ const formatDateLabel = (date: Date) =>
 
 	.highlight-card {
 		grid-column: span 12;
-		background: transparent;
-		border: none;
+		background: hsl(var(--b1) / 0.4);
+		backdrop-filter: blur(16px);
+		-webkit-backdrop-filter: blur(16px);
+		border: 1px solid hsl(var(--bc) / 0.1);
 		border-radius: 1.5rem;
 		padding: clamp(1.5rem, 3vw, 2rem);
 		color: var(--base-content);
@@ -139,6 +130,13 @@ const formatDateLabel = (date: Date) =>
 		gap: 1rem;
 		position: relative;
 		overflow: hidden;
+		transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+	}
+
+	.highlight-card:hover {
+		transform: translateY(-4px) scale(1.01);
+		box-shadow: 0 20px 40px hsl(var(--p) / 0.15);
+		border-color: hsl(var(--p) / 0.3);
 	}
 
 	.highlight-card::after {
@@ -213,13 +211,21 @@ const formatDateLabel = (date: Date) =>
 	}
 
 	.compact-event {
-		background: transparent;
+		background: hsl(var(--b1) / 0.3);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
 		border-radius: 1rem;
 		padding: 1rem 1.1rem;
-		box-shadow: none;
-		border: none;
+		border: 1px solid hsl(var(--bc) / 0.08);
 		display: grid;
 		gap: 0.35rem;
+		transition: all 0.3s ease;
+	}
+
+	.compact-event:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 12px 25px hsl(var(--p) / 0.12);
+		border-color: hsl(var(--p) / 0.2);
 	}
 
 	.compact-event header {

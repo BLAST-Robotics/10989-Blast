@@ -1,9 +1,11 @@
 ---
 export interface Props {
 	title: string;
+	description?: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
+const metaDescription = description ?? 'Blast Robotics - Inspiring innovation through FIRST Robotics Competition | FRC Team 10989';
 const membershipFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSc08W-5vNVMxpgvFpXAPsfIbfbVQDaQMu30xrIZcVzSU7336g/viewform';
 
 import "../index.css";
@@ -36,32 +38,61 @@ import keystoneLogo from '../../public/keystonelogo.png';
 		<!-- Primary Meta Tags -->
 		<title>{title}</title>
 		<meta name="title" content={title} />
-		<meta name="description" content="Blast Robotics - Inspiring innovation through FIRST Robotics Competition" />
+		<meta name="description" content={metaDescription} />
 		<meta name="keywords" content="FIRST Robotics, FRC Team 10989, Blast Robotics, STEM education, robotics competition, Mainline Pennsylvania, Keystone STEM Alliance" />
 		<link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).href} />
 
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
-		<meta property="og:url" content={Astro.url} />
+		<meta property="og:url" content={new URL(Astro.url.pathname, Astro.site).href} />
 		<meta property="og:title" content={title} />
-		<meta property="og:description" content="Inspiring innovation through FIRST Robotics Competition." />
-		<meta property="og:image" content={new URL('/Blast Robotics-1-Logo Black Square.png', Astro.url).href} />
+		<meta property="og:description" content={metaDescription} />
+		<meta property="og:image" content={new URL('/Blast%20Robotics-1-Logo%20Black%20Square.png', Astro.site).href} />
+		<meta property="og:image:width" content="800" />
+		<meta property="og:image:height" content="800" />
 
 		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content={Astro.url} />
+		<meta property="twitter:url" content={new URL(Astro.url.pathname, Astro.site).href} />
 		<meta property="twitter:title" content={title} />
-		<meta property="twitter:description" content="Inspiring innovation through FIRST Robotics Competition." />
-		<meta property="twitter:image" content={new URL('/Blast Robotics-1-Logo Black Square.png', Astro.url).href} />
+		<meta property="twitter:description" content={metaDescription} />
+		<meta property="twitter:image" content={new URL('/Blast%20Robotics-1-Logo%20Black%20Square.png', Astro.site).href} />
 		
 		<!-- Preload critical images -->
-		<link rel="preload" as="image" href="/Blast Robotics-1-Logo Black Square.png" />
+		<link rel="preload" as="image" href="/Blast%20Robotics-1-Logo%20Black%20Square.png" />
 		{sponsorsData.slice(0, 4).map((sponsor) => (
 			<link rel="preload" as="image" href={sponsor.logo} />
 		))}
 		
 		<!-- Theme color for mobile browsers -->
 		<meta name="theme-color" content="#3b82f6" />
+
+		<!-- Structured Data -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Organization",
+				"name": "Blast Robotics",
+				"alternateName": "FRC Team 10989",
+				"url": "https://team10989.org",
+				"logo": "https://team10989.org/Blast%20Robotics-1-Logo%20Black%20Square.png",
+				"description": "FIRST Robotics Competition team serving Mainline Pennsylvania. Building the future through robotics, innovation, and teamwork.",
+				"email": "admin@team10989.org",
+				"parentOrganization": {
+					"@type": "Organization",
+					"name": "Keystone STEM & AI Alliance",
+					"url": "https://keystonestemai.org"
+				}
+			}
+		</script>
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "WebSite",
+				"name": "Blast Robotics",
+				"url": "https://team10989.org"
+			}
+		</script>
 		
 		<script is:inline>
 			// Theme detection and initialization - needs to run immediately to prevent flash
@@ -83,7 +114,7 @@ import keystoneLogo from '../../public/keystonelogo.png';
 						<li><a href="/">Home</a></li>
 						<li><a href="/about">About</a></li>
 						<li><a href="/journey">Journey</a></li>
-						<li><a href="/#features">Programs</a></li>
+						<li><a href="/programs">Programs</a></li>
 						<!-- <li><a href="/#team">Team</a></li> -->
 						<li><a href="/partners">Partners</a></li>
 						<li><a href="/#calendar">Calendar</a></li>
@@ -218,7 +249,7 @@ import keystoneLogo from '../../public/keystonelogo.png';
 							<li><a href="/" class="text-sm text-neutral-content/80 hover:text-primary transition-colors">Home</a></li>
 							<li><a href="/about" class="text-sm text-neutral-content/80 hover:text-primary transition-colors">About</a></li>
 							<li><a href="/journey" class="text-sm text-neutral-content/80 hover:text-primary transition-colors">Journey</a></li>
-							<li><a href="/#features" class="text-sm text-neutral-content/80 hover:text-primary transition-colors">Programs</a></li>
+							<li><a href="/programs" class="text-sm text-neutral-content/80 hover:text-primary transition-colors">Programs</a></li>
 						</ul>
 					</div>
 
@@ -329,7 +360,45 @@ import keystoneLogo from '../../public/keystonelogo.png';
 			});
 		</script>
 		
-<!-- Start of OpenWidget (www.openwidget.com) code -->
+		<!-- Scroll Animation Script (Intersection Observer) -->
+		<script is:inline>
+			(function() {
+				var aosMap = {
+					'fade-up':    { opacity: '0', transform: 'translateY(30px)' },
+					'fade-in':    { opacity: '0' },
+					'scale-in':   { opacity: '0', transform: 'scale(0.9)' },
+				};
+				var animated = document.querySelectorAll('[data-aos]');
+				if ('IntersectionObserver' in window) {
+					// Hide elements first (only if JS is available)
+					animated.forEach(function(el) {
+						var type = el.getAttribute('data-aos') || 'fade-up';
+						var style = aosMap[type] || aosMap['fade-up'];
+						el.style.opacity = style.opacity || '1';
+						if (style.transform) el.style.transform = style.transform;
+						el.style.transitionProperty = 'opacity, transform';
+						el.style.transitionTimingFunction = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+					});
+					var observer = new IntersectionObserver(function(entries) {
+						entries.forEach(function(entry) {
+							if (entry.isIntersecting) {
+								var delay = entry.target.getAttribute('data-aos-delay') || '0';
+								var duration = entry.target.getAttribute('data-aos-duration') || '600';
+								entry.target.style.transitionDuration = duration + 'ms';
+								entry.target.style.transitionDelay = delay + 'ms';
+								entry.target.classList.add('aos-animate');
+								observer.unobserve(entry.target);
+							}
+						});
+					}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+					animated.forEach(function(el) { observer.observe(el); });
+				} else {
+					animated.forEach(function(el) { el.classList.add('aos-animate'); });
+				}
+			})();
+		</script>
+
+		<!-- Start of OpenWidget (www.openwidget.com) code -->
 <script>
   window.__ow = window.__ow || {};
   window.__ow.organizationId = "993a24df-7bf0-4a33-8b9a-0efb3b8773d7";

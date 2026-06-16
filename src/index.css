@@ -28,12 +28,9 @@
   z-index: 2;
 }
 .parallax-bg {
-  will-change: transform;
-}
-/* Parallax background effect for main page */
-.parallax-bg {
   position: relative;
   overflow: hidden;
+  will-change: transform;
 }
 .parallax-bg > section.hero {
   background-attachment: fixed;

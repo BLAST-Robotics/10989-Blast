@@ -2,10 +2,11 @@
 // Stats component
 ---
 
-<section
-    class="py-20 bg-base-100 text-base-content">
-    <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
+<section class="py-20 bg-base-100 text-base-content relative overflow-hidden">
+    <div class="gradient-mesh absolute inset-0 opacity-30 pointer-events-none"></div>
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <span class="badge badge-outline badge-secondary uppercase tracking-wide mb-4">Impact</span>
             <h2 class="text-4xl md:text-5xl font-bold mb-4">
                 Our Achievements
             </h2>
@@ -15,10 +16,11 @@
             </p>
         </div>
 
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6" data-aos="fade-up" data-aos-delay="100">
             <!-- Stat 1 -->
-            <div class="text-center">
-                <div class="stat">
+            <div class="text-center glass-card rounded-2xl p-6 hover-lift">
+                <div class="stat px-0">
+                    <i class="bi bi-people-fill text-3xl text-primary/60 mb-2 inline-block" aria-hidden="true"></i>
                     <div class="stat-value text-4xl md:text-6xl font-bold mb-2 text-primary">
                         60+
                     </div>
@@ -32,8 +34,9 @@
             </div>
 
             <!-- Stat 2 -->
-            <div class="text-center">
-                <div class="stat">
+            <div class="text-center glass-card rounded-2xl p-6 hover-lift" data-aos-delay="200">
+                <div class="stat px-0">
+                    <i class="bi bi-eye-fill text-3xl text-secondary/60 mb-2 inline-block" aria-hidden="true"></i>
                     <div class="stat-value text-4xl md:text-6xl font-bold mb-2 text-secondary">
                         10K+
                     </div>
@@ -47,8 +50,9 @@
             </div>
 
             <!-- Stat 3 -->
-            <div class="text-center">
-                <div class="stat">
+            <div class="text-center glass-card rounded-2xl p-6 hover-lift" data-aos-delay="100">
+                <div class="stat px-0">
+                    <i class="bi bi-trophy-fill text-3xl text-primary/60 mb-2 inline-block" aria-hidden="true"></i>
                     <div class="stat-value text-4xl md:text-6xl font-bold mb-2 text-primary">
                         20+
                     </div>
@@ -56,13 +60,14 @@
                         Opportunities
                     </div>
                     <div class="stat-desc text-base-content/60 mt-2">
-                        Roles and Responisbilites provided
+                        Roles and Responsibilities provided
                     </div>
                 </div>
             </div>
             <!-- Stat 4 -->
-            <div class="text-center">
-                <div class="stat">
+            <div class="text-center glass-card rounded-2xl p-6 hover-lift" data-aos-delay="200">
+                <div class="stat px-0">
+                    <i class="bi bi-building-fill text-3xl text-secondary/60 mb-2 inline-block" aria-hidden="true"></i>
                     <div class="stat-value text-4xl md:text-6xl font-bold mb-2 text-secondary">
                         40+
                     </div>
@@ -76,19 +81,22 @@
             </div>
         </div>
 
-        <!-- Additional metrics -->
-        <div class="mt-16 grid md:grid-cols-3 gap-8">
-            <div class="text-center p-6 bg-base-200 rounded-2xl border border-base-300 hover:border-primary/30 hover:shadow-lg transition-all duration-300">
+        <!-- Additional metrics - bento style -->
+        <div class="mt-16 grid md:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="text-center p-6 glass-card rounded-2xl hover-lift">
+                <i class="bi bi-clock-history text-2xl text-primary/60 mb-2 inline-block" aria-hidden="true"></i>
                 <div class="text-3xl font-bold mb-2 text-primary">1000+</div>
                 <div class="text-base-content/70">
                     Volunteer Hours
                 </div>
             </div>
-            <div class="text-center p-6 bg-base-200 rounded-2xl border border-base-300 hover:border-secondary/30 hover:shadow-lg transition-all duration-300">
+            <div class="text-center p-6 glass-card rounded-2xl hover-lift">
+                <i class="bi bi-diagram-3 text-2xl text-secondary/60 mb-2 inline-block" aria-hidden="true"></i>
                 <div class="text-3xl font-bold mb-2 text-secondary">10 Teams</div>
                 <div class="text-base-content/70">Local Teams In Partnership</div>
             </div>
-            <div class="text-center p-6 bg-base-200 rounded-2xl border border-base-300 hover:border-primary/30 hover:shadow-lg transition-all duration-300">
+            <div class="text-center p-6 glass-card rounded-2xl hover-lift">
+                <i class="bi bi-heart-fill text-2xl text-primary/60 mb-2 inline-block" aria-hidden="true"></i>
                 <div class="text-3xl font-bold mb-2 text-primary">Community</div>
                 <div class="text-base-content/70">Focused Team Building</div>
             </div>

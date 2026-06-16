@@ -93,41 +93,4 @@ export const fetchCalendarEvents = async (): Promise<CalendarEvent[]> => {
 	}
 };
 
-export const getFirstUpcomingEvent = (events: CalendarEvent[]): CalendarEvent | undefined => {
-	const now = new Date();
-	return events.find((event) => event.start > now);
-};
 
-export const formatEventTimeRange = (event: CalendarEvent): string => {
-	if (event.allDay) {
-		return 'All day';
-	}
-
-	const start = event.start;
-	const end = event.end;
-
-	// Always display in EST (America/New_York)
-	const timeZone = 'America/New_York';
-
-	if (!end || start.getTime() === end.getTime()) {
-		return start.toLocaleTimeString('en-US', {
-			hour: 'numeric',
-			minute: '2-digit',
-			timeZone: timeZone,
-		});
-	}
-
-	const startStr = start.toLocaleTimeString('en-US', {
-		hour: 'numeric',
-		minute: '2-digit',
-		timeZone: timeZone,
-	});
-
-	const endStr = end.toLocaleTimeString('en-US', {
-		hour: 'numeric',
-		minute: '2-digit',
-		timeZone: timeZone,
-	});
-
-	return `${startStr} – ${endStr}`;
-};

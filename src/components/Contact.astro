@@ -3,9 +3,11 @@
 const membershipFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSc08W-5vNVMxpgvFpXAPsfIbfbVQDaQMu30xrIZcVzSU7336g/viewform';
 ---
 
-<section id="contact" class="py-20 bg-base-200">
-    <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
+<section id="contact" class="py-20 bg-base-200 relative overflow-hidden">
+    <div class="gradient-mesh absolute inset-0 opacity-30 pointer-events-none"></div>
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <span class="badge badge-outline badge-primary uppercase tracking-wide mb-4">Connect</span>
             <h2 class="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h2>
             <p class="text-xl text-base-content/70 max-w-2xl mx-auto">
                 Ready to join our team? Support us and show interest by filling
@@ -31,11 +33,11 @@ const membershipFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSc08W-5vNVMx
             </div>
         </div>
 
-        <div class="flex justify-center">
+        <div class="flex justify-center" data-aos="fade-up" data-aos-delay="100">
             <!-- Contact Information -->
             <div class="space-y-8 lg:w-2/3">
                 <!-- Contact Cards -->
-                <div class="card bg-base-100 shadow-xl">
+                <div class="card glass-card shadow-xl hover-lift">
                     <div class="card-body">
                         <h3 class="card-title text-2xl mb-6">
                             Contact Information
@@ -168,6 +170,19 @@ const membershipFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSc08W-5vNVMx
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Floating Social Icons -->
+        <div class="flex justify-center gap-4 mt-10" data-aos="fade-up" data-aos-delay="200">
+            <a href="https://instagram.com/10989blast" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-xl hover-lift text-primary" aria-label="Follow us on Instagram">
+                <i class="bi bi-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="mailto:admin@team10989.org" class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-xl hover-lift text-secondary" aria-label="Email us">
+                <i class="bi bi-envelope" aria-hidden="true"></i>
+            </a>
+            <a href="https://www.paypal.com/donate/?hosted_button_id=C4APA8EZM93MS" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-xl hover-lift text-accent" aria-label="Donate via PayPal">
+                <i class="bi bi-paypal" aria-hidden="true"></i>
+            </a>
         </div>
     </div>
 </section>

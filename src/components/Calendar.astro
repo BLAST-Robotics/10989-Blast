@@ -1,55 +1,8 @@
 ---
-import { fetchCalendarEvents, getFirstUpcomingEvent } from '../utils/calendar';
-
-const events = import.meta.env.SSR ? await fetchCalendarEvents() : [];
-console.log('SSR Events fetched:', events.length);
-
-// Test with hardcoded events if none fetched
-// All test events are 3:00 to 5:00 PM America/New_York
-function getNYDate(year, month, day, hour, minute) {
-	// month is 1-based for input, 0-based for JS
-	return new Date(Date.UTC(year, month - 1, day, hour + 4, minute)); // EST is UTC-5, EDT is UTC-4, so 3pm NY is 19:00 UTC (Nov is EST)
-}
-
-const testEvents = events.length > 0 ? events : [
-	{
-		start: getNYDate(2025, 11, 2, 15, 0), // Nov 2, 2025, 3:00 PM NY
-		end: getNYDate(2025, 11, 2, 17, 0),   // Nov 2, 2025, 5:00 PM NY
-		summary: 'Test Event 1',
-		description: 'This is a test event',
-		location: 'School',
-		allDay: false,
-	},
-	{
-		start: getNYDate(2025, 11, 3, 15, 0), // Nov 3, 2025, 3:00 PM NY
-		end: getNYDate(2025, 11, 3, 17, 0),   // Nov 3, 2025, 5:00 PM NY
-		summary: 'Test Event 2',
-		description: 'Another test event',
-		location: '',
-		allDay: false,
-	}
-];
-
-const eventsToUse = events.length > 0 ? events : testEvents;
-const now = new Date();
-const firstUpcoming = getFirstUpcomingEvent(eventsToUse);
-const initialSelectedDate = (firstUpcoming?.start ?? now).toISOString();
-
-const serializedEvents = JSON.stringify(
-	eventsToUse.map((event) => ({
-		start: event.start.toISOString(),
-		end: event.end ? event.end.toISOString() : null,
-		summary: event.summary,
-		description: event.description ?? '',
-		location: event.location ?? '',
-		allDay: event.allDay,
-	}))
-);
-console.log('Serialized events length:', serializedEvents.length);
-
 const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 ---
-<section class="py-16 sm:py-24 bg-transparent">
+<section class="py-16 sm:py-24 bg-transparent relative">
+    <div class="gradient-mesh absolute inset-0 opacity-20 pointer-events-none"></div>
 	<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="max-w-2xl mx-auto text-center">
 			<span class="badge badge-outline badge-primary uppercase tracking-wide">Schedule</span>
@@ -59,8 +12,8 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 			</p>
 		</div>
 
-		<div class="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)]" data-calendar>
-			<div class="rounded-3xl bg-transparent shadow-xl border border-base-200/60">
+		<div class="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)]" data-calendar data-aos="fade-up">
+			<div class="rounded-3xl glass-card shadow-xl">
 				<div class="p-6 sm:p-8 h-full flex flex-col">
 					<div class="flex items-center justify-between gap-4">
 						<button type="button" class="btn btn-ghost btn-sm btn-circle" data-calendar-prev aria-label="Previous month">
@@ -97,7 +50,7 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 				</div>
 			</div>
 
-			<div class="rounded-2xl shadow-xl bg-transparent">
+			<div class="rounded-2xl shadow-xl glass-card" data-aos="fade-up" data-aos-delay="100">
 				<div class="p-6 sm:p-8 h-full flex flex-col">
 					<div class="flex items-center justify-between">
 						<h3 class="text-xl font-semibold text-base-content">Week Agenda</h3>
@@ -118,14 +71,8 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 		</div>
 	</div>
 
-	<script type="application/json" data-calendar-events>
-		{serializedEvents}
-	</script>
-	<script type="application/json" data-calendar-config>
-		{JSON.stringify({ initialSelectedDate })}
-	</script>
 	<script type="module">
-		function initializeCalendar() {
+		async function initializeCalendar() {
 			console.log('Calendar script starting...');
 		const calendarRoot = document.querySelector('[data-calendar]');
 		if (!calendarRoot) {
@@ -133,31 +80,24 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 			return;
 		}
 
-		console.log('Calendar root found, parsing data...');
+		console.log('Calendar root found, fetching events...');
 
-		const parseJson = (element, fallback) => {
-			if (!element) return fallback;
-			const raw = element.textContent?.trim();
-			if (!raw) return fallback;
-			try {
-				return JSON.parse(raw);
-			} catch (error) {
-				console.warn('Unable to parse calendar data', error);
-				return fallback;
+		let eventData = [];
+
+		try {
+			const res = await fetch('/api/calendar');
+			if (res.ok) {
+				eventData = await res.json();
+				console.log('Fetched event count:', eventData.length);
+			} else {
+				console.warn('Calendar API returned:', res.status);
 			}
-		};
-
-		const eventsNode = calendarRoot.querySelector('script[data-calendar-events]');
-		const configNode = calendarRoot.querySelector('script[data-calendar-config]');
-
-		const eventData = parseJson(eventsNode, []);
-		const config = parseJson(configNode, {});
-		
-		console.log('Parsed eventData:', JSON.stringify(eventData, null, 2));
-		console.log('Parsed config:', JSON.stringify(config, null, 2));
+		} catch (error) {
+			console.warn('Failed to fetch calendar events:', error);
+		}
 
 		if (!eventData || eventData.length === 0) {
-			console.warn('No event data found or parsed. Calendar will not be fully functional.');
+			console.warn('No event data found. Calendar will show a loading state.');
 		}
 
 		const monthLabel = calendarRoot.querySelector('[data-calendar-month]');
@@ -206,23 +146,11 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 			}
 
 			let currentMonth = (() => {
-				if (config.initialSelectedDate) {
-					const init = new Date(config.initialSelectedDate);
-					if (!Number.isNaN(init.getTime())) {
-						return new Date(init.getFullYear(), init.getMonth(), 1);
-					}
-				}
 				const today = new Date();
 				return new Date(today.getFullYear(), today.getMonth(), 1);
 			})();
 
 			let selectedDateKey = (() => {
-				if (config.initialSelectedDate) {
-					const initial = new Date(config.initialSelectedDate);
-					if (!Number.isNaN(initial.getTime())) {
-						return formatKey(initial);
-					}
-				}
 				const today = new Date();
 				return formatKey(today);
 			})();
@@ -461,7 +389,7 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 		initializeCalendar();
 	</script>
 
-	<style>
+	<style is:global>
 		.calendar-day {
 			width: 46px;
 			height: 46px;
