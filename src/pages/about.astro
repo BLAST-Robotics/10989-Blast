@@ -344,87 +344,255 @@ import Layout from '../layouts/Layout.astro';
     }
   </style>
 
-  <!-- Team Leadership & Workshop -->
+   <!-- Team Leadership & Workshop -->
   <section class="py-20 bg-base-200">
     <div class="container mx-auto px-6">
-      <div class="grid lg:grid-cols-2 gap-12">
-        <!-- Leadership Section -->
-        <div>
-          <h2 class="text-4xl font-bold mb-6">Team Leadership</h2>
-          <div class="space-y-4">
-            <div class="p-4 bg-base-100 rounded-lg shadow">
-              <h3 class="font-bold text-lg mb-2">Student Leadership</h3>
-              <ul class="space-y-2 text-base-content/70">
-                <li><strong>Captain:</strong> Vivaan P.</li>
-                <li><strong>Director of Operations:</strong> Virat P.</li>
-                <li><strong>Vice Captain:</strong> Lemuel X.</li>
-              </ul>
-            </div>
-            <div class="p-4 bg-base-100 rounded-lg shadow">
-              <h3 class="font-bold text-lg mb-2">Adult Mentors</h3>
-              <p class="text-base-content/70 mb-2">
-                Experienced mentors guide our team across technical areas (Mechanical, Electrical, Programming) and operational areas (Outreach, Marketing, Safety).
-              </p>
-              <ul class="space-y-1 text-base-content/70">
-                <li><strong>FRC Judge & Head Mentor:</strong> Swapna Tallapaneni</li>
-                <li><strong>Administrative & Organization Manager:</strong> Murahari Ponugoti</li>
-                <li><strong>DoD Mentor:</strong> Joseph Omato</li>
-                <li><strong>Teacher Sponsor:</strong> Christopher Abbott</li>
-              </ul>
-            </div>
+
+      <!-- Section Header -->
+      <div class="text-center mb-12">
+        <span class="badge badge-outline badge-primary uppercase tracking-wide mb-4">Our People</span>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Team Leadership</h2>
+        <p class="text-xl text-base-content/70 max-w-2xl mx-auto">
+          Meet the students and mentors who drive Team 10989 forward every season.
+        </p>
+      </div>
+
+      <!-- Student Leadership Divider -->
+      <div class="flex items-center gap-4 mb-8">
+        <div class="flex-1 h-px bg-base-content/10"></div>
+        <span class="badge badge-outline badge-primary uppercase tracking-wide text-sm px-4 py-3 whitespace-nowrap">
+          <i class="bi bi-star-fill mr-1"></i> Student Leadership
+        </span>
+        <div class="flex-1 h-px bg-base-content/10"></div>
+      </div>
+
+      <!-- Student Leadership Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-14">
+
+        <div class="flex items-center gap-4 p-4 bg-base-100 rounded-xl border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-300">
+          <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+            <i class="bi bi-award-fill text-primary text-xl"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-primary mb-0.5">Captain</p>
+            <p class="font-bold text-base-content text-lg">Vivaan P.</p>
           </div>
         </div>
 
-        <!-- Workshop Hours -->
-        <div>
-          <h2 class="text-4xl font-bold mb-6">Workshop Hours</h2>
-          <div class="card bg-base-100 shadow-xl">
-            <div class="card-body">
-              <div class="flex items-center gap-3 mb-4">
-                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                  </svg>
-                </div>
-                <h3 class="text-xl font-bold">15 Waterloo Avenue, 2nd Floor</h3>
+        <div class="flex items-center gap-4 p-4 bg-base-100 rounded-xl border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-300">
+          <div class="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center flex-shrink-0">
+            <i class="bi bi-shield-fill text-secondary text-xl"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-secondary mb-0.5">Vice Captain</p>
+            <p class="font-bold text-base-content text-lg">Virat P.</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 p-4 bg-base-100 rounded-xl border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-300">
+          <div class="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center flex-shrink-0">
+            <i class="bi bi-briefcase-fill text-accent text-xl"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-accent mb-0.5">Director of Operations</p>
+            <p class="font-bold text-base-content text-lg">Mayon S.</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 p-4 bg-base-100 rounded-xl border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-300">
+          <div class="w-12 h-12 bg-warning/20 rounded-full flex items-center justify-center flex-shrink-0">
+            <i class="bi bi-tools text-warning text-xl"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-warning mb-0.5">Mechanical Lead</p>
+            <p class="font-bold text-base-content text-lg">Lemuel X.</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 p-4 bg-base-100 rounded-xl border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-300">
+          <div class="w-12 h-12 bg-info/20 rounded-full flex items-center justify-center flex-shrink-0">
+            <i class="bi bi-lightning-charge-fill text-info text-xl"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-info mb-0.5">Electrical Lead</p>
+            <p class="font-bold text-base-content text-lg">Anabel S.</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 p-4 bg-base-100 rounded-xl border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-300">
+          <div class="w-12 h-12 bg-success/20 rounded-full flex items-center justify-center flex-shrink-0">
+            <i class="bi bi-camera-fill text-success text-xl"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-success mb-0.5">Media Lead</p>
+            <p class="font-bold text-base-content text-lg">Priyanka P.</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 p-4 bg-base-100 rounded-xl border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-300">
+          <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+            <i class="bi bi-file-earmark-text-fill text-primary text-xl"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-primary mb-0.5">Documentation Lead</p>
+            <p class="font-bold text-base-content text-lg">Mayon S.</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 p-4 bg-base-100 rounded-xl border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-300">
+          <div class="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center flex-shrink-0">
+            <i class="bi bi-graph-up-arrow text-secondary text-xl"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-secondary mb-0.5">Strategy Lead</p>
+            <p class="font-bold text-base-content text-lg">Vinay G.</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 p-4 bg-base-100 rounded-xl border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-300">
+          <div class="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center flex-shrink-0">
+            <i class="bi bi-binoculars-fill text-accent text-xl"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-accent mb-0.5">Scout Lead</p>
+            <p class="font-bold text-base-content text-lg">Adarsh M.</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 p-4 bg-base-100 rounded-xl border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-300">
+          <div class="w-12 h-12 bg-warning/20 rounded-full flex items-center justify-center flex-shrink-0">
+            <i class="bi bi-compass-fill text-warning text-xl"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-warning mb-0.5">Venturing Crew President</p>
+            <p class="font-bold text-base-content text-lg">Anabel S.</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 p-4 bg-base-100 rounded-xl border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-300">
+          <div class="w-12 h-12 bg-info/20 rounded-full flex items-center justify-center flex-shrink-0">
+            <i class="bi bi-compass text-info text-xl"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-info mb-0.5">Venturing Crew Vice President</p>
+            <p class="font-bold text-base-content text-lg">Mayon S.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Adult Mentors Divider -->
+      <div class="flex items-center gap-4 mb-8">
+        <div class="flex-1 h-px bg-base-content/10"></div>
+        <span class="badge badge-outline badge-secondary uppercase tracking-wide text-sm px-4 py-3 whitespace-nowrap">
+          <i class="bi bi-person-badge-fill mr-1"></i> Adult Mentors
+        </span>
+        <div class="flex-1 h-px bg-base-content/10"></div>
+      </div>
+
+      <!-- Adult Mentors Grid -->
+      <div class="grid md:grid-cols-2 gap-5 mb-14">
+
+        <div class="flex items-center gap-5 p-5 bg-base-100 rounded-xl border-l-4 border-secondary hover:shadow-lg transition-all duration-300">
+          <div class="w-14 h-14 bg-secondary/20 rounded-full flex items-center justify-center flex-shrink-0">
+            <i class="bi bi-wrench-adjustable-circle-fill text-secondary text-2xl"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-secondary mb-0.5">Technical & Design Mentor</p>
+            <p class="font-bold text-base-content text-xl">Glenn Baker</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-5 p-5 bg-base-100 rounded-xl border-l-4 border-secondary hover:shadow-lg transition-all duration-300">
+          <div class="w-14 h-14 bg-secondary/20 rounded-full flex items-center justify-center flex-shrink-0">
+            <i class="bi bi-hdd-network-fill text-secondary text-2xl"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-secondary mb-0.5">IT Analyst & Mentor</p>
+            <p class="font-bold text-base-content text-xl">Yeshwanth Poluju</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-5 p-5 bg-base-100 rounded-xl border-l-4 border-secondary hover:shadow-lg transition-all duration-300">
+          <div class="w-14 h-14 bg-secondary/20 rounded-full flex items-center justify-center flex-shrink-0">
+            <i class="bi bi-robot text-secondary text-2xl"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-secondary mb-0.5">Robotics Volunteer</p>
+            <p class="font-bold text-base-content text-xl">Mridul S.</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-5 p-5 bg-base-100 rounded-xl border-l-4 border-secondary hover:shadow-lg transition-all duration-300">
+          <div class="w-14 h-14 bg-secondary/20 rounded-full flex items-center justify-center flex-shrink-0">
+            <i class="bi bi-robot text-secondary text-2xl"></i>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-secondary mb-0.5">Robotics Volunteer</p>
+            <p class="font-bold text-base-content text-xl">Yeol Seong</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Workshop Hours (preserved exactly) -->
+      <div class="max-w-2xl mx-auto">
+        <h2 class="text-4xl font-bold mb-6 text-center">Workshop Hours</h2>
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                </svg>
               </div>
-              <p class="text-base-content/70 mb-4">
-                Our workshop is generously provided by Eadeh Enterprises at no cost for our first season, an incredible contribution.
+              <h3 class="text-xl font-bold">15 Waterloo Avenue, 2nd Floor</h3>
+            </div>
+            <p class="text-base-content/70 mb-4">
+              Our workshop is generously provided by Eadeh Enterprises at no cost for our first season, an incredible contribution.
+            </p>
+            <div class="divider"></div>
+            <h4 class="font-bold mb-3">Regular Meeting Schedule:</h4>
+            <div class="space-y-2">
+              <div class="flex justify-between items-center p-2 bg-base-200 rounded">
+                <span class="font-semibold">Tuesday</span>
+                <span class="text-base-content/70">4:00 PM – 9:00 PM</span>
+              </div>
+              <div class="flex justify-between items-center p-2 bg-base-200 rounded">
+                <span class="font-semibold">Friday</span>
+                <span class="text-base-content/70">4:00 PM – 9:00 PM</span>
+              </div>
+            </div>
+            <div class="mt-4 p-3 bg-success/10 border border-success/20 rounded-lg">
+              <p class="text-sm text-base-content/90 flex items-start gap-2">
+                <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                </svg>
+                <span>
+                  <strong>Safety First:</strong> All supervising adults are background checked and registered with FIRST. CPR & First Aid certified staff on-site with daily safety briefings.
+                </span>
               </p>
-              <div class="divider"></div>
-              <h4 class="font-bold mb-3">Regular Meeting Schedule:</h4>
-              <div class="space-y-2">
-                <div class="flex justify-between items-center p-2 bg-base-200 rounded">
-                  <span class="font-semibold">Tuesday</span>
-                  <span class="text-base-content/70">4:00 PM – 9:00 PM</span>
-                </div>
-                <div class="flex justify-between items-center p-2 bg-base-200 rounded">
-                  <span class="font-semibold">Friday</span>
-                  <span class="text-base-content/70">4:00 PM – 9:00 PM</span>
-                </div>
-              </div>
-              <div class="mt-4 p-3 bg-success/10 border border-success/20 rounded-lg">
-                <p class="text-sm text-base-content/90 flex items-start gap-2">
-                  <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                  </svg>
-                  <span>
-                    <strong>Safety First:</strong> All supervising adults are background checked and registered with FIRST. CPR & First Aid certified staff on-site with daily safety briefings.
-                  </span>
-                </p>
-              </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </section>
-
+        
   <!-- Organization Information -->
   <section class="py-20 bg-base-100">
     <div class="container mx-auto px-6">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-4xl md:text-5xl font-bold mb-8">Organization</h2>
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Organization</h2>
+        <p class="text-xl text-base-content/70 max-w-2xl mx-auto">
+          The official organizations and charters that support and empower Team 10989.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+
+        <!-- Card 1: Keystone STEM Alliance (existing) -->
         <div class="card bg-primary/5 border border-primary/20 shadow-xl">
           <div class="card-body">
             <div class="flex items-center justify-center mb-6">
@@ -434,25 +602,25 @@ import Layout from '../layouts/Layout.astro';
                 </svg>
               </div>
             </div>
-            <h3 class="text-2xl font-bold mb-4 text-primary">Officially Chartered Team</h3>
+            <h3 class="text-2xl font-bold mb-4 text-primary text-center">Officially Chartered Team</h3>
             <p class="text-lg text-base-content/80 leading-relaxed">
-              Blast Robotics Team 10989 is officially chartered by <strong>Keystone STEM Alliance Inc.</strong>, 
-              a nonprofit organization dedicated to advancing STEM education and robotics programs throughout Pennsylvania. 
-              This charter ensures our commitment to educational excellence, community engagement, and the development 
+              Blast Robotics Team 10989 is officially chartered by <strong>Keystone STEM Alliance Inc.</strong>,
+              a nonprofit organization dedicated to advancing STEM education and robotics programs throughout Pennsylvania.
+              This charter ensures our commitment to educational excellence, community engagement, and the development
               of future STEM leaders.
             </p>
             <div class="mt-6 p-4 bg-base-200 rounded-lg">
               <p class="text-sm text-base-content/70 mb-3">
-                <strong>Keystone STEM Alliance Inc.</strong> provides organizational support, mentorship, and resources 
-                to help teams like ours thrive in the FIRST Robotics Competition while making a meaningful impact 
+                <strong>Keystone STEM Alliance Inc.</strong> provides organizational support, mentorship, and resources
+                to help teams like ours thrive in the FIRST Robotics Competition while making a meaningful impact
                 in our local communities.
               </p>
               <p class="text-sm text-base-content/70">
-                For more information about our chartered organization, including government and organizational details 
-                for donations or company partnerships, visit 
-                <a 
-                  href="https://keystonestemai.org" 
-                  target="_blank" 
+                For more information about our chartered organization, including government and organizational details
+                for donations or company partnerships, visit
+                <a
+                  href="https://keystonestemai.org"
+                  target="_blank"
                   rel="noopener noreferrer"
                   class="text-primary hover:underline font-semibold">
                   keystonestemai.org
@@ -461,10 +629,43 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </div>
         </div>
+
+        <!-- Card 2: Venturing Crew 0181 (new) -->
+        <div class="card bg-secondary/5 border border-secondary/20 shadow-xl">
+          <div class="card-body">
+            <div class="flex items-center justify-center mb-6">
+              <div class="w-20 h-20 bg-secondary/10 rounded-full flex items-center justify-center">
+                <i class="bi bi-compass-fill text-secondary text-4xl"></i>
+              </div>
+            </div>
+            <h3 class="text-2xl font-bold mb-4 text-secondary text-center">Officially Chartered Venturing Crew 0181 Program</h3>
+            <p class="text-lg text-base-content/80 leading-relaxed">
+              Blast Robotics Team 10989 is proud to host <strong>Venturing Crew 0181</strong>, an officially chartered
+              program under Scouting America. Designed for co-ed youth ages 14–20, this program emphasizes high adventure,
+              community service, and hands-on leadership development. Our charter ensures that our members build character
+              and real-world skills in a safe, supportive, and highly collaborative environment.
+            </p>
+            <div class="mt-6 p-4 bg-base-200 rounded-lg">
+              <p class="text-sm text-base-content/70 mb-3">
+                Through this partnership with Scouting America, Venturing Crew 0181 leverages unique outdoor experiences,
+                advanced STEM initiatives, and dedicated adult mentorship to empower young leaders to guide their own
+                adventures and drive meaningful local impact.
+              </p>
+              <p class="text-sm text-base-content/70">
+                For more information about our Venturing Crew, chartering details, or how to join, contact us at
+                                <a
+                  href="mailto:admin@team10989.org"
+                  class="text-secondary hover:underline font-semibold">
+                  admin@team10989.org
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
-
   <!-- Call to Action --><section class="py-20 bg-gradient-to-r from-primary to-secondary text-primary-content">
     <div class="container mx-auto px-6 text-center">
       <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready to Join Our Team?</h2>
