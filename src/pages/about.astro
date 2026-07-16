@@ -599,7 +599,7 @@ import Layout from '../layouts/Layout.astro';
               </div>
             </div>
             <p class="text-base-content/75 leading-relaxed text-sm">
-              Team 10989 proudly hosts <strong class="text-base-content">Venturing Crew 0181</strong>, an officially chartered Scouting America program for co-ed youth ages 14–20. Focused on high adventure, community service, and leadership development — building real-world character in a safe, collaborative environment.
+              Team 10989 proudly hosts <strong class="text-base-content">Venturing Crew 0181</strong>, an officially chartered Scouting America program for co-ed youth ages 14&ndash;20. Focused on high adventure, community service, and leadership development &mdash; building real-world character in a safe, collaborative environment.
             </p>
             <a href="mailto:admin@team10989.org"
               class="inline-flex items-center gap-2 text-secondary font-semibold text-sm hover:underline mt-auto">
@@ -640,7 +640,7 @@ import Layout from '../layouts/Layout.astro';
               </div>
             </div>
             <p class="text-base-content/70 text-sm leading-relaxed">
-              Our workshop is generously provided by <strong class="text-base-content">Eadeh Enterprises</strong> at no cost for our first season — an incredible contribution to the team.
+              Our workshop is generously provided by <strong class="text-base-content">Eadeh Enterprises</strong> at no cost for our first season &mdash; an incredible contribution to the team.
             </p>
             <div class="divider my-0"></div>
             <div>
@@ -653,7 +653,7 @@ import Layout from '../layouts/Layout.astro';
                     </div>
                     <span class="font-semibold">Monday</span>
                   </div>
-                  <span class="text-base-content/70 text-sm font-mono">2:00 PM – 7:00 PM</span>
+                  <span class="text-base-content/70 text-sm font-mono">2:00 PM &ndash; 7:00 PM</span>
                 </div>
                 <div class="flex items-center justify-between p-3 bg-base-200 rounded-xl border border-base-300">
                   <div class="flex items-center gap-3">
@@ -662,7 +662,7 @@ import Layout from '../layouts/Layout.astro';
                     </div>
                     <span class="font-semibold">Friday</span>
                   </div>
-                  <span class="text-base-content/70 text-sm font-mono">2:00 PM – 7:00 PM</span>
+                  <span class="text-base-content/70 text-sm font-mono">2:00 PM &ndash; 7:00 PM</span>
                 </div>
               </div>
             </div>
@@ -715,7 +715,7 @@ import Layout from '../layouts/Layout.astro';
         upcoming = events
           .filter(function(ev) { return new Date(ev.end || ev.start).getTime() >= now.getTime(); })
           .sort(function(a,b) { return new Date(a.start) - new Date(b.start); })
-          .slice(0, 4);
+          .slice(0, 3);
         if (!upcoming.length) {
           root.innerHTML = '<p style="color:hsl(var(--bc)/0.5);font-size:0.875rem;font-style:italic;">No upcoming events.</p>';
           return;
@@ -727,14 +727,22 @@ import Layout from '../layouts/Layout.astro';
           return ev.end ? s + ' \u2013 ' + new Date(ev.end).toLocaleTimeString('en-US', {hour:'numeric', minute:'2-digit', timeZone:'America/New_York'}) : s;
         }
         var calUrl = 'https://calendar.google.com/calendar/u/0?cid=YWRtaW5AdGVhbTEwOTg5Lm9yZw';
+        var accents = ['hsl(var(--p))', 'hsl(var(--s))', 'hsl(var(--a))'];
         var html = '<div class="about-cal-list">';
         for (i = 0; i < upcoming.length; i++) {
           e = upcoming[i];
-          html += '<a href="' + calUrl + '" target="_blank" rel="noopener noreferrer" class="about-cal-event">';
-          html += '<div class="about-cal-date">' + fd(e.start) + '</div>';
-          html += '<div class="about-cal-title">' + e.summary + '</div>';
-          html += '<div class="about-cal-meta"><i class="bi bi-clock"></i><span>' + ft(e) + '</span></div>';
-          if (e.location) html += '<div class="about-cal-meta"><i class="bi bi-geo-alt"></i><span>' + e.location + '</span></div>';
+          var loc = '';
+          if (e.location) {
+            loc = (e.location.indexOf('http') === 0 || e.location.indexOf('zoom') !== -1 || e.location.indexOf('meet') !== -1)
+              ? 'Online' : e.location;
+          }
+          html += '<a href="' + calUrl + '" target="_blank" rel="noopener noreferrer" class="about-cal-card" style="border-left-color:' + accents[i % 3] + '">';
+          html += '<div class="about-cal-card-date">' + fd(e.start) + '</div>';
+          html += '<div class="about-cal-card-title">' + e.summary + '</div>';
+          html += '<div class="about-cal-card-footer">';
+          html += '<span class="about-cal-chip"><i class="bi bi-clock"></i>' + ft(e) + '</span>';
+          if (loc) html += '<span class="about-cal-chip"><i class="bi bi-geo-alt"></i>' + loc + '</span>';
+          html += '</div>';
           html += '</a>';
         }
         html += '</div>';
@@ -749,43 +757,55 @@ import Layout from '../layouts/Layout.astro';
     .about-cal-list {
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
-      margin-bottom: 1rem;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
     }
-    .about-cal-event {
-      display: grid;
-      gap: 0.25rem;
+    .about-cal-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
       background: hsl(var(--b2));
       border: 1px solid hsl(var(--bc) / 0.08);
+      border-left: 4px solid hsl(var(--p));
       border-radius: 0.875rem;
-      padding: 0.9rem 1rem;
+      padding: 1rem 1.1rem;
       text-decoration: none;
-      transition: all 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .about-cal-event:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px hsl(var(--p) / 0.1);
-      border-color: hsl(var(--p) / 0.2);
+    .about-cal-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px hsl(var(--p) / 0.12);
     }
-    .about-cal-date {
-      font-size: 0.78rem;
-      font-weight: 600;
+    .about-cal-card-date {
+      font-size: 0.72rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: hsl(var(--bc) / 0.55);
+      letter-spacing: 0.07em;
+      color: hsl(var(--bc) / 0.5);
     }
-    .about-cal-title {
+    .about-cal-card-title {
       font-size: 0.975rem;
       font-weight: 700;
       color: hsl(var(--bc));
-      line-height: 1.3;
+      line-height: 1.35;
     }
-    .about-cal-meta {
+    .about-cal-card-footer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.25rem;
+    }
+    .about-cal-chip {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      font-size: 0.82rem;
-      color: hsl(var(--bc) / 0.65);
+      gap: 0.3rem;
+      font-size: 0.78rem;
+      color: hsl(var(--bc) / 0.6);
+      background: hsl(var(--b3, var(--b1)) / 0.6);
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      border: 1px solid hsl(var(--bc) / 0.08);
+      white-space: nowrap;
     }
     .about-cal-link {
       display: inline-flex;
@@ -793,7 +813,7 @@ import Layout from '../layouts/Layout.astro';
       gap: 0.45rem;
       background: hsl(var(--s));
       color: hsl(var(--sc));
-      padding: 0.55rem 1.1rem;
+      padding: 0.6rem 1.25rem;
       border-radius: 9999px;
       font-size: 0.875rem;
       font-weight: 600;
@@ -802,7 +822,7 @@ import Layout from '../layouts/Layout.astro';
     }
     .about-cal-link:hover {
       transform: translateY(-2px);
-      opacity: 0.9;
+      opacity: 0.88;
     }
   </style>
 
