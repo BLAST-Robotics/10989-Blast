@@ -2,35 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Calendar from '../components/Calendar.astro';
 ---
-
 <Layout
-  title="Team Calendar | Blast Robotics"
-  description="View upcoming and past Blast Robotics events, meetings, practices, and outreach on our team calendar."
+title="Team Calendar | Blast Robotics"
+description="View upcoming Blast Robotics events, meetings, and practices."
 >
-  <section class="py-16 sm:py-24 bg-transparent relative">
-    <div class="gradient-mesh absolute inset-0 opacity-20 pointer-events-none"></div>
-
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-      <div class="max-w-2xl mx-auto text-center mb-8">
-        <span class="badge badge-outline badge-primary uppercase tracking-wide">Calendar</span>
-        <h1 class="mt-4 text-3xl sm:text-5xl font-bold text-base-content">Team Calendar</h1>
-        <p class="mt-3 text-base-content/70 text-base sm:text-lg">
-          Browse upcoming meetings, practices, outreach events, and important team dates.
-        </p>
-      </div>
-
-      <Calendar />
-
-      <div class="mt-8 flex justify-center">
-        <a
-          href="https://calendar.google.com/calendar/u/0/r?cid=YWRtaW5AdGVhbTEwOTg5Lm9yZw"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-primary btn-md sm:btn-lg rounded-full shadow-lg"
-        >
-          Add to your Google Calendar
-        </a>
-      </div>
-    </div>
-  </section>
+<Calendar />
 </Layout>
