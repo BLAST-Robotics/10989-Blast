@@ -13,7 +13,7 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
       </p>
     </div>
 
-    <div class="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)]" data-calendar data-aos="fade-up">
+    <div class="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,28rem)]" data-calendar data-aos="fade-up">
       <div class="rounded-3xl glass-card shadow-xl">
         <div class="p-6 sm:p-8 h-full flex flex-col">
           <div class="flex items-center justify-between gap-4">
@@ -78,7 +78,7 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
           <p class="mt-4 text-sm font-medium text-primary" data-calendar-day-label></p>
 
-          <div class="mt-6 space-y-4 overflow-y-auto max-h-[480px]" data-calendar-day-events aria-live="polite"></div>
+          <div class="mt-6 space-y-4 overflow-y-auto max-h-[520px]" data-calendar-day-events aria-live="polite"></div>
 
           <div class="mt-8 flex justify-center">
             <a
@@ -124,18 +124,8 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
       }
 
       const monthNames = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
       ];
 
       const events = eventData.map((event) => ({
@@ -155,9 +145,11 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
         eventMap[key].sort((a, b) => a.startDate.getTime() - b.startDate.getTime());
       }
 
-      const today = new Date();
-      let currentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-      let selectedDateKey = formatKey(today);
+      const nowLocal = new Date();
+      const todayKey = `${nowLocal.getFullYear()}-${String(nowLocal.getMonth() + 1).padStart(2, '0')}-${String(nowLocal.getDate()).padStart(2, '0')}`;
+
+      let currentMonth = new Date(nowLocal.getFullYear(), nowLocal.getMonth(), 1);
+      let selectedDateKey = todayKey;
 
       function formatKey(date) {
         const year = date.getFullYear();
@@ -172,19 +164,15 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
         if (haystack.includes('workshop') || haystack.includes('build') || haystack.includes('training')) {
           return { label: 'Workshop', slug: 'workshop', icon: 'bi-tools' };
         }
-
         if (haystack.includes('meeting') || haystack.includes('sync') || haystack.includes('standup')) {
           return { label: 'Meeting', slug: 'meeting', icon: 'bi-people' };
         }
-
         if (haystack.includes('outreach') || haystack.includes('community') || haystack.includes('demo') || haystack.includes('volunteer')) {
           return { label: 'Outreach', slug: 'outreach', icon: 'bi-megaphone' };
         }
-
-        if (haystack.includes('competition') || haystack.includes('regional') || haystack.includes('qualifier') || haystack.includes('event')) {
+        if (haystack.includes('competition') || haystack.includes('regional') || haystack.includes('qualifier')) {
           return { label: 'Competition', slug: 'competition', icon: 'bi-trophy' };
         }
-
         if (haystack.includes('camp') || haystack.includes('special') || haystack.includes('kickoff') || haystack.includes('showcase')) {
           return { label: 'Special Event', slug: 'special', icon: 'bi-stars' };
         }
@@ -212,15 +200,16 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
           html += '<tr>';
           for (let weekday = 0; weekday < 7; weekday++) {
             const cellIndex = week * 7 + weekday;
+
             if (cellIndex < leadingSpaces || day > daysInMonth) {
-              html += '<td class="py-2"><div class="calendar-day"></div></td>';
+              html += '<td class="py-2"><div class="calendar-day calendar-day--empty"></div></td>';
             } else {
               const cellDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
               const key = formatKey(cellDate);
-              const nowLocal = new Date();     const todayKey = `${nowLocal.getFullYear()}-${String(nowLocal.getMonth() + 1).padStart(2, '0')}-${String(nowLocal.getDate()).padStart(2, '0')}`;     const isToday = key === todayKey;
+              const isToday = key === todayKey;
               const isSelected = key === selectedDateKey;
               const dayEvents = eventMap[key] ?? [];
-              const hasEvents = Boolean(dayEvents.length);
+              const hasEvents = dayEvents.length > 0;
               const primaryType = hasEvents ? getEventType(dayEvents[0]).slug : '';
 
               html += `
@@ -233,6 +222,7 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
                     data-event-type="${primaryType}"
                     data-today="${isToday}"
                     data-selected="${isSelected}"
+                    aria-pressed="${isSelected}"
                   >
                     <span>${day}</span>
                   </button>
@@ -249,25 +239,22 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
         body.querySelectorAll('[data-date]').forEach((button) => {
           button.addEventListener('click', () => {
             const dateKey = button.getAttribute('data-date');
-            if (dateKey) {
-              setSelectedDate(dateKey);
-            }
+            if (dateKey) setSelectedDate(dateKey);
           });
         });
       }
 
       function renderDayAgenda() {
-        const selected = selectedDateKey ? new Date(selectedDateKey) : new Date();
-        const key = formatKey(selected);
+        const selected = selectedDateKey ? new Date(`${selectedDateKey}T12:00:00`) : new Date();
+        const key = selectedDateKey || formatKey(selected);
         const eventsForDay = eventMap[key] ?? [];
-        const nowLocal = new Date();     const todayKey = `${nowLocal.getFullYear()}-${String(nowLocal.getMonth() + 1).padStart(2, '0')}-${String(nowLocal.getDate()).padStart(2, '0')}`;     const isToday = key === todayKey;
+        const isToday = key === todayKey;
 
         const label = selected.toLocaleDateString('en-US', {
           weekday: 'long',
           month: 'long',
           day: 'numeric',
           year: 'numeric',
-          timeZone: 'America/New_York',
         });
 
         dayLabel.textContent = isToday ? `${label} \u2022 Today` : label;
@@ -282,50 +269,56 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
           return;
         }
 
-        dayContainer.innerHTML = eventsForDay
-          .map((event) => {
-            const timeLabel = event.allDay
-              ? 'All day'
-              : event.startDate.toLocaleTimeString('en-US', {
-                  hour: 'numeric',
-                  minute: '2-digit',
-                  timeZone: 'America/New_York',
-                });
+        dayContainer.innerHTML = eventsForDay.map((event) => {
+          const now = new Date();
+          const isPast = event.allDay
+            ? event.startDate < new Date(now.getFullYear(), now.getMonth(), now.getDate())
+            : (event.endDate ? event.endDate < now : event.startDate < now);
 
-            const endLabel = !event.allDay && event.endDate
-              ? ` \u2013 ${event.endDate.toLocaleTimeString('en-US', {
-                  hour: 'numeric',
-                  minute: '2-digit',
-                  timeZone: 'America/New_York',
-                })}`
-              : '';
+          const timeLabel = event.allDay
+            ? 'All day'
+            : event.startDate.toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+                timeZone: 'America/New_York',
+              });
 
-            const eventType = getEventType(event);
+          const endLabel = !event.allDay && event.endDate
+            ? ` \u2013 ${event.endDate.toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+                timeZone: 'America/New_York',
+              })}`
+            : '';
 
-            const location = event.location
-              ? `<span class="event-card__location"><i class="bi bi-geo-alt"></i>${escapeHtml(event.location)}</span>`
-              : '';
+          const eventType = getEventType(event);
 
-            const description = event.description
-              ? `<p class="event-card__description">${escapeHtml(event.description)}</p>`
-              : '';
+          const location = event.location
+            ? `<span class="event-card__location"><i class="bi bi-geo-alt"></i>${escapeHtml(event.location)}</span>`
+            : '';
 
-            return `
-              <div class="event-card event-card--${eventType.slug}">
-                <div class="event-card__top">
-                  <span class="event-type-pill event-type-pill--${eventType.slug}">
-                    <i class="bi ${eventType.icon}"></i>
-                    ${eventType.label}
-                  </span>
-                  <span class="event-card__time">${timeLabel}${endLabel}</span>
-                </div>
-                <p class="event-card__summary">${escapeHtml(event.summary)}</p>
-                ${location}
-                ${description}
+          const description = event.description
+            ? `<p class="event-card__description">${escapeHtml(event.description)}</p>`
+            : '';
+
+          return `
+            <div class="event-card event-card--${eventType.slug}${isPast ? ' event-card--past' : ''}">
+              <div class="event-card__top">
+                <span class="event-type-pill event-type-pill--${eventType.slug}">
+                  <i class="bi ${eventType.icon}"></i>
+                  ${eventType.label}
+                </span>
+                ${isPast
+                  ? `<span class="event-card__past-badge"><i class="bi bi-check2"></i> Already happened</span>`
+                  : `<span class="event-card__time">${timeLabel}${endLabel}</span>`
+                }
               </div>
-            `;
-          })
-          .join('');
+              <p class="event-card__summary${isPast ? ' event-card__summary--past' : ''}">${escapeHtml(event.summary)}</p>
+              ${isPast ? '' : location}
+              ${isPast ? '' : description}
+            </div>
+          `;
+        }).join('');
       }
 
       function escapeHtml(value) {
@@ -373,6 +366,10 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
       outline: none;
       border: none;
       background: transparent;
+    }
+
+    .calendar-day--empty {
+      pointer-events: none;
     }
 
     .calendar-day[data-date] {
@@ -462,6 +459,11 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
       box-shadow: 0 12px 28px rgba(59, 130, 246, 0.15);
     }
 
+    .event-card--past {
+      opacity: 0.55;
+      border-style: dashed;
+    }
+
     .event-card__top {
       display: flex;
       flex-wrap: wrap;
@@ -520,6 +522,17 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
       font-weight: 700;
     }
 
+    .event-card__past-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: color-mix(in srgb, var(--base-content) 55%, transparent);
+    }
+
     .event-card__location {
       margin-top: 0.55rem;
       display: inline-flex;
@@ -537,15 +550,21 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
       line-height: 1.35;
     }
 
+    .event-card__summary--past {
+      opacity: 0.65;
+      text-decoration: line-through;
+      text-decoration-thickness: 1px;
+    }
+
     .event-card__description {
       margin-top: 0.5rem;
       font-size: 0.9rem;
       line-height: 1.5;
       color: color-mix(in srgb, var(--base-content) 72%, transparent);
-    word-break: break-word;
-    overflow-wrap: anywhere;
-    max-height: 8rem;
-    overflow-y: auto;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+      max-height: 8rem;
+      overflow-y: auto;
     }
 
     @media (max-width: 640px) {
