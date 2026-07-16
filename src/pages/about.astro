@@ -689,7 +689,39 @@ import Layout from '../layouts/Layout.astro';
                 <h3 class="text-xl font-bold">Upcoming Events</h3>
               </div>
             </div>
-            <div id="about-calendar-preview" class="about-calendar-wrap"></div>
+
+            <!-- Static tile skeleton — JS fills in text content only -->
+            <div class="cal-tiles">
+
+              <!-- Event Tile 1 -->
+              <a id="cal-tile-0" href="https://calendar.google.com/calendar/u/0?cid=YWRtaW5AdGVhbTEwOTg5Lm9yZw" target="_blank" rel="noopener noreferrer" class="cal-event-tile cal-tile-featured" style="display:none;">
+                <div class="cal-tile-date" id="cal-date-0"></div>
+                <div class="cal-tile-title" id="cal-title-0"></div>
+                <div class="cal-tile-meta" id="cal-meta-0"></div>
+              </a>
+
+              <!-- Event Tile 2 -->
+              <a id="cal-tile-1" href="https://calendar.google.com/calendar/u/0?cid=YWRtaW5AdGVhbTEwOTg5Lm9yZw" target="_blank" rel="noopener noreferrer" class="cal-event-tile" style="display:none;">
+                <div class="cal-tile-date" id="cal-date-1"></div>
+                <div class="cal-tile-title" id="cal-title-1"></div>
+                <div class="cal-tile-meta" id="cal-meta-1"></div>
+              </a>
+
+              <!-- View Full Calendar Tile (always visible once loaded) -->
+              <a id="cal-cta" href="https://calendar.google.com/calendar/u/0?cid=YWRtaW5AdGVhbTEwOTg5Lm9yZw" target="_blank" rel="noopener noreferrer" class="cal-cta-tile" style="display:none;">
+                <div class="cal-cta-icon">
+                  <i class="bi bi-calendar2-week"></i>
+                </div>
+                <div class="cal-cta-text">
+                  <span class="cal-cta-label">Full Schedule</span>
+                  <span class="cal-cta-title">View Full Calendar <i class="bi bi-arrow-right"></i></span>
+                </div>
+              </a>
+
+              <!-- Empty state -->
+              <p id="cal-empty" class="cal-empty-msg" style="display:none;">No upcoming events found.</p>
+
+            </div>
           </div>
         </div>
 
@@ -697,151 +729,90 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <script is:inline>
-    (function() {
-      var root = document.getElementById('about-calendar-preview');
-      if (!root) return;
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', '/api/calendar', true);
-      xhr.onload = function() {
-        if (xhr.status !== 200) return;
-        var events, now, upcoming, i, e;
-        try { events = JSON.parse(xhr.responseText); } catch(err) { return; }
-        if (!events || !events.length) {
-          root.innerHTML = '<p style="color:hsl(var(--bc)/0.5);font-size:0.875rem;font-style:italic;">No upcoming events found.</p>';
-          return;
-        }
-        now = new Date();
-        upcoming = events
-          .filter(function(ev) { return new Date(ev.end || ev.start).getTime() >= now.getTime(); })
-          .sort(function(a,b) { return new Date(a.start) - new Date(b.start); })
-          .slice(0, 3);
-        if (!upcoming.length) {
-          root.innerHTML = '<p style="color:hsl(var(--bc)/0.5);font-size:0.875rem;font-style:italic;">No upcoming events.</p>';
-          return;
-        }
-        function fd(d) { return new Date(d).toLocaleDateString(undefined, {weekday:'short', month:'short', day:'numeric'}); }
-        function ft(ev) {
-          if (ev.allDay) return 'All day';
-          var s = new Date(ev.start).toLocaleTimeString('en-US', {hour:'numeric', minute:'2-digit', timeZone:'America/New_York'});
-          return ev.end ? s + ' \u2013 ' + new Date(ev.end).toLocaleTimeString('en-US', {hour:'numeric', minute:'2-digit', timeZone:'America/New_York'}) : s;
-        }
-        var calUrl = 'https://calendar.google.com/calendar/u/0?cid=YWRtaW5AdGVhbTEwOTg5Lm9yZw';
-        var accents = ['hsl(var(--p))', 'hsl(var(--s))', 'hsl(var(--a))'];
-                var first2 = upcoming.slice(0, 2);
-        var html = '<div class="about-cal-list">';
-        for (i = 0; i < first2.length; i++) {
-          e = first2[i];
-          var loc = '';
-          if (e.location) {
-            loc = (e.location.indexOf('http') === 0 || e.location.indexOf('zoom') !== -1 || e.location.indexOf('meet') !== -1)
-              ? 'Online' : e.location;
-          }
-          var accentColor = i === 0 ? 'hsl(var(--s))' : 'hsl(var(--p))';
-          html += '<a href="' + calUrl + '" target="_blank" rel="noopener noreferrer" class="about-cal-card' + (i === 0 ? ' about-cal-card--featured' : '') + '" style="border-left-color:' + accentColor + '">';
-          html += '<div class="about-cal-card-date">' + fd(e.start) + '</div>';
-          html += '<div class="about-cal-card-title">' + e.summary + '</div>';
-          html += '<div class="about-cal-card-footer">';
-          html += '<span class="about-cal-chip"><i class="bi bi-clock"></i>' + ft(e) + '</span>';
-          if (loc) html += '<span class="about-cal-chip"><i class="bi bi-geo-alt"></i>' + loc + '</span>';
-          html += '</div>';
-          html += '</a>';
-        }
-        html += '</div>';
-        html += '<a href="' + calUrl + '" target="_blank" rel="noopener noreferrer" class="about-cal-cta-tile">';
-        html += '<div class="about-cal-cta-inner">';
-        html += '<div class="about-cal-cta-icon"><i class="bi bi-calendar2-week"></i></div>';
-        html += '<div class="about-cal-cta-text">';
-        html += '<span class="about-cal-cta-label">Full Schedule</span>';
-        html += '<span class="about-cal-cta-title">View Full Calendar <i class="bi bi-arrow-right"></i></span>';
-        html += '</div></div></a>';
-        root.innerHTML = html;
-      };
-      xhr.send();
-    })();
-  </script>
-
-    <style>
-    .about-cal-list {
+  <style>
+    /* Calendar tile container */
+    .cal-tiles {
       display: flex;
       flex-direction: column;
       gap: 0.65rem;
-      margin-bottom: 0.65rem;
     }
-    .about-cal-card {
+
+    /* Event tiles */
+    .cal-event-tile {
       display: flex;
       flex-direction: column;
       gap: 0.35rem;
       background: hsl(var(--b2));
-      border: 1px solid hsl(var(--bc) / 0.08);
+      border: 1px solid hsl(var(--bc) / 0.1);
       border-left: 4px solid hsl(var(--p));
       border-radius: 0.875rem;
       padding: 1rem 1.1rem;
       text-decoration: none;
+      color: inherit;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .about-cal-card--featured {
-      box-shadow: 0 0 0 1px hsl(var(--s) / 0.15), 0 4px 16px hsl(var(--s) / 0.08);
+    .cal-event-tile.cal-tile-featured {
+      border-left-color: hsl(var(--s));
+      box-shadow: 0 0 0 1px hsl(var(--s) / 0.12), 0 4px 16px hsl(var(--s) / 0.07);
     }
-    .about-cal-card:hover {
+    .cal-event-tile:hover {
       transform: translateY(-3px);
       box-shadow: 0 10px 28px hsl(var(--p) / 0.14);
     }
-    .about-cal-card-date {
+    .cal-tile-date {
       font-size: 0.72rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.07em;
       color: hsl(var(--bc) / 0.5);
     }
-    .about-cal-card-title {
+    .cal-tile-title {
       font-size: 0.975rem;
       font-weight: 700;
       color: hsl(var(--bc));
       line-height: 1.35;
     }
-    .about-cal-card-footer {
+    .cal-tile-meta {
       display: flex;
       flex-wrap: wrap;
       gap: 0.4rem;
-      margin-top: 0.25rem;
+      margin-top: 0.2rem;
     }
-    .about-cal-chip {
+    .cal-chip {
       display: inline-flex;
       align-items: center;
       gap: 0.3rem;
       font-size: 0.78rem;
       color: hsl(var(--bc) / 0.6);
       background: hsl(var(--b3, var(--b1)) / 0.6);
-      padding: 0.2rem 0.6rem;
+      padding: 0.2rem 0.55rem;
       border-radius: 9999px;
       border: 1px solid hsl(var(--bc) / 0.08);
       white-space: nowrap;
     }
-    /* CTA Tile */
-    .about-cal-cta-tile {
-      display: block;
-      text-decoration: none;
-      border: 2px dashed hsl(var(--s) / 0.45);
-      border-radius: 0.875rem;
-      background: hsl(var(--s) / 0.06);
-      padding: 0.85rem 1.1rem;
-      transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
-    }
-    .about-cal-cta-tile:hover {
-      background: hsl(var(--s) / 0.12);
-      border-color: hsl(var(--s) / 0.7);
-      transform: translateY(-2px);
-    }
-    .about-cal-cta-inner {
+
+    /* CTA tile */
+    .cal-cta-tile {
       display: flex;
       align-items: center;
       gap: 0.9rem;
+      text-decoration: none;
+      color: inherit;
+      border: 2px dashed hsl(var(--s) / 0.4);
+      border-radius: 0.875rem;
+      background: hsl(var(--s) / 0.05);
+      padding: 0.85rem 1.1rem;
+      transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
     }
-    .about-cal-cta-icon {
+    .cal-cta-tile:hover {
+      background: hsl(var(--s) / 0.1);
+      border-color: hsl(var(--s) / 0.65);
+      transform: translateY(-2px);
+    }
+    .cal-cta-icon {
       width: 2.5rem;
       height: 2.5rem;
-      background: hsl(var(--s) / 0.15);
+      background: hsl(var(--s) / 0.12);
       border-radius: 0.6rem;
       display: flex;
       align-items: center;
@@ -850,19 +821,19 @@ import Layout from '../layouts/Layout.astro';
       color: hsl(var(--s));
       flex-shrink: 0;
     }
-    .about-cal-cta-text {
+    .cal-cta-text {
       display: flex;
       flex-direction: column;
       gap: 0.1rem;
     }
-    .about-cal-cta-label {
+    .cal-cta-label {
       font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.07em;
-      color: hsl(var(--s) / 0.75);
+      color: hsl(var(--s) / 0.7);
     }
-    .about-cal-cta-title {
+    .cal-cta-title {
       font-size: 0.975rem;
       font-weight: 700;
       color: hsl(var(--s));
@@ -870,7 +841,88 @@ import Layout from '../layouts/Layout.astro';
       align-items: center;
       gap: 0.4rem;
     }
+
+    /* Empty state */
+    .cal-empty-msg {
+      font-size: 0.875rem;
+      font-style: italic;
+      color: hsl(var(--bc) / 0.5);
+    }
   </style>
+
+  <script is:inline>
+    (function () {
+      var CAL_URL = 'https://calendar.google.com/calendar/u/0?cid=YWRtaW5AdGVhbTEwOTg5Lm9yZw';
+
+      function fmtDate(d) {
+        return new Date(d).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
+      }
+
+      function fmtTime(ev) {
+        if (ev.allDay) return 'All day';
+        var opts = { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' };
+        var s = new Date(ev.start).toLocaleTimeString('en-US', opts);
+        return ev.end ? s + ' \u2013 ' + new Date(ev.end).toLocaleTimeString('en-US', opts) : s;
+      }
+
+      function fmtLoc(loc) {
+        if (!loc) return '';
+        return (loc.indexOf('http') === 0 || loc.indexOf('zoom') !== -1 || loc.indexOf('meet') !== -1)
+          ? 'Online' : loc;
+      }
+
+      function chip(icon, text) {
+        return '<span class="cal-chip"><i class="bi bi-' + icon + '"></i>' + text + '</span>';
+      }
+
+      function showTile(idx, ev) {
+        var tile = document.getElementById('cal-tile-' + idx);
+        var dateEl = document.getElementById('cal-date-' + idx);
+        var titleEl = document.getElementById('cal-title-' + idx);
+        var metaEl = document.getElementById('cal-meta-' + idx);
+        if (!tile) return;
+        dateEl.textContent = fmtDate(ev.start);
+        titleEl.textContent = ev.summary;
+        var meta = chip('clock', fmtTime(ev));
+        var loc = fmtLoc(ev.location);
+        if (loc) meta += chip('geo-alt', loc);
+        metaEl.innerHTML = meta;
+        tile.style.display = 'flex';
+      }
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/api/calendar', true);
+      xhr.onload = function () {
+        if (xhr.status !== 200) return;
+        var events;
+        try { events = JSON.parse(xhr.responseText); } catch (e) { return; }
+
+        if (!events || !events.length) {
+          document.getElementById('cal-empty').style.display = 'block';
+          document.getElementById('cal-cta').style.display = 'flex';
+          return;
+        }
+
+        var now = new Date();
+        var upcoming = events
+          .filter(function (ev) { return new Date(ev.end || ev.start).getTime() >= now.getTime(); })
+          .sort(function (a, b) { return new Date(a.start) - new Date(b.start); })
+          .slice(0, 2);
+
+        if (!upcoming.length) {
+          document.getElementById('cal-empty').style.display = 'block';
+        } else {
+          for (var i = 0; i < upcoming.length; i++) {
+            showTile(i, upcoming[i]);
+          }
+        }
+
+        document.getElementById('cal-cta').style.display = 'flex';
+      };
+      xhr.send();
+    })();
+  </script>
+
   <!-- Call to Action -->
   <section class="py-20 bg-gradient-to-r from-primary to-secondary text-primary-content">
     <div class="container mx-auto px-6 text-center">
