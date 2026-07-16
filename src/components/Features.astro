@@ -129,7 +129,160 @@
                 </div>
             </div>
         </div>
+
+        <!-- ── Beyond the Build Divider ── -->
+        <div class="flex items-center gap-4 my-14" data-aos="fade-up">
+            <div class="flex-1 h-px bg-base-content/10"></div>
+            <span class="badge badge-outline badge-primary uppercase tracking-wide text-sm px-4 py-3 whitespace-nowrap">Beyond the Build</span>
+            <div class="flex-1 h-px bg-base-content/10"></div>
+        </div>
+
+        <!-- ── Bento Grid: 2 wide + 3 small ── -->
+        <div class="grid md:grid-cols-2 gap-6 md:gap-8 mb-6">
+
+            <!-- Bento 1 — Business Administration -->
+            <div data-aos="fade-up" data-aos-delay="100">
+                <div class="bento-card h-full">
+                    <i class="bi bi-briefcase bento-icon text-primary" aria-hidden="true"></i>
+                    <h3 class="bento-title">Business Administration</h3>
+                    <p class="bento-desc">
+                        Develop planning, organization, and leadership skills by coordinating projects, managing team operations, and supporting long-term goals.
+                    </p>
+                    <div class="bento-accent" style="background: hsl(var(--p));"></div>
+                </div>
+            </div>
+
+            <!-- Bento 2 — Budget Tracking -->
+            <div data-aos="fade-up" data-aos-delay="200">
+                <div class="bento-card h-full">
+                    <i class="bi bi-currency-dollar bento-icon text-success" aria-hidden="true"></i>
+                    <h3 class="bento-title">Budget Tracking</h3>
+                    <p class="bento-desc">
+                        Build financial literacy by planning budgets, tracking expenses, managing resources, and supporting fundraising and sponsorship efforts.
+                    </p>
+                    <div class="bento-accent" style="background: hsl(var(--su));"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+
+            <!-- Bento 3 — Technical Docs -->
+            <div data-aos="fade-up" data-aos-delay="100">
+                <div class="bento-card h-full">
+                    <i class="bi bi-file-earmark-code bento-icon text-secondary" aria-hidden="true"></i>
+                    <h3 class="bento-title">Technical Documentation & Portfolios</h3>
+                    <p class="bento-desc">
+                        Document designs, code, testing, and achievements to create clear technical records and professional engineering portfolios.
+                    </p>
+                    <div class="bento-accent" style="background: hsl(var(--s));"></div>
+                </div>
+            </div>
+
+            <!-- Bento 4 — Presentation -->
+            <div data-aos="fade-up" data-aos-delay="200">
+                <div class="bento-card h-full">
+                    <i class="bi bi-megaphone bento-icon text-warning" aria-hidden="true"></i>
+                    <h3 class="bento-title">Presentation & Public Speaking</h3>
+                    <p class="bento-desc">
+                        Strengthen confidence by presenting technical ideas to judges, sponsors, community members, and other teams.
+                    </p>
+                    <div class="bento-accent" style="background: hsl(var(--wa));"></div>
+                </div>
+            </div>
+
+            <!-- Bento 5 — Communication & Networking -->
+            <div data-aos="fade-up" data-aos-delay="300">
+                <div class="bento-card h-full">
+                    <i class="bi bi-diagram-3 bento-icon text-info" aria-hidden="true"></i>
+                    <h3 class="bento-title">Communication & Networking</h3>
+                    <p class="bento-desc">
+                        Build professional relationships by collaborating with mentors, sponsors, community partners, and teams throughout the FIRST network.
+                    </p>
+                    <div class="bento-accent" style="background: hsl(var(--in));"></div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>
 
+<style>
+    .bento-card {
+        position: relative;
+        background: hsl(var(--b2) / 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid hsl(var(--bc) / 0.08);
+        border-radius: 1.25rem;
+        padding: 1.75rem;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+                    box-shadow 0.25s ease,
+                    border-color 0.25s ease;
+    }
 
+    .bento-card:hover {
+        transform: translateY(-5px) scale(1.01);
+        box-shadow: 0 16px 40px hsl(var(--p) / 0.12);
+        border-color: hsl(var(--bc) / 0.18);
+    }
+
+    /* Shimmer sweep on hover */
+    .bento-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            120deg,
+            transparent 0%,
+            hsl(var(--bc) / 0.04) 40%,
+            hsl(var(--bc) / 0.08) 50%,
+            hsl(var(--bc) / 0.04) 60%,
+            transparent 100%
+        );
+        transform: translateX(-100%);
+        transition: transform 0.55s ease;
+        pointer-events: none;
+    }
+
+    .bento-card:hover::before {
+        transform: translateX(100%);
+    }
+
+    /* Colored left border accent */
+    .bento-accent {
+        position: absolute;
+        left: 0;
+        top: 1rem;
+        bottom: 1rem;
+        width: 4px;
+        border-radius: 0 4px 4px 0;
+        opacity: 0.85;
+    }
+
+    .bento-icon {
+        font-size: 2rem;
+        opacity: 0.9;
+        margin-left: 0.5rem;
+    }
+
+    .bento-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        line-height: 1.3;
+        margin-left: 0.5rem;
+        color: var(--base-content);
+    }
+
+    .bento-desc {
+        font-size: 0.925rem;
+        line-height: 1.6;
+        color: hsl(var(--bc) / 0.7);
+        margin-left: 0.5rem;
+        flex: 1;
+    }
+</style>
