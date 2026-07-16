@@ -103,5 +103,21 @@
     "description": "National Aeronautics and Space Administration",
     "bg": "white",
     "padding": "0"
+  },
+  {
+    "name": "Scouting America",
+    "logo": "/sponsors/Scouting_America_corporate_logo.png",
+    "website": "https://www.scouting.org/",
+    "description": "Preparing young people with character, citizenship, and STEM skills through hands-on learning and community service.",
+    "bg": "white",
+    "padding": "5"
+  },
+  {
+    "name": "AEO Better World Foundation",
+    "logo": "/sponsors/aeo image.jpg",
+    "website": "https://www.aeo-inc.com/aeo-foundation/",
+    "description": "Empowering youth and local communities through grants supporting education, equity, and youth development programs.",
+    "bg": "white",
+    "padding": "8"
   }
 ]
