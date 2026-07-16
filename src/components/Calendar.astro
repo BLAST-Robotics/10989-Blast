@@ -1,589 +1,421 @@
 ---
 const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 ---
+
 <section class="py-16 sm:py-24 bg-transparent relative">
-    <div class="gradient-mesh absolute inset-0 opacity-20 pointer-events-none"></div>
-	<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-		<div class="max-w-2xl mx-auto text-center">
-			<span class="badge badge-outline badge-primary uppercase tracking-wide">Schedule</span>
-			<h2 class="mt-4 text-3xl sm:text-4xl font-bold text-base-content">Team Calendar</h2>
-			<p class="mt-3 text-base-content/70 text-base sm:text-lg">
-				Stay on top of practices, outreach, and competition prep with our live-updated calendar.
-			</p>
-		</div>
-
-				<div class="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] overflow-hidden" data-calendar data-aos="fade-up">
-			<div class="rounded-3xl glass-card shadow-xl">
-				<div class="p-6 sm:p-8 h-full flex flex-col">
-					<div class="flex items-center justify-between gap-4">
-						<button type="button" class="btn btn-ghost btn-sm btn-circle" data-calendar-prev aria-label="Previous month">
-							<i class="bi bi-chevron-left text-lg"></i>
-						</button>
-						<div class="text-lg font-semibold text-base-content" data-calendar-month></div>
-						<button type="button" class="btn btn-ghost btn-sm btn-circle" data-calendar-next aria-label="Next month">
-							<i class="bi bi-chevron-right text-lg"></i>
-						</button>
-					</div>
-
-					<div class="mt-6 grid grid-cols-7 text-xs font-semibold uppercase tracking-wide text-base-content/60">
-						{weekdayLabels.map((day) => (
-							<span class="text-center py-2" role="columnheader">{day}</span>
-						))}
-					</div>
-
-					<div class="mt-2 rounded-2xl border border-base-200 overflow-hidden">
-						<table class="w-full text-center select-none">
-							<tbody data-calendar-body></tbody>
-						</table>
-					</div>
-
-					<div class="mt-4 flex flex-wrap items-center gap-4 text-xs text-base-content/60">
-						<span class="inline-flex items-center gap-2">
-							<span class="inline-block h-3 w-3 rounded-full bg-primary/80"></span>
-							Upcoming event
-						</span>
-						<span class="inline-flex items-center gap-2">
-							<span class="inline-block h-3 w-3 rounded-full border border-dashed border-primary"></span>
-							Today
-						</span>
-					</div>
-				</div>
-			</div>
-
-			<div class="rounded-2xl shadow-xl glass-card" data-aos="fade-up" data-aos-delay="100">
-				<div class="p-6 sm:p-8 h-full flex flex-col">
-					<div class="flex items-center justify-between">
-						<h3 class="text-xl font-semibold text-base-content">Week Agenda</h3>
-						<a
-							href="https://calendar.google.com/calendar/embed?src=c_5ced3b5d7c83e41617dce78e1925c590e8b03a35%40group.calendar.google.com"
-							target="_blank"
-							rel="noopener noreferrer"
-							class="btn btn-outline btn-sm"
-						>
-							Open in Google Calendar
-						</a>
-					</div>
-					<p class="mt-2 text-base-content/60" data-calendar-week-label></p>
-
-					<div class="mt-6 space-y-6 overflow-y-auto" data-calendar-week-events aria-live="polite"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<script type="module">
-		async function initializeCalendar() {
-			console.log('Calendar script starting...');
-		const calendarRoot = document.querySelector('[data-calendar]');
-		if (!calendarRoot) {
-			console.warn('Calendar root element not found.');
-			return;
-		}
-
-		console.log('Calendar root found, fetching events...');
-
-		let eventData = [];
-
-		try {
-			const res = await fetch('/api/calendar');
-			if (res.ok) {
-				eventData = await res.json();
-				console.log('Fetched event count:', eventData.length);
-			} else {
-				console.warn('Calendar API returned:', res.status);
-			}
-		} catch (error) {
-			console.warn('Failed to fetch calendar events:', error);
-		}
-
-		if (!eventData || eventData.length === 0) {
-			console.warn('No event data found. Calendar will show a loading state.');
-		}
-
-		const monthLabel = calendarRoot.querySelector('[data-calendar-month]');
-		const prevButton = calendarRoot.querySelector('[data-calendar-prev]');
-		const nextButton = calendarRoot.querySelector('[data-calendar-next]');
-		const body = calendarRoot.querySelector('[data-calendar-body]');
-		const weekLabel = calendarRoot.querySelector('[data-calendar-week-label]');
-		const weekContainer = calendarRoot.querySelector('[data-calendar-week-events]');
-
-		if (!monthLabel || !prevButton || !nextButton || !body || !weekLabel || !weekContainer) {
-			console.error('One or more required calendar elements are missing from the DOM.');
-			return;
-		}
-		console.log('All calendar DOM elements found.');
-
-			const monthNames = [
-				'January',
-				'February',
-				'March',
-				'April',
-				'May',
-				'June',
-				'July',
-				'August',
-				'September',
-				'October',
-				'November',
-				'December',
-			];
-
-			const events = eventData.map((event) => ({
-				...event,
-				startDate: new Date(event.start),
-				endDate: event.end ? new Date(event.end) : null,
-			}));
-
-			const eventMap = events.reduce((acc, event) => {
-				const key = formatKey(event.startDate);
-				if (!acc[key]) acc[key] = [];
-				acc[key].push(event);
-				return acc;
-			}, {});
-
-			for (const key of Object.keys(eventMap)) {
-				eventMap[key].sort((a, b) => a.startDate.getTime() - b.startDate.getTime());
-			}
-
-			let currentMonth = (() => {
-				const today = new Date();
-				return new Date(today.getFullYear(), today.getMonth(), 1);
-			})();
-
-			let selectedDateKey = (() => {
-				const today = new Date();
-				return formatKey(today);
-			})();
-
-			function formatKey(date) {
-				const year = date.getFullYear();
-				const month = String(date.getMonth() + 1).padStart(2, '0');
-				const day = String(date.getDate()).padStart(2, '0');
-				return `${year}-${month}-${day}`;
-			}
-
-			function setSelectedDate(key) {
-				selectedDateKey = key;
-				renderCalendar();
-				renderWeekAgenda();
-			}
-
-			function renderCalendar() {
-				console.log('renderCalendar called');
-				if (!body || !monthLabel) return;
-
-				monthLabel.textContent = `${monthNames[currentMonth.getMonth()]} ${currentMonth.getFullYear()}`;
-
-				const firstDay = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1);
-				const leadingSpaces = (firstDay.getDay() + 6) % 7;
-				const daysInMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0).getDate();
-
-				let html = '';
-				let day = 1;
-
-				for (let week = 0; week < 6; week++) {
-					html += '<tr>';
-					for (let weekday = 0; weekday < 7; weekday++) {
-						const cellIndex = week * 7 + weekday;
-						if (cellIndex < leadingSpaces || day > daysInMonth) {
-							html += '<td class="py-2"><div class="calendar-day"></div></td>';
-						} else {
-							const cellDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
-							const key = formatKey(cellDate);
-							const isToday = key === formatKey(new Date());
-							const isSelected = key === selectedDateKey;
-							const hasEvents = Boolean(eventMap[key]?.length);
-
-							html += `
-								<td class="py-2">
-									<button
-										type="button"
-										class="calendar-day"
-										data-date="${key}"
-										data-has-events="${hasEvents}"
-										data-today="${isToday}"
-										data-selected="${isSelected}"
-									>
-										<span>${day}</span>
-									</button>
-								</td>
-							`;
-							day++;
-						}
-					}
-					html += '</tr>';
-				}
-
-				body.innerHTML = html;
-
-				body.querySelectorAll('[data-date]').forEach((button) => {
-					button.addEventListener('click', () => {
-						const dateKey = button.getAttribute('data-date');
-						if (dateKey) {
-							setSelectedDate(dateKey);
-						}
-					});
-				});
-			}
-
-			function renderWeekAgenda() {
-				if (!weekContainer || !weekLabel) return;
-				const selected = selectedDateKey ? new Date(selectedDateKey) : new Date();
-				const { start, end } = getWeekRange(selected);
-				weekLabel.textContent = formatWeekLabel(start, end);
-
-				const days = [];
-				for (let i = 0; i < 7; i++) {
-					const current = new Date(start);
-					current.setDate(start.getDate() + i);
-					current.setHours(0, 0, 0, 0);
-					const key = formatKey(current);
-					days.push({ date: current, key, events: eventMap[key] ?? [] });
-				}
-
-				const hasAnyEvents = days.some((day) => day.events.length > 0);
-
-				if (!hasAnyEvents) {
-					weekContainer.innerHTML = `
-						<div class="alert alert-info">
-							<div>
-								<i class="bi bi-calendar-x text-xl mr-2"></i>
-								<span>No events scheduled for this week.</span>
-							</div>
-						</div>
-					`;
-					return;
-				}
-
-				weekContainer.innerHTML = days
-					.map((day) => {
-						const heading = day.date.toLocaleDateString('en-US', {
-							weekday: 'long',
-							month: 'short',
-							day: 'numeric',
-							timeZone: 'America/New_York',
-						});
-
-						const eventsHtml = day.events.length
-							? day.events
-									.map((event) => {
-										const timeLabel = event.allDay
-											? 'All day'
-											: event.startDate.toLocaleTimeString('en-US', {
-													hour: 'numeric',
-													minute: '2-digit',
-													timeZone: 'America/New_York',
-												});
-
-										const endLabel = !event.allDay && event.endDate
-											? ` – ${event.endDate.toLocaleTimeString('en-US', {
-													hour: 'numeric',
-													minute: '2-digit',
-													timeZone: 'America/New_York',
-												})}`
-											: '';
-
-										const tooltipParts = [];
-										if (event.description) tooltipParts.push(event.description);
-										if (event.location) tooltipParts.push(`Location: ${event.location}`);
-										const tooltip = tooltipParts.length ? escapeAttribute(tooltipParts.join('\n')) : '';
-
-										const location = event.location
-											? `<span class="event-card__location"><i class="bi bi-geo-alt"></i>${escapeHtml(event.location)}</span>`
-											: '';
-
-										return `
-											<div class="event-card" ${tooltip ? `title="${tooltip}" data-tooltip="${tooltip}"` : ''}>
-												<div class="event-card__meta">
-													<span class="event-card__time">${timeLabel}${endLabel}</span>
-													${location}
-												</div>
-												<p class="event-card__summary">${escapeHtml(event.summary)}</p>
-												${event.description ? `<p class="sr-only">${escapeHtml(event.description)}</p>` : ''}
-											</div>
-										`;
-									})
-									.join('')
-							: '<p class="event-card__empty">No events planned.</p>';
-
-						const isSelected = day.key === selectedDateKey;
-
-						return `
-							<div class="week-day-group" data-selected="${isSelected}">
-								<div class="week-day-header">
-									<span class="week-day-name">${heading}</span>
-								</div>
-								<div class="week-day-events">
-									${eventsHtml}
-								</div>
-							</div>
-						`;
-					})
-					.join('');
-			}
-
-			function getWeekRange(date) {
-				const start = new Date(date);
-				start.setHours(0, 0, 0, 0);
-				const day = start.getDay();
-				const diff = (day + 6) % 7;
-				start.setDate(start.getDate() - diff);
-
-				const end = new Date(start);
-				end.setDate(start.getDate() + 6);
-				end.setHours(23, 59, 59, 999);
-				return { start, end };
-			}
-
-			function formatWeekLabel(start, end) {
-				const sameYear = start.getFullYear() === end.getFullYear();
-				const baseOptions = { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'America/New_York' };
-				const startLabel = start.toLocaleDateString('en-US', {
-					...baseOptions,
-					year: sameYear ? undefined : 'numeric',
-				});
-				const endLabel = end.toLocaleDateString('en-US', {
-					...baseOptions,
-					year: 'numeric',
-				});
-				return `Week of ${startLabel} – ${endLabel}`;
-			}
-
-			function escapeHtml(value) {
-				return value
-					.replace(/&/g, '&amp;')
-					.replace(/</g, '&lt;')
-					.replace(/>/g, '&gt;')
-					.replace(/"/g, '&quot;')
-					.replace(/'/g, '&#39;')
-					.replace(/\n/g, '<br />');
-			}
-
-			function escapeAttribute(value) {
-				return value
-					.replace(/&/g, '&amp;')
-					.replace(/</g, '&lt;')
-					.replace(/>/g, '&gt;')
-					.replace(/"/g, '&quot;')
-					.replace(/'/g, '&#39;')
-					.replace(/\n/g, ' ')
-					.trim();
-			}
-
-		prevButton?.addEventListener('click', () => {
-				currentMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1);
-				renderCalendar();
-				renderWeekAgenda();
-		});
-
-		nextButton?.addEventListener('click', () => {
-				currentMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1);
-				renderCalendar();
-				renderWeekAgenda();
-		});
-
-		renderCalendar();
-		renderWeekAgenda();
-
-		}
-		initializeCalendar();
-	</script>
-
-	<style is:global>
-		.calendar-day {
-			width: 46px;
-			height: 46px;
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			border-radius: 9999px;
-			font-weight: 500;
-			color: var(--base-content, currentColor);
-			transition: transform 0.15s ease, box-shadow 0.15s ease;
-			outline: none;
-		}
-
-		.calendar-day[data-date] {
-			cursor: pointer;
-		}
-
-		.calendar-day[data-selected="true"] {
-			background-color: var(--p);
-			color: var(--pc);
-			box-shadow: 0 10px 25px rgba(59, 130, 246, 0.25);
-			font-weight: 700;
-		}
-
-		.calendar-day[data-has-events="true"][data-selected="false"] {
-			background-color: color-mix(in srgb, var(--p) 18%, transparent);
-			color: var(--p);
-			font-weight: 600;
-		}
-
-		@supports not (color-mix(in srgb, white 50%, black 50%)) {
-			.calendar-day[data-has-events="true"][data-selected="false"] {
-				background-color: rgba(59, 130, 246, 0.16);
-				color: rgb(37, 99, 235);
-			}
-		}
-
-		.calendar-day[data-today="true"][data-selected="false"] {
-			border: 1px dashed var(--p);
-		}
-
-		.calendar-day:focus-visible {
-			box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.35);
-		}
-
-		.week-day-group {
-			border: 1px solid color-mix(in srgb, var(--bc, #1f2937) 12%, transparent);
-			border-radius: 1rem;
-			padding: 1.25rem;
-			background: var(--base-100);
-			box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
-			display: flex;
-			flex-direction: column;
-			gap: 1rem;
-		}
-
-		.week-day-group[data-selected="true"] {
-			border-color: var(--p);
-			box-shadow: 0 12px 30px rgba(59, 130, 246, 0.18);
-		}
-
-		.week-day-header {
-			display: flex;
-			align-items: baseline;
-			justify-content: space-between;
-			gap: 0.5rem;
-			color: var(--base-content);
-		}
-
-		.week-day-name {
-			font-weight: 700;
-			font-size: 1rem;
-		}
-
-		.week-day-events {
-			display: flex;
-			flex-direction: column;
-			gap: 0.75rem;
-		}
-
-		.event-card {
-			border-radius: 0.85rem;
-			border: 1px solid color-mix(in srgb, var(--bc, #1f2937) 10%, transparent);
-			background: linear-gradient(135deg, color-mix(in srgb, var(--p) 8%, transparent), transparent);
-			padding: 0.9rem 1rem;
-			transition: transform 0.2s ease, box-shadow 0.2s ease;
-			position: relative;
-		}
-
-		.event-card:hover,
-		.event-card:focus-visible {
-			transform: translateY(-2px);
-			box-shadow: 0 12px 28px rgba(59, 130, 246, 0.15);
-		}
-
-		.event-card__meta {
-			display: flex;
-			flex-wrap: wrap;
-			align-items: center;
-			gap: 0.75rem;
-			font-size: 0.75rem;
-			text-transform: uppercase;
-			letter-spacing: 0.05em;
-			color: var(--p);
-			font-weight: 600;
-		}
-
-		.event-card__time {
-			font-weight: 700;
-		}
-
-		.event-card__location {
-			display: inline-flex;
-			align-items: center;
-			gap: 0.4rem;
-			color: color-mix(in srgb, var(--base-content) 70%, transparent);
-		}
-
-		.event-card__summary {
-			margin-top: 0.35rem;
-			font-size: 1rem;
-			font-weight: 600;
-			color: var(--base-content);
-			line-height: 1.35;
-		}
-
-		.event-card__empty {
-			margin: 0;
-			padding: 0.5rem 0;
-			font-size: 0.9rem;
-			color: color-mix(in srgb, var(--base-content) 55%, transparent);
-		}
-
-		.event-card[data-tooltip]::after {
-			content: attr(data-tooltip);
-			position: absolute;
-			left: 1rem;
-			bottom: 100%;
-			transform: translateY(-0.5rem);
-			background: rgba(17, 24, 39, 0.9);
-			color: #fff;
-			padding: 0.65rem 0.85rem;
-			border-radius: 0.75rem;
-			font-size: 0.75rem;
-			line-height: 1.3;
-			min-width: 220px;
-			max-width: min(320px, 70vw);
-			opacity: 0;
-			pointer-events: none;
-			transition: opacity 0.15s ease, transform 0.15s ease;
-			white-space: pre-wrap;
-			box-shadow: 0 8px 24px rgba(15, 23, 42, 0.35);
-			z-index: 10;
-		}
-
-		.event-card[data-tooltip]::before {
-			content: '';
-			position: absolute;
-			left: 1.75rem;
-			bottom: calc(100% - 0.4rem);
-			width: 10px;
-			height: 10px;
-			background: rgba(17, 24, 39, 0.9);
-			transform: rotate(45deg);
-			opacity: 0;
-			transition: opacity 0.15s ease;
-			z-index: 9;
-		}
-
-		.event-card[data-tooltip]:hover::after,
-		.event-card[data-tooltip]:focus-visible::after,
-		.event-card[data-tooltip]:hover::before,
-		.event-card[data-tooltip]:focus-visible::before {
-			opacity: 1;
-		}
-
-		@media (max-width: 640px) {
-			.calendar-day {
-				width: 40px;
-				height: 40px;
-			}
-
-			.week-day-group {
-				padding: 1rem;
-			}
-
-			.event-card {
-				padding: 0.75rem;
-			}
-
-			.event-card[data-tooltip]::after {
-				left: 0.5rem;
-				min-width: 200px;
-			}
-		}
-	</style>
+<div class="gradient-mesh absolute inset-0 opacity-20 pointer-events-none"></div>
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="max-w-2xl mx-auto text-center">
+<span class="badge badge-outline badge-primary uppercase tracking-wide">Schedule</span>
+<h2 class="mt-4 text-3xl sm:text-4xl font-bold text-base-content">Team Calendar</h2>
+<p class="mt-3 text-base-content/70 text-base sm:text-lg">Stay on top of practices, outreach, and competition prep with our live-updated calendar.</p>
+</div>
+
+<div class="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] overflow-hidden" data-calendar data-aos="fade-up">
+<div class="rounded-3xl glass-card shadow-xl">
+<div class="p-6 sm:p-8 h-full flex flex-col">
+<div class="flex items-center justify-between gap-4">
+<button type="button" class="btn btn-ghost btn-sm btn-circle" data-calendar-prev aria-label="Previous month">
+<i class="bi bi-chevron-left text-lg"></i>
+</button>
+<div class="text-lg font-semibold text-base-content" data-calendar-month></div>
+<button type="button" class="btn btn-ghost btn-sm btn-circle" data-calendar-next aria-label="Next month">
+<i class="bi bi-chevron-right text-lg"></i>
+</button>
+</div>
+
+<div class="mt-6 grid grid-cols-7 text-xs font-semibold uppercase tracking-wide text-base-content/60">
+{weekdayLabels.map((day) => (
+<span class="text-center py-2" role="columnheader">{day}</span>
+))}
+</div>
+
+<div class="mt-2 rounded-2xl border border-base-200 overflow-hidden">
+<table class="w-full text-center select-none">
+<tbody data-calendar-body></tbody>
+</table>
+</div>
+
+<div class="mt-4 flex flex-wrap items-center gap-4 text-xs text-base-content/60">
+<span class="inline-flex items-center gap-2"><span class="inline-block h-3 w-3 rounded-full bg-primary/80"></span>Upcoming event</span>
+<span class="inline-flex items-center gap-2"><span class="inline-block h-3 w-3 rounded-full border border-dashed border-primary"></span>Today</span>
+</div>
+</div>
+</div>
+
+<div class="rounded-3xl glass-card shadow-xl">
+<div class="p-6 sm:p-8 h-full flex flex-col gap-5">
+<div>
+<h3 class="text-xl font-bold text-base-content">Daily Agenda</h3>
+<p class="mt-1 text-sm text-base-content/60">Select a day on the calendar to see what's happening.</p>
+</div>
+
+<div class="text-sm font-semibold text-primary" data-calendar-day-label></div>
+
+<div class="flex-1 flex flex-col gap-3" data-calendar-day-events></div>
+
+<div class="flex flex-wrap gap-2 text-xs">
+<span class="event-pill event-pill--workshop">Workshop</span>
+<span class="event-pill event-pill--meeting">Meeting</span>
+<span class="event-pill event-pill--outreach">Outreach</span>
+<span class="event-pill event-pill--competition">Competition</span>
+<span class="event-pill event-pill--special">Special Event</span>
+<span class="event-pill event-pill--today">Today</span>
+</div>
+
+<a class="btn btn-primary btn-sm w-full mt-2" href="https://calendar.google.com/calendar/embed?src=c_5ced3b5d7c83e41617dce78e1925c590e8b03a35%40group.calendar.google.com" target="_blank" rel="noopener noreferrer">
+<i class="bi bi-google mr-2"></i>Add to Google Calendar
+</a>
+</div>
+</div>
+</div>
+</div>
 </section>
+
+<script>
+async function initializeCalendar() {
+const calendarRoot = document.querySelector('[data-calendar]');
+if (!calendarRoot) return;
+
+let eventData = [];
+try {
+const res = await fetch('/api/calendar');
+if (res.ok) eventData = await res.json();
+} catch (error) {
+console.warn('Failed to fetch calendar events:', error);
+}
+
+const monthLabel = calendarRoot.querySelector('[data-calendar-month]');
+const prevButton = calendarRoot.querySelector('[data-calendar-prev]');
+const nextButton = calendarRoot.querySelector('[data-calendar-next]');
+const body = calendarRoot.querySelector('[data-calendar-body]');
+const dayLabel = calendarRoot.querySelector('[data-calendar-day-label]');
+const dayContainer = calendarRoot.querySelector('[data-calendar-day-events]');
+if (!monthLabel || !prevButton || !nextButton || !body || !dayLabel || !dayContainer) {
+console.error('One or more required calendar elements are missing from the DOM.');
+return;
+}
+
+const monthNames = [
+'January', 'February', 'March', 'April', 'May', 'June',
+'July', 'August', 'September', 'October', 'November', 'December',
+];
+
+const events = eventData.map((event) => ({
+...event,
+startDate: new Date(event.start),
+endDate: event.end ? new Date(event.end) : null,
+}));
+
+const eventMap = events.reduce((acc, event) => {
+const key = formatKey(event.startDate);
+if (!acc[key]) acc[key] = [];
+acc[key].push(event);
+return acc;
+}, {});
+
+for (const key of Object.keys(eventMap)) {
+eventMap[key].sort((a, b) => a.startDate.getTime() - b.startDate.getTime());
+}
+
+let currentMonth = (() => {
+const today = new Date();
+return new Date(today.getFullYear(), today.getMonth(), 1);
+})();
+
+let selectedDateKey = (() => {
+const today = new Date();
+return formatKey(today);
+})();
+
+function formatKey(date) {
+const year = date.getFullYear();
+const month = String(date.getMonth() + 1).padStart(2, '0');
+const day = String(date.getDate()).padStart(2, '0');
+return year + '-' + month + '-' + day;
+}
+
+function getEventType(event) {
+const text = ((event.summary || '') + ' ' + (event.description || '')).toLowerCase();
+if (/compet|tournament|qualif|regional|state|world/.test(text)) return 'competition';
+if (/outreach|volunteer|demo|community|parade|fair/.test(text)) return 'outreach';
+if (/meeting|standup|sync|review|planning/.test(text)) return 'meeting';
+if (/kickoff|banquet|ceremony|celebration|party|special/.test(text)) return 'special';
+if (/workshop|build|practice|training|cad|program|session|lab/.test(text)) return 'workshop';
+return 'workshop';
+}
+
+function setSelectedDate(key) {
+selectedDateKey = key;
+renderCalendar();
+renderDayAgenda();
+}
+
+function renderCalendar() {
+if (!body || !monthLabel) return;
+monthLabel.textContent = monthNames[currentMonth.getMonth()] + ' ' + currentMonth.getFullYear();
+const firstDay = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1);
+const leadingSpaces = (firstDay.getDay() + 6) % 7;
+const daysInMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0).getDate();
+let html = '';
+let day = 1;
+for (let week = 0; week < 6; week++) {
+html += '<tr>';
+for (let weekday = 0; weekday < 7; weekday++) {
+const cellIndex = week * 7 + weekday;
+if (cellIndex < leadingSpaces || day > daysInMonth) {
+html += '<td class="py-2"><div class="calendar-day"></div></td>';
+} else {
+const cellDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
+const key = formatKey(cellDate);
+const isToday = key === formatKey(new Date());
+const isSelected = key === selectedDateKey;
+const hasEvents = Boolean(eventMap[key] && eventMap[key].length);
+html += '<td class="py-2"><button type="button" class="calendar-day" data-date="' + key + '" data-has-events="' + hasEvents + '" data-today="' + isToday + '" data-selected="' + isSelected + '"><span>' + day + '</span></button></td>';
+day++;
+}
+}
+html += '</tr>';
+}
+body.innerHTML = html;
+body.querySelectorAll('[data-date]').forEach((button) => {
+button.addEventListener('click', () => {
+const dateKey = button.getAttribute('data-date');
+if (dateKey) setSelectedDate(dateKey);
+});
+});
+}
+
+function renderDayAgenda() {
+if (!dayContainer || !dayLabel) return;
+const selected = selectedDateKey ? new Date(selectedDateKey + 'T00:00:00') : new Date();
+selected.setHours(0, 0, 0, 0);
+const key = formatKey(selected);
+const dayEvents = eventMap[key] ?? [];
+const isToday = key === formatKey(new Date());
+
+dayLabel.textContent = selected.toLocaleDateString('en-US', {
+weekday: 'long',
+month: 'long',
+day: 'numeric',
+year: 'numeric',
+timeZone: 'America/New_York',
+}) + (isToday ? ' \u2022 Today' : '');
+
+if (!dayEvents.length) {
+dayContainer.innerHTML = '<div class="day-agenda__empty"><i class="bi bi-calendar-x text-xl mr-2"></i><span>No events scheduled for this day.</span></div>';
+return;
+}
+
+dayContainer.innerHTML = dayEvents
+.map((event) => {
+const type = getEventType(event);
+const timeLabel = event.allDay
+? 'All day'
+: event.startDate.toLocaleTimeString('en-US', {
+hour: 'numeric',
+minute: '2-digit',
+timeZone: 'America/New_York',
+});
+const endLabel = !event.allDay && event.endDate
+? ' \u2013 ' + event.endDate.toLocaleTimeString('en-US', {
+hour: 'numeric',
+minute: '2-digit',
+timeZone: 'America/New_York',
+})
+: '';
+const tooltipParts = [];
+if (event.description) tooltipParts.push(event.description);
+if (event.location) tooltipParts.push('Location: ' + event.location);
+const tooltip = tooltipParts.length ? escapeAttribute(tooltipParts.join('\n')) : '';
+const location = event.location
+? '<span class="event-card__location"><i class="bi bi-geo-alt"></i>' + escapeHtml(event.location) + '</span>'
+: '';
+return '<div class="event-card event-card--' + type + '" ' + (tooltip ? 'title="' + tooltip + '" data-tooltip="' + tooltip + '"' : '') + '>'
++ '<div class="event-card__meta">'
++ '<span class="event-pill event-pill--' + type + '">' + type + '</span>'
++ '<span class="event-card__time">' + timeLabel + endLabel + '</span>'
++ location
++ '</div>'
++ '<p class="event-card__summary">' + escapeHtml(event.summary) + '</p>'
++ (event.description ? '<p class="sr-only">' + escapeHtml(event.description) + '</p>' : '')
++ '</div>';
+})
+.join('');
+}
+
+function escapeHtml(value) {
+return String(value)
+.replace(/&/g, '&amp;')
+.replace(/</g, '&lt;')
+.replace(/>/g, '&gt;')
+.replace(/"/g, '&quot;')
+.replace(/'/g, '&#39;')
+.replace(/\n/g, '<br />');
+}
+
+function escapeAttribute(value) {
+return String(value)
+.replace(/&/g, '&amp;')
+.replace(/</g, '&lt;')
+.replace(/>/g, '&gt;')
+.replace(/"/g, '&quot;')
+.replace(/'/g, '&#39;')
+.replace(/\n/g, ' ')
+.trim();
+}
+
+prevButton.addEventListener('click', () => {
+currentMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1);
+renderCalendar();
+renderDayAgenda();
+});
+
+nextButton.addEventListener('click', () => {
+currentMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1);
+renderCalendar();
+renderDayAgenda();
+});
+
+renderCalendar();
+renderDayAgenda();
+}
+
+initializeCalendar();
+</script>
+
+<style>
+.calendar-day {
+width: 46px;
+height: 46px;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+border-radius: 9999px;
+font-weight: 500;
+color: var(--base-content, currentColor);
+transition: transform 0.15s ease, box-shadow 0.15s ease;
+outline: none;
+}
+.calendar-day[data-date] { cursor: pointer; }
+.calendar-day[data-selected="true"] {
+background-color: var(--p);
+color: var(--pc);
+box-shadow: 0 10px 25px rgba(59, 130, 246, 0.25);
+font-weight: 700;
+}
+.calendar-day[data-has-events="true"][data-selected="false"] {
+background-color: color-mix(in srgb, var(--p) 18%, transparent);
+color: var(--p);
+font-weight: 600;
+}
+.calendar-day[data-today="true"][data-selected="false"] {
+border: 1px dashed var(--p);
+}
+.calendar-day:focus-visible {
+box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.35);
+}
+
+.event-pill {
+display: inline-flex;
+align-items: center;
+gap: 0.35rem;
+padding: 0.15rem 0.6rem;
+border-radius: 9999px;
+font-size: 0.7rem;
+font-weight: 700;
+text-transform: capitalize;
+letter-spacing: 0.02em;
+border: 1px solid transparent;
+}
+.event-pill--workshop { background: rgba(59, 130, 246, 0.15); color: #2563eb; border-color: rgba(59, 130, 246, 0.3); }
+.event-pill--meeting { background: rgba(16, 185, 129, 0.15); color: #059669; border-color: rgba(16, 185, 129, 0.3); }
+.event-pill--outreach { background: rgba(245, 158, 11, 0.15); color: #d97706; border-color: rgba(245, 158, 11, 0.3); }
+.event-pill--competition { background: rgba(239, 68, 68, 0.15); color: #dc2626; border-color: rgba(239, 68, 68, 0.3); }
+.event-pill--special { background: rgba(168, 85, 247, 0.15); color: #9333ea; border-color: rgba(168, 85, 247, 0.3); }
+.event-pill--today { background: transparent; color: var(--p); border-style: dashed; border-color: var(--p); }
+
+.day-agenda__empty {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+padding: 1.25rem;
+border-radius: 1rem;
+border: 1px dashed color-mix(in srgb, var(--bc, #1f2937) 20%, transparent);
+color: color-mix(in srgb, var(--base-content) 60%, transparent);
+font-size: 0.9rem;
+}
+
+.event-card {
+border-radius: 0.85rem;
+border: 1px solid color-mix(in srgb, var(--bc, #1f2937) 10%, transparent);
+background: linear-gradient(135deg, color-mix(in srgb, var(--p) 8%, transparent), transparent);
+padding: 0.9rem 1rem;
+transition: transform 0.2s ease, box-shadow 0.2s ease;
+position: relative;
+border-left-width: 4px;
+}
+.event-card--workshop { border-left-color: #2563eb; }
+.event-card--meeting { border-left-color: #059669; }
+.event-card--outreach { border-left-color: #d97706; }
+.event-card--competition { border-left-color: #dc2626; }
+.event-card--special { border-left-color: #9333ea; }
+.event-card:hover, .event-card:focus-visible {
+transform: translateY(-2px);
+box-shadow: 0 12px 28px rgba(59, 130, 246, 0.15);
+}
+.event-card__meta {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+gap: 0.6rem;
+font-size: 0.75rem;
+color: var(--p);
+font-weight: 600;
+}
+.event-card__time { font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.event-card__location {
+display: inline-flex;
+align-items: center;
+gap: 0.4rem;
+color: color-mix(in srgb, var(--base-content) 70%, transparent);
+text-transform: none;
+}
+.event-card__summary {
+margin-top: 0.35rem;
+font-size: 1rem;
+font-weight: 600;
+color: var(--base-content);
+line-height: 1.35;
+}
+.event-card[data-tooltip]::after {
+content: attr(data-tooltip);
+position: absolute;
+left: 1rem;
+bottom: 100%;
+transform: translateY(-0.5rem);
+background: rgba(17, 24, 39, 0.9);
+color: #fff;
+padding: 0.65rem 0.85rem;
+border-radius: 0.75rem;
+font-size: 0.75rem;
+line-height: 1.3;
+min-width: 220px;
+max-width: min(320px, 70vw);
+opacity: 0;
+pointer-events: none;
+transition: opacity 0.15s ease, transform 0.15s ease;
+white-space: pre-wrap;
+box-shadow: 0 8px 24px rgba(15, 23, 42, 0.35);
+z-index: 10;
+}
+.event-card[data-tooltip]:hover::after, .event-card[data-tooltip]:focus-visible::after {
+opacity: 1;
+}
+
+@media (max-width: 640px) {
+.calendar-day { width: 40px; height: 40px; }
+.event-card { padding: 0.75rem; }
+.event-card[data-tooltip]::after { left: 0.5rem; min-width: 200px; }
+}
+</style>
