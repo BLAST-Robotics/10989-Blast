@@ -217,7 +217,7 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
             } else {
               const cellDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
               const key = formatKey(cellDate);
-              const isToday = key === formatKey(new Date());
+              const nowLocal = new Date();     const todayKey = `${nowLocal.getFullYear()}-${String(nowLocal.getMonth() + 1).padStart(2, '0')}-${String(nowLocal.getDate()).padStart(2, '0')}`;     const isToday = key === todayKey;
               const isSelected = key === selectedDateKey;
               const dayEvents = eventMap[key] ?? [];
               const hasEvents = Boolean(dayEvents.length);
@@ -260,7 +260,7 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
         const selected = selectedDateKey ? new Date(selectedDateKey) : new Date();
         const key = formatKey(selected);
         const eventsForDay = eventMap[key] ?? [];
-        const isToday = key === formatKey(new Date());
+        const nowLocal = new Date();     const todayKey = `${nowLocal.getFullYear()}-${String(nowLocal.getMonth() + 1).padStart(2, '0')}-${String(nowLocal.getDate()).padStart(2, '0')}`;     const isToday = key === todayKey;
 
         const label = selected.toLocaleDateString('en-US', {
           weekday: 'long',
@@ -542,6 +542,10 @@ const weekdayLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
       font-size: 0.9rem;
       line-height: 1.5;
       color: color-mix(in srgb, var(--base-content) 72%, transparent);
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    max-height: 8rem;
+    overflow-y: auto;
     }
 
     @media (max-width: 640px) {
