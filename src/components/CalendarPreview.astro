@@ -57,9 +57,7 @@
 			if (primary.location) ad(dl,'bi bi-geo-alt',primary.location);
 			if (primary.description) { desc = card.appendChild(document.createElement('p')); desc.className = 'highlight-description'; desc.textContent = primary.description; }
 			link = card.appendChild(document.createElement('a'));
-			link.href = 'https://calendar.google.com/calendar/u/0?cid=YWRtaW5AdGVhbTEwOTg5Lm9yZw';
-			link.target = '_blank';
-			link.rel = 'noopener noreferrer';
+			link.href = '/calendar';
 			link.className = 'highlight-action';
 			link.textContent = 'View full calendar';
 			arrow = link.appendChild(document.createElement('i'));
