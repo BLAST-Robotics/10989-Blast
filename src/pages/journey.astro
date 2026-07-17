@@ -43,7 +43,7 @@ import timelineData from "../data/timeline.json";
                         </div>
                         <div class={`${index % 2 === 0 ? "timeline-start mb-10 md:text-end" : "timeline-end md:mb-10"}`}>
                             {item.type === "overlay" ? (
-                                <div class="timeline-card card bg-base-100 image-full w-96 shadow-xl border border-base-300 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-primary opacity-0 translate-y-8">
+                                <div class="timeline-card card bg-base-100 image-full w-full max-w-md md:max-w-lg shadow-xl border border-base-300 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-primary opacity-0 translate-y-8">
                                     <figure>
                                         <div class={`${item.imageBackground || ""} ${item.imagePadding ? "rounded-xl" : ""}`}>
                                             <Image
@@ -72,7 +72,7 @@ import timelineData from "../data/timeline.json";
                                     </div>
                                 </div>
                             ) : item.type === "card" ? (
-                                <div class="timeline-card card bg-base-100 w-96 shadow-xl border border-base-300 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-primary opacity-0 translate-y-8">
+                                <div class="timeline-card card bg-base-100 w-full max-w-md md:max-w-lg shadow-xl border border-base-300 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-primary opacity-0 translate-y-8">
                                     <figure>
                                         <Image
                                             src={item.image}
@@ -97,7 +97,7 @@ import timelineData from "../data/timeline.json";
                                     </div>
                                 </div>
                             ) : (
-                                <div class="timeline-card card bg-base-100 w-96 shadow-xl border border-base-300 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-primary opacity-0 translate-y-8">
+                                <div class="timeline-card card bg-base-100 w-full max-w-md md:max-w-lg shadow-xl border border-base-300 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-primary opacity-0 translate-y-8">
                                     <div class="card-body text-center">
                                         <div
                                             class={`flex items-center justify-center mx-auto mb-4 ${item.imageBackground || "bg-base-200"} ${item.imagePadding || ""} rounded-xl w-fit`}>
