@@ -1,6 +1,134 @@
 [
+    {
+    "date": "July 12, 2026",
+    "title": "They See Blue PA Picnic",
+    "description": "Volunteered and attended the annual They See Blue PA picnic, networking with community leaders and local judges to improve our community presence and build career connections for future programs.",
+    "image": "/journey/they-see-blue.png",
+    "type": "card"
+  },
   {
-    "date": "October 18, 2025",
+    "date": "June 22-26, 2026",
+    "title": "June STEM Summer Camp",
+    "description": "Hosted our first summer camp of 2026, teaching kids in 4th-8th grade how to build and code VEX IQ robots and compete in a competition-style game, alongside engineering workshops and guest speakers.",
+    "image": "/journey/summer-camp-2026.png",
+    "type": "card"
+  },
+  {
+    "date": "June 5, 2026",
+    "title": "Penn State Great Valley Visit",
+    "description": "Visited the Penn State Great Valley campus, connecting with professors who will help machine robot parts, collaborate on a STEM podcast through the Great Valley Launchbox program, and introduce our team to entrepreneurship.",
+    "image": "/journey/psu-great-valley.jpg",
+    "type": "card"
+  },
+  {
+    "date": "May 30-31, 2026",
+    "title": "STEM Fest 2026",
+    "description": "Participated in STEM Fest 2026, showcasing our robot and electronics projects to the public and inspiring visitors of all ages to explore robotics and engineering.",
+    "image": "/journey/stem-fest.jpg",
+    "type": "card"
+  },
+    {
+    "date": "May 13, 2026",
+    "title": "FirstXMIT Meeting",
+    "description": "Met with the board of FirstXMIT, who agreed to mentor our team on the technical side and support establishing our team's pre-apprenticeship program in the future.",
+    "image": "/journey/firstxmit.jpg",
+    "type": "overlay"
+  },
+  {
+    "date": "May 6, 2026",
+    "title": "PBM Lions Club",
+    "description": "Met with the Paoli-Berwyn-Malvern Lions International Club for their 85th anniversary, connecting with business leaders in disability awareness to gain support for community outreach and volunteering.",
+    "image": "/journey/pbm-lions.jpg",
+    "type": "card"
+  },
+    {
+    "date": "April 26, 2026",
+    "title": "Mainline Rotary Club",
+    "description": "Presented to the board of directors of the Mainline Rotary Club, gaining their support in arranging more community outreach and volunteering opportunities for our team.",
+    "image": "/journey/rotary-club.jpg",
+    "type": "card"
+  },
+  {
+    "date": "April 18, 2026",
+    "title": "Children's Youth Festival",
+    "description": "Hosted a panel at the annual youth festival at East High School, presenting to over 500 entrepreneurs and students and gaining more support and recruits for our team.",
+    "image": "/journey/youth-festival-2.jpg",
+    "type": "card"
+  },
+  {
+    "date": "April 2-4, 2026",
+    "title": "FRC Philadelphia: Rising All-Star Award",
+    "description": "Competed in the Philadelphia District event, our second season competition, winning the Rising All-Star award for our amazing foundation and organization as a first-year team.",
+    "image": "/journey/rising-all-star.png",
+    "type": "overlay",
+    "lightColor": true
+  },
+{
+    "date": "March 20-22, 2026",
+    "title": "FRC Centennial: Rookie All-Star Award",
+    "description": "Competed in the Centennial District event, our first ever season competition, winning the Rookie All-Star award for our outstanding dedication to community, local and global outreach missions, and documentation.",
+    "image": "/journey/rookie-all-star.jpg",
+    "type": "overlay",
+    "lightColor": true
+  },
+  {
+    "date": "February 7, 2026",
+    "title": "Collaboration Session with FRC 316",
+    "description": "FRC 316 Lunatecs hosted our team in their workshop and helped us resolve major technical issues we were facing during build season.",
+    "image": "/journey/frc316.jpg",
+    "type": "card"
+  },
+  {
+    "date": "January 10, 2026",
+    "title": "FRC 2026 Rebuilt Kickoff",
+    "description": "Hosted by FRC 1168: Malvern Robotics for the 2026 FRC Kickoff for the game Rebuilt, where we went through the game manual and strategized with 1168 on the first official day of the season.",
+    "image": "/journey/kickoff-2026.jpg",
+    "type": "card"
+  },
+  {
+    "date": "January 10, 2026",
+    "title": "FLL PA East Championship",
+    "description": "Volunteered at the 2026 First Lego League East PA Championship with host team FRC 1168, earning over 60 total volunteer hours as a team.",
+    "image": "/journey/fll-championship.jpg",
+    "type": "card"
+  },
+{
+    "date": "December 20, 2025",
+    "title": "Greater Philadelphia Youth Conference",
+    "description": "Ran a panel at the 3rd Annual Youth Conference at East High School, presenting to over 500 people and gaining recruits for our robotics team and adult mentors for our non-profit.",
+    "image": "/journey/youth-conference.jpg",
+    "type": "card"
+  },
+  {
+    "date": "December 7, 2025",
+    "title": "Temple University's Comcast Robotics Bootcamp",
+    "description": "Attended an all-day robotics bootcamp at Temple University, learning FIRST Robotics fundamentals from veteran teams through workshops on prototyping, organizing, and wiring.",
+    "image": "/journey/temple-bootcamp.jpg",
+    "type": "card"
+  },
+  {
+    "date": "November 22-28, 2025",
+    "title": "STEM2Ignite Global Outreach Program",
+    "description": "Visited 2 rural girls' middle schools in Hyderabad, India, running workshops on basic robotics, electronics, and STEM while introducing students to the FIRST Robotics Competition.",
+    "image": "/journey/stem2ignite.jpg",
+    "type": "card"
+  },
+{
+    "date": "November 7, 2025",
+    "title": "Workshop Visit to FRC 1391",
+    "description": "Visited the workshop of FRC 1391: Westtown Robotics, receiving their old 2024 robot as a donation and building a strong network of connections for the upcoming season.",
+    "image": "/journey/frc1391.jpg",
+    "type": "card"
+  },
+  {
+    "date": "October 21, 2025",
+    "title": "Partnership & Meeting with Scouting America",
+    "description": "Met with representatives of the Chester County Council to discuss a partnership to establish a STEM venturing crew for youth to develop life skills and take on new adventures.",
+    "image": "/journey/scouting-america.jpg",
+    "type": "card"
+  },
+  {
+"date": "October 18, 2025",
     "title": "Ramp Riot XXV",
     "description": "Competed at Ramp Riot XXV off-season competition and received the Gardener Award, recognizing our dedication to cultivating STEM opportunities and supporting local students in the robotics community.",
     "image": "/journey/award.webp",
