@@ -1,24 +1,24 @@
 [
   {
-    "image": "/team/group_photo1.jpg",
+    "image": "/team/gp1.jpg",
     "filter": "brightness(100%) saturate(175%)",
     "overlay": "rgba(0,0,0,0.4)",
     "alt": "Team Photo"
   },
   {
-    "image": "/team/group_photo2.png",
+    "image": "/team/gp2.jpg",
     "filter": "brightness(100%) saturate(175%)",
     "overlay": "rgba(0,0,0,0.4)",
     "alt": "Summer Camp"
   },
   {
-    "image": "/group_photo3.png",
+    "image": "/team/gp3.jpg",
     "filter": "brightness(100%) saturate(175%)",
     "overlay": "rgba(0,0,0,0.4)",
     "alt": "Dawgma Visit" 
   },
   {
-    "image": "/team/group_photo4.png",
+    "image": "/team/gp4.jpg",
     "filter": "brightness(125%) saturate(150%)",
     "overlay": "rgba(0,0,0,0.4)",
     "alt": "Farrell Meeting" 
