@@ -57,56 +57,164 @@ import Layout from '../layouts/Layout.astro';
         </p>
       </div>
 
-      <div class="grid lg:grid-cols-2 gap-6 mb-6">
-        <div>
-          <div class="card bg-base-100 shadow-xl">
-            <div class="card-body">
-              <h3 class="card-title text-2xl mb-4">Camp Overview</h3>
-              <div class="space-y-3">
-                <div class="flex items-start gap-3">
-                  <svg class="w-6 h-6 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                  </svg>
-                  <div>
-                    <strong>Who:</strong> Students in grades 4-9 from the Mainline area
-                  </div>
-                </div>
-                <div class="flex items-start gap-3">
-                  <svg class="w-6 h-6 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                  </svg>
-                  <div>
-                    <strong>When:</strong> June 2026 (5-day camp)
-                  </div>
-                </div>
-                <div class="flex items-start gap-3">
-                  <svg class="w-6 h-6 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
-                  <div>
-                    <strong>Time:</strong> Monday-Friday, 9:00 AM - 4:00 PM
-                  </div>
-                </div>
-                <div class="flex items-start gap-3">
-                  <svg class="w-6 h-6 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                  </svg>
-                  <div>
-                    <strong>Location:</strong> 15 Waterloo Avenue, 2nd Floor, Berwyn PA
-                  </div>
-                </div>
-              </div>
-              <div class="divider"></div>
-              <a
-                href="https://docs.google.com/forms/d/1qdwnVLdFZ_W9DJPAMDnNmmj99GNiGHPbJGHPRTg88I0/viewform"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-primary btn-lg w-full"
-              >2026 Camp Registration</a>
+      <div class="grid lg:grid-cols-2 gap-6 mb-8 items-stretch">
+  <div class="card bg-base-100 shadow-xl border border-base-300 h-full">
+    <div class="card-body">
+      <h3 class="card-title text-2xl mb-4">Camp Overview</h3>
+      <div class="space-y-3">
+        <div class="flex items-start gap-3">
+          <svg class="w-6 h-6 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+          <div><strong>Who:</strong> Students in grades 4-9 from the Mainline area</div>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-6 h-6 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <div><strong>When:</strong> June 2026 (5-day camp)</div>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-6 h-6 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <div><strong>Time:</strong> Monday-Friday, 9:00 AM - 4:00 PM</div>
+        </div>
+        <div class="flex items-start gap-3">
+          <svg class="w-6 h-6 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+          <div><strong>Location:</strong> 15 Waterloo Avenue, 2nd Floor, Berwyn PA</div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <a
+        href="https://docs.google.com/forms/d/1qdwnVLdFZ_W9DJPAMDnNmmj99GNiGHPbJGHPRTg88I0/viewform"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-primary btn-lg w-full"
+      >2026 Camp Registration</a>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl border-2 border-primary h-full">
+    <div class="card-body">
+      <h3 class="card-title text-2xl mb-4 text-primary">2026 Camp Impact</h3>
+      <div class="flex flex-col divide-y divide-base-300">
+        <div class="flex items-center justify-between gap-4 py-4">
+          <div class="flex items-center gap-4">
+            <div class="rounded-full bg-primary/10 p-3">
+              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="text-sm text-base-content/60">Funds Raised</div>
+              <div class="text-xs text-base-content/50">Supporting team operations</div>
             </div>
           </div>
+          <div class="text-3xl font-bold text-primary">$12,000</div>
         </div>
+
+        <div class="flex items-center justify-between gap-4 py-4">
+          <div class="flex items-center gap-4">
+            <div class="rounded-full bg-primary/10 p-3">
+              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="text-sm text-base-content/60">Service Hours</div>
+              <div class="text-xs text-base-content/50">Team member dedication</div>
+            </div>
+          </div>
+          <div class="text-3xl font-bold text-primary">600+</div>
+        </div>
+
+        <div class="flex items-center justify-between gap-4 py-4">
+          <div class="flex items-center gap-4">
+            <div class="rounded-full bg-primary/10 p-3">
+              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="text-sm text-base-content/60">Kids Served</div>
+              <div class="text-xs text-base-content/50">Will update after August camp</div>
+            </div>
+          </div>
+          <div class="text-3xl font-bold text-primary">40</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl border border-base-300 h-full">
+    <div class="card-body">
+      <h3 class="card-title text-xl mb-4">💰 Pricing & Registration</h3>
+      <div class="space-y-3">
+        <div class="flex justify-between items-center p-3 bg-base-200 rounded-lg">
+          <span class="font-semibold">Early Registration</span>
+          <span class="text-lg font-bold text-primary">$280</span>
+        </div>
+        <div class="flex justify-between items-center p-3 bg-base-200 rounded-lg">
+          <span class="font-semibold">Base Admission</span>
+          <span class="text-lg font-bold text-primary">$300</span>
+        </div>
+        <div class="flex justify-between items-center p-3 bg-base-200 rounded-lg">
+          <span>Late Registration</span>
+          <span class="text-lg font-bold">$320</span>
+        </div>
+        <div class="flex justify-between items-center p-3 bg-base-200 rounded-lg">
+          <span>Optional Lunch</span>
+          <span class="text-sm font-semibold text-right">Bring your own money — counselors escort campers to a nearby spot of their choice</span>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <p class="text-sm text-base-content/70">
+        Payments handled by <strong>Keystone STEM Alliance Inc.</strong> (EIN 39-3589749).
+        Note: Payment is not tax-deductible as it is for a service received.
+      </p>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl border border-base-300 h-full">
+    <div class="card-body">
+      <h3 class="card-title text-xl mb-4">🎒 What to Bring</h3>
+      <ul class="space-y-2">
+        >
+          <svg class="w-5 h-5 text-success mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span><strong>Laptop (required)</strong> - Backup devices available if needed</span>
+        </li>
+        >
+          <svg class="w-5 h-5 text-success mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span><strong>Lunch money</strong> - Campers bring their own money and choose where to go with their counselor</span>
+        </li>
+        >
+          <svg class="w-5 h-5 text-success mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span><strong>Water bottle</strong> - Stay hydrated!</span>
+        </li>
+      </ul>
+      <div class="divider"></div>
+      <h4 class="font-bold mb-2">✨ What We Provide:</h4>
+      <ul class="space-y-1 text-base-content/70">
+        >• Snacks (chips, candy, juice)</li>
+        >• VEX IQ robot kits</li>
+        >• 3D printing materials</li>
+        >• All building supplies</li>
+        >• Camp T-shirt</li>
+        >• Certificate of completion</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
         <div>
           <div class="card bg-primary text-primary-content shadow-xl h-full">
