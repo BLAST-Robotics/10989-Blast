@@ -1,12 +1,12 @@
 [
   {
-    "image": "/team/gp1.jpg",
+    "image": "/team/gp2.jpg",
     "filter": "brightness(100%) saturate(175%)",
     "overlay": "rgba(0,0,0,0.4)",
     "alt": "Team Photo"
   },
   {
-    "image": "/team/gp2.jpg",
+    "image": "/team/gp1.jpg",
     "filter": "brightness(100%) saturate(175%)",
     "overlay": "rgba(0,0,0,0.4)",
     "alt": "Summer Camp"
