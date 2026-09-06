@@ -9,14 +9,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/partytown": "^2.1.4",
-    "@astrojs/sitemap": "^3.6.0",
-    "@astrojs/vercel": "^9.0.2",
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/partytown": "^2.1.7",
+    "@astrojs/sitemap": "^3.7.4",
+    "@astrojs/vercel": "^11.0.10",
     "@fontsource/dm-sans": "^5.2.6",
     "@formkit/auto-animate": "^0.9.0",
     "@tailwindcss/vite": "^4.1.11",
     "@vercel/analytics": "^1.5.0",
-    "astro": "5.16.6",
+    "astro": "7.3.1",
     "astro-capo": "^0.0.1",
     "astro-compressor": "^1.1.2",
     "astro-loading-indicator": "^0.7.0",
@@ -26,11 +27,12 @@
     "node-ical": "^0.21.0",
     "tailwindcss": "^4.0.0"
   },
-  "overrides": {
-    "vite": "npm:rolldown-vite@latest"
-  },
+
   "packageManager": "pnpm@10.8.0+sha512.0e82714d1b5b43c74610193cb20734897c1d00de89d0e18420aebc5977fa13d780a9cb05734624e81ebd81cc876cd464794850641c48b9544326b5622ca29971",
   "trustedDependencies": [
     "@tailwindcss/oxide"
-  ]
+  ],
+  "devDependencies": {
+    "typescript": "6.0.0-beta"
+  }
 }

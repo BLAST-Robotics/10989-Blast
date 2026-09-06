@@ -1,3 +1,26 @@
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+  logs: false;
+}
+
+@theme {
+  --font-sans: "DM Sans", 'sans-serif';
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  --color-primary: oklch(0.6543 0.2713 29.65);
+  --color-secondary: oklch(0.6871 0.1549 57.27);
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  --color-primary: oklch(0.6543 0.2713 29.65);
+  --color-secondary: oklch(0.6871 0.1549 57.27);
+}
+
 /* Timeline vertical center line fix */
 .timeline {
   position: relative;
@@ -38,29 +61,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   will-change: background-position;
-}
-@import "tailwindcss";
-@import "bootstrap-icons/font/bootstrap-icons.css";
-
-@plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
-  logs: false;
-}
-
-@theme {
-  --font-sans: "DM Sans", 'sans-serif';
-}
-
-@plugin "daisyui/theme" {
-  name: "light";
-  --color-primary: oklch(0.6543 0.2713 29.65);
-  --color-secondary: oklch(0.6871 0.1549 57.27);
-}
-
-@plugin "daisyui/theme" {
-  name: "dark";
-  --color-primary: oklch(0.6543 0.2713 29.65);
-  --color-secondary: oklch(0.6871 0.1549 57.27);
 }
 
 /* Custom Scrollbar Styles */

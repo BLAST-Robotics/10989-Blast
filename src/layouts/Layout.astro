@@ -13,10 +13,9 @@ import "../styles/animations.css";
 import { Image } from 'astro:assets';
 import Analytics from '@vercel/analytics/astro';
 import SponsorBar from '../components/SponsorBar.astro';
-import SummerCampPopup from '../components/SummerCampPopup.astro';
-import sponsorsData from '../data/sponsors.json';
+// import SummerCampPopup from '../components/SummerCampPopup.astro'; // Disabled: summer camp pop up
 import { Head } from 'astro-capo';
-import '@fontsource/dm-sans';
+import '@fontsource/dm-sans/latin-400.css';
 
 // Import logo images
 import placardWhite from '../../public/placardwhite.png';
@@ -27,8 +26,6 @@ import keystoneLogo from '../../public/keystonelogo.png';
 <!DOCTYPE html>
 	<html lang="en" data-theme="">
 	<Head>
-		<meta name="astro-view-transitions-enabled" content="true" />
-		<meta name="astro-view-transitions-fallback" content="animate" />
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -58,11 +55,13 @@ import keystoneLogo from '../../public/keystonelogo.png';
 		<meta property="twitter:description" content={metaDescription} />
 		<meta property="twitter:image" content={new URL('/Blast%20Robotics-1-Logo%20Black%20Square.png', Astro.site).href} />
 		
-		<!-- Preload critical images -->
-		<link rel="preload" as="image" href="/Blast%20Robotics-1-Logo%20Black%20Square.png" />
-		{sponsorsData.slice(0, 4).map((sponsor) => (
-			<link rel="preload" as="image" href={sponsor.logo} />
-		))}
+		<!-- Preconnect for third-party -->
+		<link rel="preconnect" href="https://cdn.openwidget.com" crossorigin />
+
+		<!-- Preload LCP image (first hero carousel slide) - optimized webp -->
+		<link rel="preload" as="image" href="/team/gp2-800.webp" fetchpriority="high" type="image/webp" />
+		<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+		<!-- No sponsor preload - defer to avoid competing with LCP -->
 		
 		<!-- Theme color for mobile browsers -->
 		<meta name="theme-color" content="#3b82f6" />
@@ -99,6 +98,19 @@ import keystoneLogo from '../../public/keystonelogo.png';
 			(function() {
 				const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 				document.documentElement.setAttribute('data-theme', theme);
+			})();
+		</script>
+		<!-- Defer bootstrap-icons (non-critical for FCP) -->
+		<script is:inline>
+			(function(){
+				var loadBI=function(){
+					var l=document.createElement('link');
+					l.rel='stylesheet';
+					l.href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css';
+					document.head.appendChild(l);
+				};
+				if('requestIdleCallback' in window) requestIdleCallback(loadBI,{timeout:2000});
+				else window.addEventListener('load', loadBI);
 			})();
 		</script>
 	</Head>
@@ -214,7 +226,7 @@ import keystoneLogo from '../../public/keystonelogo.png';
 
 		<Analytics />
 
-		<SummerCampPopup />
+		<!-- <SummerCampPopup /> Disabled: summer camp pop up -->
 
 		<!-- Footer -->
 		<footer class="bg-neutral text-neutral-content">
@@ -398,16 +410,34 @@ import keystoneLogo from '../../public/keystonelogo.png';
 			})();
 		</script>
 
-		<!-- Start of OpenWidget (www.openwidget.com) code -->
-<script>
-  window.__ow = window.__ow || {};
-  window.__ow.organizationId = "993a24df-7bf0-4a33-8b9a-0efb3b8773d7";
-  window.__ow.integration_name = "manual_settings";
-  window.__ow.product_name = "openwidget";   
-  ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[OpenWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.openwidget.com/openwidget.js",t.head.appendChild(n)}};!n.__ow.asyncInit&&e.init(),n.OpenWidget=n.OpenWidget||e}(window,document,[].slice))
+		<!-- OpenWidget deferred to idle to avoid blocking FCP/LCP -->
+<script is:inline>
+  (function() {
+    var loadOW = function() {
+      window.__ow = window.__ow || {};
+      window.__ow.organizationId = "993a24df-7bf0-4a33-8b9a-0efb3b8773d7";
+      window.__ow.integration_name = "manual_settings";
+      window.__ow.product_name = "openwidget";
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://cdn.openwidget.com/openwidget.js";
+      document.head.appendChild(s);
+      window.OpenWidget = window.OpenWidget || { _q: [], _h: null, _v: "2.0",
+        on: function(){ this._q.push(["on", Array.prototype.slice.call(arguments)]); },
+        once: function(){ this._q.push(["once", Array.prototype.slice.call(arguments)]); },
+        off: function(){ this._q.push(["off", Array.prototype.slice.call(arguments)]); },
+        get: function(){ throw new Error("[OpenWidget] You can't use getters before load."); },
+        call: function(){ this._q.push(["call", Array.prototype.slice.call(arguments)]); }
+      };
+    };
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadOW, { timeout: 5000 });
+    } else {
+      window.addEventListener('load', function() { setTimeout(loadOW, 3000); });
+    }
+  })();
 </script>
 <noscript>You need to <a href="https://www.openwidget.com/enable-javascript" rel="noopener nofollow">enable JavaScript</a> to use the communication tool powered by <a href="https://www.openwidget.com/" rel="noopener nofollow" target="_blank">OpenWidget</a></noscript>
-<!-- End of OpenWidget code -->
 
 	</body>
 </html>

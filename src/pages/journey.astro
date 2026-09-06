@@ -129,7 +129,7 @@ import timelineData from "../data/timeline.json";
                 ))}
             </ul>
 
-            <script>
+            <script is:inline>
                 // DaisyUI timeline animation: reveal cards and animate connectors
                 document.addEventListener("DOMContentLoaded", function () {
                     const timelineItems = document.querySelectorAll(".timeline li");
@@ -169,8 +169,8 @@ import timelineData from "../data/timeline.json";
                         observer.observe(item);
                     });
                 });
-                    </script>
-                    <script>
+            </script>
+            <script is:inline>
                         // Intersection Observer for timeline card reveal only
                         document.addEventListener("DOMContentLoaded", function () {
                             const timelineCards = document.querySelectorAll(".timeline-card");
@@ -190,7 +190,6 @@ import timelineData from "../data/timeline.json";
                                 observer.observe(card);
                             });
                         });
-                    </script>
             </script>
         </div>
     </section>

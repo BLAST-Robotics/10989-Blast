@@ -89,14 +89,19 @@ import newLogoBlack from '../../public/new_logo_black.png';
                 }, interval);
             });
 
-            // Logarithmic zoom-in effect for hero background as you scroll
+            // Logarithmic zoom-in effect - passive + rAF throttled
+            let ticking = false;
             window.addEventListener('scroll', () => {
-                const bg = document.getElementById('carousel-bg');
-                if (!bg) return;
-                const scrolled = window.scrollY;
-                // Logarithmic scale: starts at 1, approaches 1.2 as scroll increases
-                const scale = 1 + 0.2 * Math.log10(1 + scrolled / 200);
-                bg.style.transform = `scale(${scale})`;
-            });
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(() => {
+                    const bg = document.getElementById('carousel-bg');
+                    if (bg) {
+                        const scale = 1 + 0.2 * Math.log10(1 + window.scrollY / 200);
+                        bg.style.transform = `scale(${scale})`;
+                    }
+                    ticking = false;
+                });
+            }, { passive: true });
         </script>
 </section>

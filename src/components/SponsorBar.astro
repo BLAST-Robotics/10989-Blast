@@ -24,7 +24,6 @@ const sponsorsToDisplay = sponsorsData.length < minSponsors
                 class="flex-shrink-0 group transition-all duration-300 hover:scale-110 hover:drop-shadow-[0_0_12px_hsl(var(--p)/0.3)]"
                 aria-label={`Visit ${sponsor.name} website`}
                 title={sponsor.description}
-                key={`set-${setIndex}-${index}`}
               >
                 <div class="rounded-lg shadow-sm group-hover:shadow-md transition-shadow duration-300 h-16 flex items-center justify-center min-w-[120px] border border-gray-200" style={`background-color: ${sponsor.bg || 'black'}; padding: ${sponsor.padding || '16'}%;`}>
                   <Image 
@@ -33,7 +32,7 @@ const sponsorsToDisplay = sponsorsData.length < minSponsors
                     class="max-h-full max-w-full object-contain transition-all duration-300" 
                     width={120}
                     height={32}
-                    loading={setIndex === 0 && index < 4 ? "eager" : "lazy"}
+                    loading="lazy" decoding="async"
                     format="webp"
                   />
                 </div>
@@ -97,28 +96,20 @@ const sponsorsToDisplay = sponsorsData.length < minSponsors
   }
 </style>
 
-<script type="text/partytown">
-  // Calculate the exact width for seamless scrolling with multiple sets
-  document.addEventListener('DOMContentLoaded', () => {
-    const scrollContainer = document.querySelector('.animate-scroll');
-    if (scrollContainer) {
-      // Get the first sponsor set and gap
-      const firstSet = scrollContainer.children[0]; // First sponsor set
-      const firstGap = scrollContainer.children[1]; // First gap
-      const moveDistance = firstSet.offsetWidth + firstGap.offsetWidth;
-      
-      // Create a dynamic CSS rule for the exact movement
-      const style = document.createElement('style');
-      style.textContent = `
-        .animate-scroll {
-          animation: scroll 50s linear infinite;
-        }
-        @keyframes scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-${moveDistance}px); }
-        }
-      `;
+<script is:inline>
+  (function(){
+    var init=function(){
+      var scrollContainer=document.querySelector('.animate-scroll');
+      if(!scrollContainer) return;
+      var firstSet=scrollContainer.children[0];
+      var firstGap=scrollContainer.children[1];
+      if(!firstSet||!firstGap) return;
+      var moveDistance=firstSet.offsetWidth+firstGap.offsetWidth;
+      var style=document.createElement('style');
+      style.textContent='.animate-scroll{animation:scroll 50s linear infinite}@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-'+moveDistance+'px)}}';
       document.head.appendChild(style);
-    }
-  });
+    };
+    if('requestIdleCallback' in window) requestIdleCallback(init,{timeout:3000});
+    else window.addEventListener('load', init);
+  })();
 </script>
