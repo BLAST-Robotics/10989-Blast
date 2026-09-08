@@ -1,25 +1,29 @@
 [
   {
-    "image": "/team/gp2-1280.webp",
+    "image": "/team/gp2-1920.webp",
+    "srcset": "/team/gp2-800.webp 800w, /team/gp2-1280.webp 1280w, /team/gp2-1920.webp 1920w",
     "filter": "brightness(100%) saturate(175%)",
     "overlay": "rgba(0,0,0,0.4)",
     "alt": "Team Photo"
   },
   {
-    "image": "/team/gp1-1280.webp",
+    "image": "/team/gp1-1920.webp",
+    "srcset": "/team/gp1-1280.webp 1280w, /team/gp1-1920.webp 1920w",
     "filter": "brightness(100%) saturate(175%)",
     "overlay": "rgba(0,0,0,0.4)",
     "alt": "Summer Camp"
   },
   {
-    "image": "/team/gp3-1280.webp",
+    "image": "/team/gp3-1920.webp",
+    "srcset": "/team/gp3-1280.webp 1280w, /team/gp3-1920.webp 1920w",
     "filter": "brightness(100%) saturate(175%)",
     "overlay": "rgba(0,0,0,0.4)",
     "alt": "Dawgma Visit"
   },
   {
-    "image": "/team/gp4-1280.webp",
-    "filter": "brightness(125%) saturate(150%)",
+    "image": "/team/gp4-1920.webp",
+    "srcset": "/team/gp4-1280.webp 1280w, /team/gp4-1920.webp 1920w",
+    "filter": "brightness(100%) saturate(175%)",
     "overlay": "rgba(0,0,0,0.4)",
     "alt": "Farrell Meeting"
   }

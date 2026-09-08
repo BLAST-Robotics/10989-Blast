@@ -19,9 +19,21 @@ import newLogoBlack from '../../public/new_logo_black.png';
             <div
                 class={`hero-slide absolute inset-0 w-full h-full ${idx === 0 ? 'opacity-100' : 'opacity-0'} pointer-events-none`}
                 aria-hidden={idx !== 0}
-                style={`--i:${idx}; will-change: opacity; background-image: linear-gradient(${slide.overlay}, ${slide.overlay}), url('${slide.image}'); background-size: cover; background-position: center; filter: ${slide.filter || 'none'};`}
+                style={`--i:${idx}; will-change: opacity;`}
             >
-                <span class="sr-only">{slide.alt}</span>
+                <img
+                    src={slide.image}
+                    srcset={slide.srcset}
+                    sizes="100vw"
+                    alt={slide.alt}
+                    class="absolute inset-0 w-full h-full object-cover"
+                    style={`filter: ${slide.filter || 'none'};`}
+                    loading={idx === 0 ? 'eager' : 'lazy'}
+                    fetchpriority={idx === 0 ? 'high' : 'auto'}
+                    decoding={idx === 0 ? 'sync' : 'async'}
+                    draggable="false"
+                />
+                <div class="absolute inset-0 w-full h-full" style={`background: ${slide.overlay};`}></div>
             </div>
         ))}
     </div>

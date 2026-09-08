@@ -58,8 +58,8 @@ import keystoneLogo from '../../public/keystonelogo.png';
 		<!-- Preconnect for third-party -->
 		<link rel="preconnect" href="https://cdn.openwidget.com" crossorigin />
 
-		<!-- Preload LCP image (first hero carousel slide) - optimized webp -->
-		<link rel="preload" as="image" href="/team/gp2-800.webp" fetchpriority="high" type="image/webp" />
+		<!-- Preload LCP image (first hero carousel slide) - high-res webp with responsive srcset -->
+		<link rel="preload" as="image" href="/team/gp2-1920.webp" imagesrcset="/team/gp2-800.webp 800w, /team/gp2-1280.webp 1280w, /team/gp2-1920.webp 1920w" imagesizes="100vw" fetchpriority="high" type="image/webp" />
 		<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 		<!-- No sponsor preload - defer to avoid competing with LCP -->
 		
